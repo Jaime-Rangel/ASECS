@@ -45,12 +45,6 @@ namespace ASECS
             set;
         }
 
-        public Vlc.DotNet.Forms.VlcControl grabar
-        {
-            get;
-            set;
-        }
-
         public DirectoryInfo Directorio_VLC
         {
             get;

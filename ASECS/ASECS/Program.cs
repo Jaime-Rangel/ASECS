@@ -16,7 +16,7 @@ namespace ASECS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Camara_Individual());
+            Application.Run(new Menu_Principal());
         }
     }
 }

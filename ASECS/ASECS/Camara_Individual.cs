@@ -203,6 +203,8 @@ namespace ASECS
                 Grabar_Video_Hilo = new Thread(() => Hilo_Grabar_Video(this));
                 Grabar_Video_Hilo.Start();
                 Aparencia.Activar_Mensaje_Grabando();
+                //Mensaje_Grabando_Hilo = new Thread(() => Hilo_Mostrar_Mensaje(this));
+                //Mensaje_Grabando_Hilo.Start();
             }
             else
             {
@@ -213,7 +215,28 @@ namespace ASECS
                MessageBoxDefaultButton.Button1);
             }
 
-       
+        }
+
+        private void Hilo_Mostrar_Mensaje(Camara_Individual formulario)
+        {
+            if (formulario.Titulo_Grabando.InvokeRequired)
+            {
+                formulario.BeginInvoke((MethodInvoker)delegate()
+                {
+                     Aparencia.Activar_Mensaje_Grabando();
+                     Thread.Sleep(1500);
+                     Aparencia.Desactivar_Mensaje_Grabando();
+                     Thread.Sleep(1500);
+                    ;
+                });
+            }
+            else
+            {
+                Aparencia.Activar_Mensaje_Grabando();
+                Thread.Sleep(1500);
+                Aparencia.Desactivar_Mensaje_Grabando();
+                Thread.Sleep(1500); ;
+            }
         }
 
         //Metodo/Hilo para grabar video del streaming
