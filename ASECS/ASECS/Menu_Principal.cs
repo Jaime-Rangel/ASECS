@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ASECS
 {
@@ -43,8 +44,20 @@ namespace ASECS
 
         private void Menu_Principal_Nueva_Camara_Click(object sender, EventArgs e)
         {
-            Menu_Nueva_Camara Agregar_Camara = new Menu_Nueva_Camara() ;
+            Menu_Nueva_Camara Agregar_Camara = new Menu_Nueva_Camara(this) ;
             Agregar_Camara.Show();
+        }
+
+        private void Menu_Principal_Cambiar_Rutas_Click(object sender, EventArgs e)
+        {
+            string folder;
+            DialogResult result = Dialogo_Ruta_Grabacion.ShowDialog();
+            if( result == DialogResult.OK )
+            {
+                folder = Dialogo_Ruta_Grabacion.SelectedPath;
+                Variables_Globales.Ruta_Grabacion = folder;
+                MessageBox.Show("La ruta se ha almacenado correctamente");
+            }
         }
     }
 }

@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ASECS
 {
-    class Variables_Menu_Principal
+    class Variables_Menu_Nueva_Camara
     {
-        public string Nombre_Usuario
+        public List<DeviceDescriptionHolder> ONVIFDevices
         {
             get;
             set;
         }
 
-        public string Ruta_Grabacion
+        public List<Uri> Urls
+        {
+            get;
+            set;
+        }
+
+        public Semaphore Semaforo_Control_Uris
         {
             get;
             set;

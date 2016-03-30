@@ -17,10 +17,17 @@ namespace ASECS
 
         public void Acomodar_Elementos()
         {
-            formulario.Lista_Camaras_Disponibles.Left = (formulario.Width - formulario.Lista_Camaras_Disponibles.Width) / 2;
-            formulario.Boton_Buscar_Camaras.Left = (formulario.Width - formulario.Boton_Buscar_Camaras.Width) / 2;
-            formulario.Titulo_Nueva_Camara.Left = (formulario.Width - formulario.Titulo_Nueva_Camara.Width) / 2;
-            formulario.Boton_Agregar_Camara.Left = (formulario.Width - formulario.Boton_Agregar_Camara.Width) / 2;
+            formulario.Texto_Puerto_CGI.ReadOnly = true;
+            formulario.Texto_Direccion_IP.ReadOnly = true;
+            formulario.Texto_Puerto_RTSP.ReadOnly = true;
+            formulario.Texto_Puerto_CGI.Text = "81";
+            //formulario.Lista_Camaras_Disponibles.Left = (formulario.Grupo_Lista_Camaras.Width - formulario.Lista_Camaras_Disponibles.Width) / 2;
+            //formulario.Lista_Url_Camara_Seleccionada.Left = (formulario.Grupo_Urls_Camara.Width - formulario.Lista_Url_Camara_Seleccionada.Width) / 2;
+            //formulario.Boton_Agregar_Camara.Left = (formulario.Grupo_Datos_Camara.Width - formulario.Boton_Agregar_Camara.Width) / 2;
+            //formulario.Grupo_Datos_Camara.Left = (formulario.Width - formulario.Grupo_Datos_Camara.Width) / 2;
+            //formulario.Boton_Actualizar_Camaras.Left = (formulario.Grupo_Datos_Camara.Width - formulario.Boton_Actualizar_Camaras.Width) / 2;
+            //formulario.Boton_Agregar_Camara.Left = (formulario.Grupo_Urls_Camara.Width - formulario.Boton_Agregar_Camara.Width) / 2;
+
         }
 
     }

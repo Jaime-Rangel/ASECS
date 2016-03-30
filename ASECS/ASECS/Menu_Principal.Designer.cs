@@ -33,14 +33,17 @@
             this.Menu_Principal_Opciones = new System.Windows.Forms.ToolStrip();
             this.Menu_Principal_Agregar = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Principal_Nueva_Camara = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Principal_Rutas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Menu_Principal_Cambiar_Rutas = new System.Windows.Forms.ToolStripMenuItem();
+            this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
             this.Menu_Principal_Opciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Lista_Camaras
             // 
-            this.Menu_Lista_Camaras.Location = new System.Drawing.Point(12, 232);
+            this.Menu_Lista_Camaras.Location = new System.Drawing.Point(12, 171);
             this.Menu_Lista_Camaras.Name = "Menu_Lista_Camaras";
-            this.Menu_Lista_Camaras.Size = new System.Drawing.Size(1012, 328);
+            this.Menu_Lista_Camaras.Size = new System.Drawing.Size(1012, 389);
             this.Menu_Lista_Camaras.TabIndex = 0;
             // 
             // Titulo_Bienvenida
@@ -57,7 +60,8 @@
             // 
             this.Menu_Principal_Opciones.ImageScalingSize = new System.Drawing.Size(70, 60);
             this.Menu_Principal_Opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Principal_Agregar});
+            this.Menu_Principal_Agregar,
+            this.Menu_Principal_Rutas});
             this.Menu_Principal_Opciones.Location = new System.Drawing.Point(0, 0);
             this.Menu_Principal_Opciones.Name = "Menu_Principal_Opciones";
             this.Menu_Principal_Opciones.Size = new System.Drawing.Size(1033, 67);
@@ -85,6 +89,27 @@
             this.Menu_Principal_Nueva_Camara.Text = "Nueva Camara";
             this.Menu_Principal_Nueva_Camara.Click += new System.EventHandler(this.Menu_Principal_Nueva_Camara_Click);
             // 
+            // Menu_Principal_Rutas
+            // 
+            this.Menu_Principal_Rutas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Principal_Cambiar_Rutas});
+            this.Menu_Principal_Rutas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Principal_Rutas.Image = global::ASECS.Properties.Resources.Ruta_Grabacion;
+            this.Menu_Principal_Rutas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Principal_Rutas.Name = "Menu_Principal_Rutas";
+            this.Menu_Principal_Rutas.ShowDropDownArrow = false;
+            this.Menu_Principal_Rutas.Size = new System.Drawing.Size(183, 64);
+            this.Menu_Principal_Rutas.Text = "Ruta de Grabacion";
+            this.Menu_Principal_Rutas.ToolTipText = "Cambiar lugar donde se almancenan las grabaciones";
+            // 
+            // Menu_Principal_Cambiar_Rutas
+            // 
+            this.Menu_Principal_Cambiar_Rutas.Image = global::ASECS.Properties.Resources.Ruta;
+            this.Menu_Principal_Cambiar_Rutas.Name = "Menu_Principal_Cambiar_Rutas";
+            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(290, 66);
+            this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Ruta de Grabaciones";
+            this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
+            // 
             // Menu_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,10 +133,13 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel Menu_Lista_Camaras;
         public System.Windows.Forms.Label Titulo_Bienvenida;
         private System.Windows.Forms.ToolStrip Menu_Principal_Opciones;
         private System.Windows.Forms.ToolStripDropDownButton Menu_Principal_Agregar;
         private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Nueva_Camara;
+        public System.Windows.Forms.FlowLayoutPanel Menu_Lista_Camaras;
+        private System.Windows.Forms.ToolStripDropDownButton Menu_Principal_Rutas;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Cambiar_Rutas;
+        private System.Windows.Forms.FolderBrowserDialog Dialogo_Ruta_Grabacion;
     }
 }
