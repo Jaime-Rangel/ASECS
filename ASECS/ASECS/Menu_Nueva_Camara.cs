@@ -23,11 +23,6 @@ namespace ASECS
     public partial class Menu_Nueva_Camara : Form
     {
 
-        Semaphore Semaforo_Control_Uris = new Semaphore(1, 1);
-
-        List<DeviceDescriptionHolder> ONVIFDevices;
-        List<Uri> Urls;
-
         private readonly object[] _transports = { "RTSP", "HTTP", "UDP", "TCP" };
 
         //Objetos Programa
@@ -63,89 +58,7 @@ namespace ASECS
             Aspectos = new Menu_Nueva_Camara_Aspectos(this);
             Variables_Globales = new Variables_Menu_Nueva_Camara();
             Metodos = new Menu_Nueva_Camara_Metodos(this);
-        }
-
-        private void Obtener_Listas_Url()
-        {
-            Thread.Sleep(1000);
-
-            Semaforo_Control_Uris.WaitOne();
-
-            var devHolder = new DeviceDescriptionHolder();
-
-            if (Urls.Count != 0)
-            {
-                devHolder.Uris = Urls.ToArray();
-
-                foreach (var uri in devHolder.Uris)
-                {
-                    if (uri.IsAbsoluteUri)
-                    {
-                        devHolder.Address += uri.DnsSafeHost + "; ";
-                    }
-                }
-
-                devHolder.Address = devHolder.Address.TrimEnd(';', ' ');
-
-                if (devHolder.Address == "")
-                {
-                    devHolder.IsInvalidUris = true;
-                    devHolder.Address = "Invalid Uri";
-                }
-
-                ONVIFDevices.Add(devHolder);
-            }
-
-            Semaforo_Control_Uris.Release();
-        }
-
-        private void Obtener_Onvif_Url()
-        {
-            DeviceDescriptionHolder ddh = ONVIFDevices[Lista_Camaras_Disponibles.SelectedIndex];
-
-            ddh.Account = new NetworkCredential { UserName = Texto_Usuario.Text, Password = Texto_Contraseña.Text };
-            var sessionFactory = new NvtSessionFactory(ddh.Account);
-
-            var urls = new List<object>();
-
-            foreach (var uri in ddh.Uris)
-            {
-                var f = sessionFactory.CreateSession(uri);
-
-                ddh.URL = uri.ToString();
-
-                Profile[] profiles = null;
-                try
-                {
-                    profiles = f.GetProfiles().RunSynchronously();
-                }
-                catch (Exception ex)
-                {
-                    urls.Add("Verifica que tu Informacion sea correcta.");
-                    continue;
-                }
-
-                ddh.Profiles = profiles;
-                var strSetup = new StreamSetup { transport = new Transport() };
-                TransportProtocol tp;
-                strSetup.transport.protocol = Enum.TryParse(_transports[Protocolo_Transporte.SelectedIndex].ToString(), true, out tp) ? tp : TransportProtocol.rtsp;
-                int i = 0;
-                foreach (var p in profiles)
-                {
-                    var strUri = f.GetStreamUri(strSetup, p.token).RunSynchronously();
-                    string urlAuth = strUri.uri.Replace("://",
-                                                    "://[USERNAME]:[PASSWORD]@");
-                    string uriDisp = strUri.uri;
-                    string streamSize = p.videoEncoderConfiguration.resolution.width + "x" + p.videoEncoderConfiguration.resolution.height;
-                    uriDisp += " (" + streamSize + ")";
-
-                    urls.Add(new ListItem(uriDisp, new[] { urlAuth, streamSize, ddh.Account.UserName, ddh.Account.Password, ddh.Name, i.ToString(CultureInfo.InvariantCulture) }));
-                    i++;
-                }
-
-            }
-
-            Lista_Url_Camara_Seleccionada.Items.AddRange(urls.ToArray());
+            Variables_Globales.Semaforo_Control_Uris = new Semaphore(1,1);
         }
 
         public struct ListItem
@@ -167,13 +80,10 @@ namespace ASECS
 
         void Obtener_IP_Camaras()
         {
-            Semaforo_Control_Uris.WaitOne();
+            Variables_Globales.Semaforo_Control_Uris.WaitOne();
             IPCameraFactory.DeviceDiscovered += Camaras_IP_Descubiertas;
             IPCameraFactory.DiscoverDevices();
-            Semaforo_Control_Uris.Release();
-
-            //Version ineficiente
-            //Buscar_Camaras_Hilo.Abort();
+            Variables_Globales.Semaforo_Control_Uris.Release();
         }
 
         private void Camaras_IP_Descubiertas(object sender, DiscoveryEventArgs e)
@@ -183,47 +93,42 @@ namespace ASECS
                 this.BeginInvoke((MethodInvoker)delegate()
                 {
                     Lista_Camaras_Disponibles.Items.Add(e.Device.Uri);
-                    Urls.Add(e.Device.Uri);
+                    Variables_Globales.Urls.Add(e.Device.Uri);
                 });
             }
             else
             {
                 Lista_Camaras_Disponibles.Items.Add(e.Device.Uri);
-                Urls.Add(e.Device.Uri);
+                Variables_Globales.Urls.Add(e.Device.Uri);
             }
 
         }
 
-
         private void Boton_Actualizar_Camaras_Click_1(object sender, EventArgs e)
         {
-            Urls = new List<Uri>();
-            ONVIFDevices = new List<DeviceDescriptionHolder>();
+            Variables_Globales.Urls_Onvif = new List<object>();
+            Variables_Globales.Urls = new List<Uri>();
+            Variables_Globales.ONVIFDevices = new List<DeviceDescriptionHolder>();
             Lista_Camaras_Disponibles.Items.Clear();
+            Lista_Url_Camara_Seleccionada.Items.Clear();
 
             IPCameraFactory.DeviceDiscovered -= Camaras_IP_Descubiertas;
             
             Buscar_Camaras_Hilo = new Thread(() => Obtener_IP_Camaras());
             Buscar_Camaras_Hilo.Start();
 
-            //Version ineficiente
-            //while(Buscar_Camaras_Hilo.IsAlive)
-            //{
-            //    System.Console.WriteLine("Wait");
-            //}
-
-            Obtener_Ursl_Hilo = new Thread(() => Obtener_Listas_Url());
+            Obtener_Ursl_Hilo = new Thread(() => Metodos.Obtener_Listas_Url(ref Variables_Globales));
             Obtener_Ursl_Hilo.Start();
 
         }
 
         private void Boton_Agregar_Camara_Click(object sender, System.EventArgs e)
         {
-            string text = Lista_Camaras_Disponibles.GetItemText(Lista_Camaras_Disponibles.SelectedItem);
+            string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
             if (text != "")
             {
                 //Todo
-                Obtener_Onvif_Url();
+                MessageBox.Show(Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]));
             }
             else
             {
@@ -233,7 +138,55 @@ namespace ASECS
 
         private void Boton_Seleccionar_Camara_Click(object sender, EventArgs e)
         {
-            Obtener_Onvif_Url();
+            bool respuesta;
+            Lista_Url_Camara_Seleccionada.Items.Clear();
+            respuesta = Metodos.Verificar_Campos_Boton_Seleccionar();
+
+            if (!respuesta)
+            {
+                MessageBox.Show("Porfavor completa todos los campos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                if (Lista_Camaras_Disponibles.SelectedIndex != -1)
+                {
+                    Metodos.Obtener_Onvif_Url(ref Variables_Globales);
+                }
+                else
+                {
+                    MessageBox.Show("Porfavor Selecciona Una direccion IP.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
+            }
+          
+        }
+
+        private void Checkeo_Cambio_Puerto_CGI_CheckedChanged(object sender, EventArgs e)
+        {
+            if(Checkeo_Cambio_Puerto_CGI.Checked == true)
+            {
+                Texto_Puerto_CGI.ReadOnly = false;
+            }
+            else
+            {
+                Texto_Puerto_CGI.Text = "81";
+                Texto_Puerto_CGI.ReadOnly = true;
+            }
+        }
+
+        private void Texto_Puerto_CGI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
     }

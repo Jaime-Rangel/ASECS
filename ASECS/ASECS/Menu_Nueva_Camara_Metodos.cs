@@ -24,6 +24,8 @@ namespace ASECS
         Menu_Nueva_Camara formulario;
         private readonly object[] _transports = { "RTSP", "HTTP", "UDP", "TCP" };
 
+        string[] separators = { "rtsp://","/",":"};
+
         public Menu_Nueva_Camara_Metodos(Menu_Nueva_Camara formulario)
         {
             this.formulario = formulario;
@@ -67,7 +69,10 @@ namespace ASECS
         {
             DeviceDescriptionHolder ddh = Variables.ONVIFDevices[formulario.Lista_Camaras_Disponibles.SelectedIndex];
 
+            formulario.Texto_Direccion_IP.Text = ddh.Address;
+
             ddh.Account = new NetworkCredential { UserName = formulario.Texto_Usuario.Text, Password = formulario.Texto_Contraseña.Text };
+
             var sessionFactory = new NvtSessionFactory(ddh.Account);
 
             var urls = new List<object>();
@@ -90,16 +95,25 @@ namespace ASECS
                 }
 
                 ddh.Profiles = profiles;
+
+
                 var strSetup = new StreamSetup { transport = new Transport() };
                 TransportProtocol tp;
                 strSetup.transport.protocol = Enum.TryParse(_transports[formulario.Protocolo_Transporte.SelectedIndex].ToString(), true, out tp) ? tp : TransportProtocol.rtsp;
+                
                 int i = 0;
+
                 foreach (var p in profiles)
                 {
                     var strUri = f.GetStreamUri(strSetup, p.token).RunSynchronously();
+
                     string urlAuth = strUri.uri.Replace("://",
                                                     "://[USERNAME]:[PASSWORD]@");
                     string uriDisp = strUri.uri;
+
+                    //Agrega URLS limpias
+                    Variables.Urls_Onvif.Add(uriDisp);
+
                     string streamSize = p.videoEncoderConfiguration.resolution.width + "x" + p.videoEncoderConfiguration.resolution.height;
                     uriDisp += " (" + streamSize + ")";
 
@@ -107,9 +121,37 @@ namespace ASECS
                     i++;
                 }
 
+                string guardar_puerto = Convert.ToString(urls[0]);
+
+                string[] words = guardar_puerto.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+                int cont=0;
+
+                foreach(var word in words)
+                {
+                    if (cont == 1)
+                    {
+                        formulario.Texto_Puerto_RTSP.Text = word;
+                    }
+
+                    cont++;
+                }
+
             }
 
             formulario.Lista_Url_Camara_Seleccionada.Items.AddRange(urls.ToArray());
+        }
+
+        public bool Verificar_Campos_Boton_Seleccionar()
+        {
+            if(formulario.Texto_Usuario.Text!=""&&formulario.Texto_Contraseña.Text!=""&&formulario.Protocolo_Transporte.Text!="")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public struct ListItem

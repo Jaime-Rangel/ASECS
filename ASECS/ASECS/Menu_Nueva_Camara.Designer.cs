@@ -108,6 +108,7 @@
             // 
             // Protocolo_Transporte
             // 
+            this.Protocolo_Transporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Protocolo_Transporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Protocolo_Transporte.FormattingEnabled = true;
             this.Protocolo_Transporte.Location = new System.Drawing.Point(151, 414);
@@ -207,12 +208,12 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(33, 209);
+            this.label8.Location = new System.Drawing.Point(25, 209);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(389, 60);
+            this.label8.Size = new System.Drawing.Size(385, 60);
             this.label8.TabIndex = 16;
             this.label8.Text = "Aquí se encuentran las direcciones según \r\nla calidad de la cámara para su visual" +
-    "ización,\r\n Selecciona una y da clic en el botón Agregar Camara.\r\n";
+    "ización,\r\nSelecciona una y da clic en el botón Agregar Camara.\r\n";
             // 
             // Texto_Puerto_CGI
             // 
@@ -221,6 +222,7 @@
             this.Texto_Puerto_CGI.Name = "Texto_Puerto_CGI";
             this.Texto_Puerto_CGI.Size = new System.Drawing.Size(100, 26);
             this.Texto_Puerto_CGI.TabIndex = 11;
+            this.Texto_Puerto_CGI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Texto_Puerto_CGI_KeyPress);
             // 
             // Lista_Url_Camara_Seleccionada
             // 
@@ -247,7 +249,7 @@
             this.Texto_Puerto_RTSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Texto_Puerto_RTSP.Location = new System.Drawing.Point(128, 412);
             this.Texto_Puerto_RTSP.Name = "Texto_Puerto_RTSP";
-            this.Texto_Puerto_RTSP.Size = new System.Drawing.Size(100, 26);
+            this.Texto_Puerto_RTSP.Size = new System.Drawing.Size(305, 26);
             this.Texto_Puerto_RTSP.TabIndex = 13;
             // 
             // Texto_Direccion_IP
@@ -288,6 +290,7 @@
             this.Checkeo_Cambio_Puerto_CGI.TabIndex = 4;
             this.Checkeo_Cambio_Puerto_CGI.Text = "Cambiar Este Puerto";
             this.Checkeo_Cambio_Puerto_CGI.UseVisualStyleBackColor = true;
+            this.Checkeo_Cambio_Puerto_CGI.CheckedChanged += new System.EventHandler(this.Checkeo_Cambio_Puerto_CGI_CheckedChanged);
             // 
             // Menu_Nueva_Camara
             // 

@@ -21,6 +21,12 @@ namespace ASECS
             set;
         }
 
+        public List<object> Urls_Onvif
+        {
+            get;
+            set;
+        }
+
         public Semaphore Semaforo_Control_Uris
         {
             get;

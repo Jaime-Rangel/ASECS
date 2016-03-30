@@ -79,7 +79,7 @@
             this.Menu_Principal_Agregar.ShowDropDownArrow = false;
             this.Menu_Principal_Agregar.Size = new System.Drawing.Size(126, 64);
             this.Menu_Principal_Agregar.Text = "Agregar";
-            this.Menu_Principal_Agregar.ToolTipText = "Opciones de Camara";
+            this.Menu_Principal_Agregar.ToolTipText = "Permite Registrar Una nueva Camara al Sistema";
             // 
             // Menu_Principal_Nueva_Camara
             // 
@@ -98,16 +98,16 @@
             this.Menu_Principal_Rutas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Menu_Principal_Rutas.Name = "Menu_Principal_Rutas";
             this.Menu_Principal_Rutas.ShowDropDownArrow = false;
-            this.Menu_Principal_Rutas.Size = new System.Drawing.Size(183, 64);
-            this.Menu_Principal_Rutas.Text = "Ruta de Grabacion";
+            this.Menu_Principal_Rutas.Size = new System.Drawing.Size(175, 64);
+            this.Menu_Principal_Rutas.Text = "Almacenamiento";
             this.Menu_Principal_Rutas.ToolTipText = "Cambiar lugar donde se almancenan las grabaciones";
             // 
             // Menu_Principal_Cambiar_Rutas
             // 
             this.Menu_Principal_Cambiar_Rutas.Image = global::ASECS.Properties.Resources.Ruta;
             this.Menu_Principal_Cambiar_Rutas.Name = "Menu_Principal_Cambiar_Rutas";
-            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(290, 66);
-            this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Ruta de Grabaciones";
+            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(322, 66);
+            this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
             this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
             // 
             // Menu_Principal
