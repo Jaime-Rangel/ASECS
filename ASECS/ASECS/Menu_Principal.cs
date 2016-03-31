@@ -44,8 +44,9 @@ namespace ASECS
 
         private void Menu_Principal_Nueva_Camara_Click(object sender, EventArgs e)
         {
-            Menu_Nueva_Camara Agregar_Camara = new Menu_Nueva_Camara(this) ;
+            Menu_Nueva_Camara Agregar_Camara = new Menu_Nueva_Camara(this);
             Agregar_Camara.Show();
+
         }
 
         private void Menu_Principal_Cambiar_Rutas_Click(object sender, EventArgs e)

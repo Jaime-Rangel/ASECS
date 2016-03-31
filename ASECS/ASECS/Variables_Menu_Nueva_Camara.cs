@@ -32,5 +32,35 @@ namespace ASECS
             get;
             set;
         }
+
+        public string Usuario
+        {
+            get;
+            set;
+        }
+
+        public string Contraseña
+        {
+            get;
+            set;
+        }
+
+        public string Url_RSTP
+        {
+            get;
+            set;
+        }
+
+        public string Puerto_CGI
+        {
+            get;
+            set;
+        }
+
+        public string Direccion_IP
+        {
+            get;
+            set;
+        }
     }
 }

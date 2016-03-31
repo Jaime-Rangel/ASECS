@@ -36,11 +36,13 @@
             this.Menu_Principal_Rutas = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Principal_Cambiar_Rutas = new System.Windows.Forms.ToolStripMenuItem();
             this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
+            this.label1 = new System.Windows.Forms.Label();
             this.Menu_Principal_Opciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Lista_Camaras
             // 
+            this.Menu_Lista_Camaras.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Menu_Lista_Camaras.Location = new System.Drawing.Point(12, 171);
             this.Menu_Lista_Camaras.Name = "Menu_Lista_Camaras";
             this.Menu_Lista_Camaras.Size = new System.Drawing.Size(1012, 389);
@@ -85,7 +87,7 @@
             // 
             this.Menu_Principal_Nueva_Camara.Image = global::ASECS.Properties.Resources.Nueva_Camara;
             this.Menu_Principal_Nueva_Camara.Name = "Menu_Principal_Nueva_Camara";
-            this.Menu_Principal_Nueva_Camara.Size = new System.Drawing.Size(208, 66);
+            this.Menu_Principal_Nueva_Camara.Size = new System.Drawing.Size(154, 22);
             this.Menu_Principal_Nueva_Camara.Text = "Nueva Camara";
             this.Menu_Principal_Nueva_Camara.Click += new System.EventHandler(this.Menu_Principal_Nueva_Camara_Click);
             // 
@@ -106,15 +108,26 @@
             // 
             this.Menu_Principal_Cambiar_Rutas.Image = global::ASECS.Properties.Resources.Ruta;
             this.Menu_Principal_Cambiar_Rutas.Name = "Menu_Principal_Cambiar_Rutas";
-            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(322, 66);
+            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(268, 22);
             this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
             this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(417, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(172, 24);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Vista de Camaras";
             // 
             // Menu_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 572);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Menu_Principal_Opciones);
             this.Controls.Add(this.Titulo_Bienvenida);
             this.Controls.Add(this.Menu_Lista_Camaras);
@@ -141,5 +154,6 @@
         private System.Windows.Forms.ToolStripDropDownButton Menu_Principal_Rutas;
         private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Cambiar_Rutas;
         private System.Windows.Forms.FolderBrowserDialog Dialogo_Ruta_Grabacion;
+        private System.Windows.Forms.Label label1;
     }
 }

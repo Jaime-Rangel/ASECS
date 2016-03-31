@@ -170,5 +170,22 @@ namespace ASECS
                 return _name;
             }
         }
+
+        public int Verificar_Puerto_CGI()
+        {
+            if (formulario.Checkeo_Cambio_Puerto_CGI.Checked == true)
+            {
+                if (formulario.Texto_Puerto_CGI.Text != "")
+                {
+                    return 3;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            else
+                return 1;
+        }
     }
 }

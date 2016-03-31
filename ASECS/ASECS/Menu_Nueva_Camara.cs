@@ -22,15 +22,13 @@ namespace ASECS
 {
     public partial class Menu_Nueva_Camara : Form
     {
-
-        private readonly object[] _transports = { "RTSP", "HTTP", "UDP", "TCP" };
-
         //Objetos Programa
-        Menu_Principal formulario_Menu_Principal;
 
         Menu_Nueva_Camara_Aspectos Aspectos;
         Variables_Menu_Nueva_Camara Variables_Globales;
         Menu_Nueva_Camara_Metodos Metodos;
+        AxoPlayerLib.AxoPlayer Nueva_Camara;
+        Menu_Principal formulario_Menu_Principal;
 
         //Hilos Programa
         Thread Buscar_Camaras_Hilo;
@@ -40,11 +38,6 @@ namespace ASECS
         {
             this.formulario_Menu_Principal = formulario_Menu_Principal;
             InitializeComponent();
-
-            Protocolo_Transporte.Items.Add("RTSP");
-            Protocolo_Transporte.Items.Add("HTTP");
-            Protocolo_Transporte.Items.Add("UDP");
-            Protocolo_Transporte.Items.Add("TCP");
         }
 
         private void Menu_Nueva_Camara_Load(object sender, System.EventArgs e)
@@ -122,13 +115,43 @@ namespace ASECS
 
         }
 
+        private void Asignar_Parametros_Variables()
+        {
+            Variables_Globales.Usuario = Texto_Usuario.Text;
+            Variables_Globales.Contraseña = Texto_Contraseña.Text;
+            Variables_Globales.Puerto_CGI = Texto_Puerto_CGI.Text;
+            Variables_Globales.Direccion_IP = Texto_Direccion_IP.Text;
+            Variables_Globales.Url_RSTP = Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]);
+        }
+
         private void Boton_Agregar_Camara_Click(object sender, System.EventArgs e)
         {
             string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
+
             if (text != "")
             {
                 //Todo
-                MessageBox.Show(Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]));
+                int respuesta = Metodos.Verificar_Puerto_CGI();
+
+                if (respuesta == 1 || respuesta == 3)
+                {
+                    Asignar_Parametros_Variables();
+
+                    //MessageBox.Show(Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]));
+                    formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nueva_Camara = new AxoPlayerLib.AxoPlayer());
+
+                    Nueva_Camara.Width = 400;
+                    Nueva_Camara.Height = 300;
+                    Nueva_Camara.PlayVideo(Variables_Globales.Usuario,Variables_Globales.Contraseña,Variables_Globales.Direccion_IP,Convert.ToInt32(Variables_Globales.Puerto_CGI),0,0);
+                }
+                else
+                {
+                    MessageBox.Show("Porfavor introduce el puerto CGI",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
             }
             else
             {
