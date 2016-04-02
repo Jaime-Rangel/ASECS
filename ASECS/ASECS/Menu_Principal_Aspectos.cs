@@ -26,6 +26,7 @@ namespace ASECS
         {
             formulario.Titulo_Bienvenida.Text += variables.Nombre_Usuario;
             formulario.Titulo_Bienvenida.Left = (formulario.Width - formulario.Titulo_Bienvenida.Width) / 2;
+            formulario.Titulo_Vista.Left = (formulario.Width - formulario.Titulo_Vista.Width) / 2;
         }
     }
 }

@@ -85,6 +85,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arbol_Camara.cs" />
+    <Compile Include="Camara.cs" />
     <Compile Include="Camara_CGI.cs" />
     <Compile Include="Camara_Individual.cs">
       <SubType>Form</SubType>
@@ -111,6 +113,7 @@
     </Compile>
     <Compile Include="Menu_Principal_Aspectos.cs" />
     <Compile Include="Menu_Principal_Metodos.cs" />
+    <Compile Include="Nodo_Camara.cs" />
     <Compile Include="OCX_Operaciones_Camara.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

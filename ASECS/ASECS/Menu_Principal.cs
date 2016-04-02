@@ -16,16 +16,13 @@ namespace ASECS
         //Objetos
         Menu_Principal_Aspectos Aspectos;
         Variables_Menu_Principal Variables_Globales;
-
+        Arbol_Camara<Camara> Lista_Camaras;
+        List<string> Lista_Camaras_Alias;
+        Camara Busqueda_Objeto_Camara;
+      
         public Menu_Principal()
         {
             InitializeComponent();
-        }
-
-        public void Inicializar_Objetos()
-        {
-            Variables_Globales = new Variables_Menu_Principal();
-            Aspectos = new Menu_Principal_Aspectos(this,Variables_Globales);
         }
 
         private void Menu_Principal_Load(object sender, EventArgs e)
@@ -34,7 +31,46 @@ namespace ASECS
             Inicializar_Variables_Camara();
             Aspectos.Acomodar_Elementos();
             Aspectos.Asignar_Mensaje_Bienvenida();
+        }
 
+        public void Inicializar_Objetos()
+        {
+            Variables_Globales = new Variables_Menu_Principal();
+            Aspectos = new Menu_Principal_Aspectos(this, Variables_Globales);
+            Lista_Camaras_Alias = new List<string>();
+
+            Lista_Camaras = new Arbol_Camara<Camara>((Camara a, Camara b) =>
+            {
+                return string.Compare(a.Alias, b.Alias) < 0;
+
+            }, (Camara Objeto) =>
+            {
+                return Objeto;
+            },(Camara a,Camara b) =>
+            {
+                if (a.Alias.Equals(b.Alias))
+                {
+                    return true;
+                }
+                else
+                    return false;
+            });
+        }
+
+        public void Crear_Nodos_Camaras(Camara Nueva_Camara)
+        {
+            Lista_Camaras_Alias.Add(Nueva_Camara.Alias);
+            Lista_Camaras.Insertar(Nueva_Camara);
+        }
+
+        public void Buscar_Nodos_Camaras()
+        {
+            Busqueda_Objeto_Camara = new Camara();
+            Camara Resultado_Busqueda_Objeto_Camara_Alias = new Camara();
+
+            Busqueda_Objeto_Camara.Alias = "Camara Pro";
+            Resultado_Busqueda_Objeto_Camara_Alias = Lista_Camaras.Buscar(Busqueda_Objeto_Camara);
+            MessageBox.Show(Resultado_Busqueda_Objeto_Camara_Alias.Direccion_IP);
         }
 
         public void Inicializar_Variables_Camara()

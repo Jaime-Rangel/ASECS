@@ -36,7 +36,7 @@
             this.Menu_Principal_Rutas = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Principal_Cambiar_Rutas = new System.Windows.Forms.ToolStripMenuItem();
             this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Titulo_Vista = new System.Windows.Forms.Label();
             this.Menu_Principal_Opciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,22 +112,22 @@
             this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
             this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
             // 
-            // label1
+            // Titulo_Vista
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(417, 144);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 24);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Vista de Camaras";
+            this.Titulo_Vista.AutoSize = true;
+            this.Titulo_Vista.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Vista.Location = new System.Drawing.Point(417, 144);
+            this.Titulo_Vista.Name = "Titulo_Vista";
+            this.Titulo_Vista.Size = new System.Drawing.Size(172, 24);
+            this.Titulo_Vista.TabIndex = 4;
+            this.Titulo_Vista.Text = "Vista de Camaras";
             // 
             // Menu_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 572);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Titulo_Vista);
             this.Controls.Add(this.Menu_Principal_Opciones);
             this.Controls.Add(this.Titulo_Bienvenida);
             this.Controls.Add(this.Menu_Lista_Camaras);
@@ -154,6 +154,6 @@
         private System.Windows.Forms.ToolStripDropDownButton Menu_Principal_Rutas;
         private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Cambiar_Rutas;
         private System.Windows.Forms.FolderBrowserDialog Dialogo_Ruta_Grabacion;
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label Titulo_Vista;
     }
 }

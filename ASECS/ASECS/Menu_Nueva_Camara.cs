@@ -27,8 +27,9 @@ namespace ASECS
         Menu_Nueva_Camara_Aspectos Aspectos;
         Variables_Menu_Nueva_Camara Variables_Globales;
         Menu_Nueva_Camara_Metodos Metodos;
-        AxoPlayerLib.AxoPlayer Nueva_Camara;
+        AxoPlayerLib.AxoPlayer Nuevo_Reproductor_Camara;
         Menu_Principal formulario_Menu_Principal;
+        Camara Nueva_Camara;
 
         //Hilos Programa
         Thread Buscar_Camaras_Hilo;
@@ -124,25 +125,40 @@ namespace ASECS
             Variables_Globales.Url_RSTP = Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]);
         }
 
+        public void Asignar_Parametros_Objeto_Nueva_Camara()
+        {
+            Nueva_Camara = new Camara();
+
+            Nueva_Camara.Alias = "Camara Pro";
+            Nueva_Camara.Usuario = Texto_Usuario.Text;
+            Nueva_Camara.Contraseña = Texto_Contraseña.Text;
+            Nueva_Camara.Direccion_IP = Texto_Direccion_IP.Text;
+            Nueva_Camara.Url_RSTP = Variables_Globales.Url_RSTP;
+            Nueva_Camara.Puerto_CGI = Variables_Globales.Puerto_CGI;
+        }
+
         private void Boton_Agregar_Camara_Click(object sender, System.EventArgs e)
         {
             string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
 
             if (text != "")
             {
-                //Todo
                 int respuesta = Metodos.Verificar_Puerto_CGI();
 
                 if (respuesta == 1 || respuesta == 3)
                 {
                     Asignar_Parametros_Variables();
+                    Asignar_Parametros_Objeto_Nueva_Camara();
 
-                    //MessageBox.Show(Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]));
-                    formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nueva_Camara = new AxoPlayerLib.AxoPlayer());
+                    formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
+                    formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
+                    Nuevo_Reproductor_Camara.Width = 400;
+                    Nuevo_Reproductor_Camara.Height = 300;
+                    Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario,Variables_Globales.Contraseña,Variables_Globales.Direccion_IP,Convert.ToInt32(Variables_Globales.Puerto_CGI),0,0);
 
-                    Nueva_Camara.Width = 400;
-                    Nueva_Camara.Height = 300;
-                    Nueva_Camara.PlayVideo(Variables_Globales.Usuario,Variables_Globales.Contraseña,Variables_Globales.Direccion_IP,Convert.ToInt32(Variables_Globales.Puerto_CGI),0,0);
+                    formulario_Menu_Principal.Buscar_Nodos_Camaras();
+
+                    this.Close();
                 }
                 else
                 {
