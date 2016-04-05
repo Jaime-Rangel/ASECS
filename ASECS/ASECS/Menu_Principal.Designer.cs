@@ -31,12 +31,14 @@
             this.Menu_Lista_Camaras = new System.Windows.Forms.FlowLayoutPanel();
             this.Titulo_Bienvenida = new System.Windows.Forms.Label();
             this.Menu_Principal_Opciones = new System.Windows.Forms.ToolStrip();
-            this.Menu_Principal_Agregar = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Menu_Principal_Nueva_Camara = new System.Windows.Forms.ToolStripMenuItem();
-            this.Menu_Principal_Rutas = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Menu_Principal_Cambiar_Rutas = new System.Windows.Forms.ToolStripMenuItem();
             this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
             this.Titulo_Vista = new System.Windows.Forms.Label();
+            this.Menu_Principal_Agregar = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Menu_Principal_Nueva_Camara = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Principal_Administrar_Camara = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Principal_Rutas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Menu_Principal_Cambiar_Rutas = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Principal_Opciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,26 +72,46 @@
             this.Menu_Principal_Opciones.TabIndex = 3;
             this.Menu_Principal_Opciones.Text = "toolStrip1";
             // 
+            // Titulo_Vista
+            // 
+            this.Titulo_Vista.AutoSize = true;
+            this.Titulo_Vista.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Vista.Location = new System.Drawing.Point(417, 144);
+            this.Titulo_Vista.Name = "Titulo_Vista";
+            this.Titulo_Vista.Size = new System.Drawing.Size(172, 24);
+            this.Titulo_Vista.TabIndex = 4;
+            this.Titulo_Vista.Text = "Vista de Camaras";
+            // 
             // Menu_Principal_Agregar
             // 
             this.Menu_Principal_Agregar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Principal_Nueva_Camara});
+            this.Menu_Principal_Nueva_Camara,
+            this.toolStripMenuItem1,
+            this.Menu_Principal_Administrar_Camara});
             this.Menu_Principal_Agregar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Principal_Agregar.Image = global::ASECS.Properties.Resources.Camara;
             this.Menu_Principal_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Menu_Principal_Agregar.Name = "Menu_Principal_Agregar";
             this.Menu_Principal_Agregar.ShowDropDownArrow = false;
-            this.Menu_Principal_Agregar.Size = new System.Drawing.Size(126, 64);
-            this.Menu_Principal_Agregar.Text = "Agregar";
+            this.Menu_Principal_Agregar.Size = new System.Drawing.Size(127, 64);
+            this.Menu_Principal_Agregar.Text = "Camaras";
             this.Menu_Principal_Agregar.ToolTipText = "Permite Registrar Una nueva Camara al Sistema";
             // 
             // Menu_Principal_Nueva_Camara
             // 
-            this.Menu_Principal_Nueva_Camara.Image = global::ASECS.Properties.Resources.Nueva_Camara;
+            this.Menu_Principal_Nueva_Camara.Image = global::ASECS.Properties.Resources.Agregar;
             this.Menu_Principal_Nueva_Camara.Name = "Menu_Principal_Nueva_Camara";
-            this.Menu_Principal_Nueva_Camara.Size = new System.Drawing.Size(154, 22);
-            this.Menu_Principal_Nueva_Camara.Text = "Nueva Camara";
+            this.Menu_Principal_Nueva_Camara.Size = new System.Drawing.Size(237, 66);
+            this.Menu_Principal_Nueva_Camara.Text = "Agregar Camara";
             this.Menu_Principal_Nueva_Camara.Click += new System.EventHandler(this.Menu_Principal_Nueva_Camara_Click);
+            // 
+            // Menu_Principal_Administrar_Camara
+            // 
+            this.Menu_Principal_Administrar_Camara.Image = global::ASECS.Properties.Resources.Administrar;
+            this.Menu_Principal_Administrar_Camara.Name = "Menu_Principal_Administrar_Camara";
+            this.Menu_Principal_Administrar_Camara.Size = new System.Drawing.Size(237, 66);
+            this.Menu_Principal_Administrar_Camara.Text = "Administrar Camara";
+            this.Menu_Principal_Administrar_Camara.Click += new System.EventHandler(this.Menu_Principal_Administrar_Camara_Click);
             // 
             // Menu_Principal_Rutas
             // 
@@ -112,15 +134,12 @@
             this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
             this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
             // 
-            // Titulo_Vista
+            // toolStripMenuItem1
             // 
-            this.Titulo_Vista.AutoSize = true;
-            this.Titulo_Vista.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Vista.Location = new System.Drawing.Point(417, 144);
-            this.Titulo_Vista.Name = "Titulo_Vista";
-            this.Titulo_Vista.Size = new System.Drawing.Size(172, 24);
-            this.Titulo_Vista.TabIndex = 4;
-            this.Titulo_Vista.Text = "Vista de Camaras";
+            this.toolStripMenuItem1.Image = global::ASECS.Properties.Resources.Eliminar;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 66);
+            this.toolStripMenuItem1.Text = "Eliminar Camara";
             // 
             // Menu_Principal
             // 
@@ -155,5 +174,7 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Cambiar_Rutas;
         private System.Windows.Forms.FolderBrowserDialog Dialogo_Ruta_Grabacion;
         public System.Windows.Forms.Label Titulo_Vista;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Administrar_Camara;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

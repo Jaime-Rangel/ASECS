@@ -62,5 +62,11 @@ namespace ASECS
             set;
         }
 
+        public string Puerto_RSTP
+        {
+            get;
+            set;
+        }
+
     }
 }

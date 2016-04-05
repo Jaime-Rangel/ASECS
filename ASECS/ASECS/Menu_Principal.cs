@@ -15,9 +15,9 @@ namespace ASECS
     {
         //Objetos
         Menu_Principal_Aspectos Aspectos;
-        Variables_Menu_Principal Variables_Globales;
-        Arbol_Camara<Camara> Lista_Camaras;
-        List<string> Lista_Camaras_Alias;
+        public Variables_Menu_Principal Variables_Globales;
+        public Arbol_Camara<Camara> Lista_Camaras;
+        public List<string> Lista_Camaras_Alias;
         Camara Busqueda_Objeto_Camara;
       
         public Menu_Principal()
@@ -46,6 +46,7 @@ namespace ASECS
             }, (Camara Objeto) =>
             {
                 return Objeto;
+
             },(Camara a,Camara b) =>
             {
                 if (a.Alias.Equals(b.Alias))
@@ -63,14 +64,23 @@ namespace ASECS
             Lista_Camaras.Insertar(Nueva_Camara);
         }
 
-        public void Buscar_Nodos_Camaras()
+        public bool Buscar_Camaras_Alias_Nodos(string Alias)
         {
+            //Busca una camara en el arbol de camaras
             Busqueda_Objeto_Camara = new Camara();
             Camara Resultado_Busqueda_Objeto_Camara_Alias = new Camara();
 
-            Busqueda_Objeto_Camara.Alias = "Camara Pro";
+            Busqueda_Objeto_Camara.Alias = Alias;
+
             Resultado_Busqueda_Objeto_Camara_Alias = Lista_Camaras.Buscar(Busqueda_Objeto_Camara);
-            MessageBox.Show(Resultado_Busqueda_Objeto_Camara_Alias.Direccion_IP);
+
+            if (Resultado_Busqueda_Objeto_Camara_Alias == null)
+            {
+                return false;
+            }
+            else
+                return true;
+            
         }
 
         public void Inicializar_Variables_Camara()
@@ -95,6 +105,12 @@ namespace ASECS
                 Variables_Globales.Ruta_Grabacion = folder;
                 MessageBox.Show("La ruta se ha almacenado correctamente");
             }
+        }
+
+        private void Menu_Principal_Administrar_Camara_Click(object sender, EventArgs e)
+        {
+            Menu_Administracion_Camara Administrar_Camara = new Menu_Administracion_Camara(this);
+            Administrar_Camara.Show();
         }
     }
 }

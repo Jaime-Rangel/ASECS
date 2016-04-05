@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASECS
 {
-    class Arbol_Camara<T>
+    public class Arbol_Camara<T>
     {
         public Nodo_Camara<T> root;
 
@@ -16,12 +16,16 @@ namespace ASECS
 
         private Func<T, T,bool> comparar_alias;
 
+        private const int LEFT = 0;
+        private const int RIGHT = 1;
+
         public Arbol_Camara(Func<T, T, bool> comparator, Func<T,Camara> retornar_parametros,Func<T, T,bool> comparar_alias)
         {
             this.comparator = comparator;
             this.retornar_parametros = retornar_parametros;
             this.comparar_alias = comparar_alias;
         }
+
 
         public Camara Buscar(T data)
         {
@@ -90,6 +94,148 @@ namespace ASECS
                     }
                 }
             }
+        }
+
+        public bool remove(T data)
+        {
+            return remove(root, data);
+        }
+
+        private bool remove(Nodo_Camara<T> node, T data)
+        {
+            Nodo_Camara<T> parent = null;
+
+            int lastTurn = 0;
+
+            //step 1:
+
+            while (node != null)
+            {
+                if (data.Equals(node.data))
+                {
+                    break;
+                }
+                else
+                    if (comparator(data, node.data))
+                    {
+                        //left
+                        parent = node;
+                        node = node.left;
+                        lastTurn = LEFT;
+                    }
+                    else
+                    {
+                        //right
+                        parent = node;
+                        node = node.right;
+                        lastTurn = RIGHT;
+                    }
+            }
+
+            //nodo no existe
+            if (node == null)
+            {
+                return false;
+            }
+
+            //step 2.
+            //es raiz
+            bool isRoot = (parent == null);
+
+            if (isRoot)
+            {
+                // si no tiene hijos eliminar
+                if (node.left == null && node.right == null)
+                {
+                root = null;
+                }
+                else
+                if (node.left != null && node.right == null)
+                {
+                root = node.left;
+                }
+                else
+                if (node.left == null && node.right != null)
+                {
+                root = node.right;
+                }
+                else
+                {
+                //con dos hijos
+                Nodo_Camara<T> temp = Obtener_Valor_Menor(node.right);
+
+                root.data = temp.data;
+                remove(node.right, temp.data);
+                }
+
+            }
+            else
+            {
+                int childrenCount = 0;
+
+                if (node.left != null)
+                {
+                    childrenCount++;
+                }
+
+                if (node.right != null)
+                {
+                    childrenCount++;
+                }
+
+                if (childrenCount == 0)
+                {
+                    if (lastTurn == LEFT)
+                    {
+                        parent.left = null;
+                    }
+                    else
+                    {
+                        parent.right = null;
+                    }
+                }
+                else if (childrenCount == 1)
+                {
+
+                    Nodo_Camara<T> singleChild = node.left;
+
+                    if (lastTurn == LEFT)
+                    {
+                        //parent.left points node single child
+                        parent.left = singleChild;
+                    }
+                    else
+                    {
+                        //parent.right points to single child
+                        parent.right = singleChild;
+                    }
+                }
+                else
+                {
+                    Nodo_Camara<T> minimum = node.right;
+
+                    while (minimum.left != null)
+                    {
+                        minimum = minimum.left;
+                    }
+
+                    node.data = minimum.data;
+
+                    remove(node.right, minimum.data);
+                }
+            }
+
+            return true;
+        }
+
+        public Nodo_Camara<T> Obtener_Valor_Menor(Nodo_Camara<T> node)
+        {
+            Nodo_Camara<T> minimum = node;
+
+            while (minimum.left != null)
+                minimum = minimum.left;
+
+            return minimum;
         }
     }
 }

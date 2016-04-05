@@ -57,6 +57,12 @@ namespace ASECS
             set;
         }
 
+        public string Puerto_RSTP
+        {
+            get;
+            set;
+        }
+
         public string Direccion_IP
         {
             get;

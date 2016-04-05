@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASECS
 {
-    class Nodo_Camara<T>
+    public class Nodo_Camara<T>
     {
         public T data
         {

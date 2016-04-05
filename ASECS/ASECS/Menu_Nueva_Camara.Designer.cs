@@ -41,6 +41,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Texto_Contraseña = new System.Windows.Forms.TextBox();
             this.Grupo_Urls_Camara = new System.Windows.Forms.GroupBox();
+            this.Texto_Alias = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Texto_Puerto_CGI = new System.Windows.Forms.TextBox();
             this.Lista_Url_Camara_Seleccionada = new System.Windows.Forms.ListBox();
@@ -186,6 +188,8 @@
             // 
             // Grupo_Urls_Camara
             // 
+            this.Grupo_Urls_Camara.Controls.Add(this.Texto_Alias);
+            this.Grupo_Urls_Camara.Controls.Add(this.label9);
             this.Grupo_Urls_Camara.Controls.Add(this.label8);
             this.Grupo_Urls_Camara.Controls.Add(this.Boton_Agregar_Camara);
             this.Grupo_Urls_Camara.Controls.Add(this.Texto_Puerto_CGI);
@@ -203,6 +207,24 @@
             this.Grupo_Urls_Camara.TabIndex = 5;
             this.Grupo_Urls_Camara.TabStop = false;
             this.Grupo_Urls_Camara.Text = "Urls Disponibles";
+            // 
+            // Texto_Alias
+            // 
+            this.Texto_Alias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Texto_Alias.Location = new System.Drawing.Point(128, 293);
+            this.Texto_Alias.Name = "Texto_Alias";
+            this.Texto_Alias.Size = new System.Drawing.Size(305, 26);
+            this.Texto_Alias.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(16, 299);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 20);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Alias";
             // 
             // label8
             // 
@@ -249,7 +271,7 @@
             this.Texto_Puerto_RTSP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Texto_Puerto_RTSP.Location = new System.Drawing.Point(128, 412);
             this.Texto_Puerto_RTSP.Name = "Texto_Puerto_RTSP";
-            this.Texto_Puerto_RTSP.Size = new System.Drawing.Size(305, 26);
+            this.Texto_Puerto_RTSP.Size = new System.Drawing.Size(100, 26);
             this.Texto_Puerto_RTSP.TabIndex = 13;
             // 
             // Texto_Direccion_IP
@@ -337,5 +359,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.Button Boton_Seleccionar_Camara;
+        private System.Windows.Forms.TextBox Texto_Alias;
+        private System.Windows.Forms.Label label9;
     }
 }

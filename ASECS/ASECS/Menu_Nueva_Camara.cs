@@ -123,46 +123,77 @@ namespace ASECS
             Variables_Globales.Puerto_CGI = Texto_Puerto_CGI.Text;
             Variables_Globales.Direccion_IP = Texto_Direccion_IP.Text;
             Variables_Globales.Url_RSTP = Convert.ToString(Variables_Globales.Urls_Onvif[Lista_Url_Camara_Seleccionada.SelectedIndex]);
+            Variables_Globales.Puerto_RSTP = Texto_Puerto_RTSP.Text;
         }
 
         public void Asignar_Parametros_Objeto_Nueva_Camara()
         {
             Nueva_Camara = new Camara();
 
-            Nueva_Camara.Alias = "Camara Pro";
+            Nueva_Camara.Alias = Texto_Alias.Text;
             Nueva_Camara.Usuario = Texto_Usuario.Text;
             Nueva_Camara.Contraseña = Texto_Contraseña.Text;
             Nueva_Camara.Direccion_IP = Texto_Direccion_IP.Text;
             Nueva_Camara.Url_RSTP = Variables_Globales.Url_RSTP;
             Nueva_Camara.Puerto_CGI = Variables_Globales.Puerto_CGI;
+            Nueva_Camara.Puerto_RSTP = Variables_Globales.Puerto_RSTP;
         }
 
         private void Boton_Agregar_Camara_Click(object sender, System.EventArgs e)
         {
+            bool resultado_busqueda;
             string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
 
             if (text != "")
             {
-                int respuesta = Metodos.Verificar_Puerto_CGI();
-
-                if (respuesta == 1 || respuesta == 3)
+                if (Texto_Alias.Text != "")
                 {
-                    Asignar_Parametros_Variables();
-                    Asignar_Parametros_Objeto_Nueva_Camara();
+                    resultado_busqueda = formulario_Menu_Principal.Buscar_Camaras_Alias_Nodos(Texto_Alias.Text);
 
-                    formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
-                    formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
-                    Nuevo_Reproductor_Camara.Width = 400;
-                    Nuevo_Reproductor_Camara.Height = 300;
-                    Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario,Variables_Globales.Contraseña,Variables_Globales.Direccion_IP,Convert.ToInt32(Variables_Globales.Puerto_CGI),0,0);
+                    if (resultado_busqueda == false)
+                    {
 
-                    formulario_Menu_Principal.Buscar_Nodos_Camaras();
+                        int respuesta = Metodos.Verificar_Puerto_CGI();
 
-                    this.Close();
+                        if (respuesta == 1 || respuesta == 3)
+                        {
+                            Asignar_Parametros_Variables();
+                            Asignar_Parametros_Objeto_Nueva_Camara();
+
+                            //Crea el nodo de referencia para mostrar las camaras al usuario
+                            formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
+                            //agrega el reproductor al menu principal
+                            formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
+
+                            //Propiedades del reproductor
+                            Nuevo_Reproductor_Camara.Width = 400;
+                            Nuevo_Reproductor_Camara.Height = 300;
+                            //Inicia el streaming con los datos obtenidos
+                            Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Porfavor introduce el puerto CGI",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation,
+                            MessageBoxDefaultButton.Button1);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: El alias ya esta registrado",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Porfavor introduce el puerto CGI",
+                    MessageBox.Show("Introduce un Alias",
                     "Aviso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,
@@ -171,7 +202,11 @@ namespace ASECS
             }
             else
             {
-                MessageBox.Show("Selecciona Una Camara");
+                MessageBox.Show("Selecciona una camara",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
         }
 

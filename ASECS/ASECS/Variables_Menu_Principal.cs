@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASECS
 {
-    class Variables_Menu_Principal
+    public class Variables_Menu_Principal
     {
         public string Nombre_Usuario
         {
