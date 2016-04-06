@@ -26,7 +26,6 @@ namespace ASECS
             this.comparar_alias = comparar_alias;
         }
 
-
         public Camara Buscar(T data)
         {
             Nodo_Camara<T> currentNode = root;

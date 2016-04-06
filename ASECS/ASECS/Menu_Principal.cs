@@ -58,6 +58,17 @@ namespace ASECS
             });
         }
 
+        public int Eliminar_Nodos_Camaras(Camara Eliminar_Camara)
+        {
+            int index;
+            Lista_Camaras.remove(Eliminar_Camara);
+
+            index = Lista_Camaras_Alias.IndexOf(Eliminar_Camara.Alias);
+            Lista_Camaras_Alias.RemoveAt(index);
+
+            return index;
+        }
+
         public void Crear_Nodos_Camaras(Camara Nueva_Camara)
         {
             Lista_Camaras_Alias.Add(Nueva_Camara.Alias);
@@ -112,5 +123,12 @@ namespace ASECS
             Menu_Administracion_Camara Administrar_Camara = new Menu_Administracion_Camara(this);
             Administrar_Camara.Show();
         }
+
+        private void Menu_Principal_Eliminar_Camara_Click(object sender, EventArgs e)
+        {
+            Menu_Eliminar_Camara Eliminar_Camara = new Menu_Eliminar_Camara(this);
+            Eliminar_Camara.Show();
+        }
+
     }
 }

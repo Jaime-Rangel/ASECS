@@ -168,6 +168,7 @@ namespace ASECS
                             //Propiedades del reproductor
                             Nuevo_Reproductor_Camara.Width = 400;
                             Nuevo_Reproductor_Camara.Height = 300;
+
                             //Inicia el streaming con los datos obtenidos
                             Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
 
