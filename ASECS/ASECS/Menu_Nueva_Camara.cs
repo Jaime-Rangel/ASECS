@@ -54,7 +54,8 @@ namespace ASECS
             Aspectos = new Menu_Nueva_Camara_Aspectos(this);
             Variables_Globales = new Variables_Menu_Nueva_Camara();
             Metodos = new Menu_Nueva_Camara_Metodos(this);
-            Variables_Globales.Semaforo_Control_Uris = new Semaphore(1,1);
+            //Variables_Globales.Semaforo_Control_Uris = new Semaphore(1,1);
+            //Variables_Globales.Semaforo_Control_Onvifs = new Semaphore(1,1);
         }
 
         public struct ListItem
@@ -76,10 +77,14 @@ namespace ASECS
 
         void Obtener_IP_Camaras()
         {
-            Variables_Globales.Semaforo_Control_Uris.WaitOne();
+            //Semaforo para obtener ips de camaras
+            //Variables_Globales.Semaforo_Control_Uris.WaitOne();
+
             IPCameraFactory.DeviceDiscovered += Camaras_IP_Descubiertas;
             IPCameraFactory.DiscoverDevices();
-            Variables_Globales.Semaforo_Control_Uris.Release();
+
+            //Semaforo liberar control de uris
+            //Variables_Globales.Semaforo_Control_Uris.Release();
         }
 
         private void Camaras_IP_Descubiertas(object sender, DiscoveryEventArgs e)
@@ -107,15 +112,14 @@ namespace ASECS
             Variables_Globales.ONVIFDevices = new List<DeviceDescriptionHolder>();
             Lista_Camaras_Disponibles.Items.Clear();
             Lista_Url_Camara_Seleccionada.Items.Clear();
-
+            Metodos.Limpiar_Campos_Actualizar();
             IPCameraFactory.DeviceDiscovered -= Camaras_IP_Descubiertas;
-            
+
+            //Obtiene la lista de camaras ip para seleccionar
             Buscar_Camaras_Hilo = new Thread(() => Obtener_IP_Camaras());
             Buscar_Camaras_Hilo.Start();
 
-            Obtener_Ursl_Hilo = new Thread(() => Metodos.Obtener_Listas_Url(ref Variables_Globales));
-            Obtener_Ursl_Hilo.Start();
-
+            Boton_Seleccionar_Camara.Enabled = true;
         }
 
         private void Asignar_Parametros_Variables()
@@ -223,6 +227,7 @@ namespace ASECS
         private void Boton_Seleccionar_Camara_Click(object sender, EventArgs e)
         {
             bool respuesta;
+
             Lista_Url_Camara_Seleccionada.Items.Clear();
             respuesta = Metodos.Verificar_Campos_Boton_Seleccionar();
 
@@ -236,6 +241,11 @@ namespace ASECS
             }
             else
             {
+                //Obtiene las urls del onvif para mostrar el streaming
+                Obtener_Ursl_Hilo = new Thread(() => Metodos.Obtener_Listas_Url(ref Variables_Globales));
+                Obtener_Ursl_Hilo.Start();
+                Obtener_Ursl_Hilo.Join();
+
                 if (Lista_Camaras_Disponibles.SelectedIndex != -1)
                 {
                     Metodos.Obtener_Onvif_Url(ref Variables_Globales);

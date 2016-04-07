@@ -49,24 +49,28 @@
             this.Boton_Detener_Grabaciones = new System.Windows.Forms.Button();
             this.Boton_Iniciar_Grabaciones = new System.Windows.Forms.Button();
             this.Menu_Lista_VLC = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Boton_Iniciar_Streaming = new System.Windows.Forms.Button();
+            this.Boton_Detener_Streaming = new System.Windows.Forms.Button();
             this.Menu_Principal_Opciones.SuspendLayout();
             this.Grupo_Grabacion.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Lista_Camaras
             // 
             this.Menu_Lista_Camaras.AutoScroll = true;
             this.Menu_Lista_Camaras.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Menu_Lista_Camaras.Location = new System.Drawing.Point(9, 268);
+            this.Menu_Lista_Camaras.Location = new System.Drawing.Point(9, 317);
             this.Menu_Lista_Camaras.Name = "Menu_Lista_Camaras";
-            this.Menu_Lista_Camaras.Size = new System.Drawing.Size(1012, 349);
+            this.Menu_Lista_Camaras.Size = new System.Drawing.Size(1012, 345);
             this.Menu_Lista_Camaras.TabIndex = 0;
             // 
             // Titulo_Bienvenida
             // 
             this.Titulo_Bienvenida.AutoSize = true;
             this.Titulo_Bienvenida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Bienvenida.Location = new System.Drawing.Point(455, 118);
+            this.Titulo_Bienvenida.Location = new System.Drawing.Point(435, 99);
             this.Titulo_Bienvenida.Name = "Titulo_Bienvenida";
             this.Titulo_Bienvenida.Size = new System.Drawing.Size(127, 24);
             this.Titulo_Bienvenida.TabIndex = 2;
@@ -74,7 +78,7 @@
             // 
             // Menu_Principal_Opciones
             // 
-            this.Menu_Principal_Opciones.BackColor = System.Drawing.Color.LightGray;
+            this.Menu_Principal_Opciones.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Menu_Principal_Opciones.ImageScalingSize = new System.Drawing.Size(70, 60);
             this.Menu_Principal_Opciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Menu_Principal_Agregar,
@@ -171,7 +175,7 @@
             // 
             this.Titulo_Vista.AutoSize = true;
             this.Titulo_Vista.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Vista.Location = new System.Drawing.Point(430, 241);
+            this.Titulo_Vista.Location = new System.Drawing.Point(419, 290);
             this.Titulo_Vista.Name = "Titulo_Vista";
             this.Titulo_Vista.Size = new System.Drawing.Size(172, 24);
             this.Titulo_Vista.TabIndex = 4;
@@ -188,7 +192,7 @@
             this.Grupo_Grabacion.Controls.Add(this.Boton_Detener_Grabaciones);
             this.Grupo_Grabacion.Controls.Add(this.Boton_Iniciar_Grabaciones);
             this.Grupo_Grabacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Grupo_Grabacion.Location = new System.Drawing.Point(9, 145);
+            this.Grupo_Grabacion.Location = new System.Drawing.Point(9, 195);
             this.Grupo_Grabacion.Name = "Grupo_Grabacion";
             this.Grupo_Grabacion.Size = new System.Drawing.Size(1012, 92);
             this.Grupo_Grabacion.TabIndex = 5;
@@ -228,21 +232,54 @@
             // 
             this.Menu_Lista_VLC.Location = new System.Drawing.Point(9, 70);
             this.Menu_Lista_VLC.Name = "Menu_Lista_VLC";
-            this.Menu_Lista_VLC.Size = new System.Drawing.Size(1012, 45);
+            this.Menu_Lista_VLC.Size = new System.Drawing.Size(1012, 26);
             this.Menu_Lista_VLC.TabIndex = 6;
             this.Menu_Lista_VLC.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Boton_Detener_Streaming);
+            this.groupBox1.Controls.Add(this.Boton_Iniciar_Streaming);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(9, 126);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1012, 63);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Streaming";
+            // 
+            // Boton_Iniciar_Streaming
+            // 
+            this.Boton_Iniciar_Streaming.Location = new System.Drawing.Point(10, 23);
+            this.Boton_Iniciar_Streaming.Name = "Boton_Iniciar_Streaming";
+            this.Boton_Iniciar_Streaming.Size = new System.Drawing.Size(200, 34);
+            this.Boton_Iniciar_Streaming.TabIndex = 3;
+            this.Boton_Iniciar_Streaming.Text = "Iniciar Streaming";
+            this.Boton_Iniciar_Streaming.UseVisualStyleBackColor = true;
+            this.Boton_Iniciar_Streaming.Click += new System.EventHandler(this.Boton_Iniciar_Streaming_Click);
+            // 
+            // Boton_Detener_Streaming
+            // 
+            this.Boton_Detener_Streaming.Location = new System.Drawing.Point(216, 23);
+            this.Boton_Detener_Streaming.Name = "Boton_Detener_Streaming";
+            this.Boton_Detener_Streaming.Size = new System.Drawing.Size(200, 34);
+            this.Boton_Detener_Streaming.TabIndex = 4;
+            this.Boton_Detener_Streaming.Text = "Detener Streaming";
+            this.Boton_Detener_Streaming.UseVisualStyleBackColor = true;
+            this.Boton_Detener_Streaming.Click += new System.EventHandler(this.Boton_Detener_Streaming_Click);
             // 
             // Menu_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 648);
+            this.ClientSize = new System.Drawing.Size(1033, 670);
             this.Controls.Add(this.Menu_Lista_VLC);
             this.Controls.Add(this.Grupo_Grabacion);
+            this.Controls.Add(this.Titulo_Bienvenida);
             this.Controls.Add(this.Titulo_Vista);
             this.Controls.Add(this.Menu_Principal_Opciones);
-            this.Controls.Add(this.Titulo_Bienvenida);
             this.Controls.Add(this.Menu_Lista_Camaras);
+            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -255,6 +292,7 @@
             this.Menu_Principal_Opciones.PerformLayout();
             this.Grupo_Grabacion.ResumeLayout(false);
             this.Grupo_Grabacion.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +319,8 @@
         private System.Windows.Forms.Button Boton_Iniciar_Grabaciones;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.FlowLayoutPanel Menu_Lista_VLC;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button Boton_Detener_Streaming;
+        private System.Windows.Forms.Button Boton_Iniciar_Streaming;
     }
 }

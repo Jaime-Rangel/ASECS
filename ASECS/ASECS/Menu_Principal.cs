@@ -123,7 +123,13 @@ namespace ASECS
             {
                 folder = Dialogo_Ruta_Grabacion.SelectedPath;
                 Variables_Globales.Ruta_Grabacion = folder;
-                MessageBox.Show("La ruta se ha almacenado correctamente");
+
+                MessageBox.Show("La ruta se ha almacenado correctamente.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+
             }
         }
 
@@ -174,6 +180,7 @@ namespace ASECS
 
             if (string.IsNullOrEmpty(Variables_Globales.Ruta_Grabacion) == false)
             {
+                Variables_Globales.Grabaciones_Iniciadas = true;
                 foreach (Vlc.DotNet.Forms.VlcControl control in Menu_Lista_VLC.Controls)
                 {
                     var Alias = Lista_Camaras_Alias[cont];
@@ -200,6 +207,7 @@ namespace ASECS
                     MessageBox.Show(Resultado.Puerto_RSTP);
 
                     cont++;
+
                 }
             }
             else
@@ -226,11 +234,14 @@ namespace ASECS
             if (Menu_Lista_Camaras.Controls.Count > 0)
             {
                 Iniciar_Grabacion_Camaras();
-                Variables_Globales.Grabaciones_Iniciadas = true;
             }
             else
             {
-                MessageBox.Show("No hay camaras disponibles");
+                MessageBox.Show("No hay camaras disponibles.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
 
             }
         }
@@ -244,8 +255,24 @@ namespace ASECS
             }
             else
             {
-                MessageBox.Show("No hay grabaciones en curso");
+
+                MessageBox.Show("No hay grabaciones en curso.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+                //Variables_Globales.Grabaciones_Iniciadas = false;
             }
+        }
+
+        private void Boton_Detener_Streaming_Click(object sender, EventArgs e)
+        {
+            Metodos.Detener_Camaras_Streaming();
+        }
+
+        private void Boton_Iniciar_Streaming_Click(object sender, EventArgs e)
+        {
+            Metodos.Iniciar_Camaras_Streaming();
         }
     }
 }

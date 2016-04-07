@@ -83,7 +83,11 @@ namespace ASECS
             }
             catch(Exception ex)
             {
-                MessageBox.Show(Convert.ToString(ex));
+                MessageBox.Show("Selecciona una camara",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
 
         }

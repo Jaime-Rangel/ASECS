@@ -361,7 +361,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.Button Boton_Seleccionar_Camara;
-        private System.Windows.Forms.TextBox Texto_Alias;
         private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox Texto_Alias;
     }
 }

@@ -25,6 +25,7 @@ namespace ASECS
             formulario.Texto_Puerto_CGI.ReadOnly = true;
             formulario.Texto_Direccion_IP.ReadOnly = true;
             formulario.Texto_Puerto_RTSP.ReadOnly = true;
+            formulario.Boton_Seleccionar_Camara.Enabled = false;
             formulario.Texto_Puerto_CGI.Text = "81";
 
             formulario.Lista_Camaras_Disponibles.Left = (formulario.Grupo_Lista_Camaras.Width - formulario.Lista_Camaras_Disponibles.Width) / 2;

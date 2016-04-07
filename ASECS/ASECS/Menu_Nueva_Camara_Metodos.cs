@@ -30,18 +30,21 @@ namespace ASECS
         {
             this.formulario = formulario;
         }
-
-        public void Obtener_Listas_Url(ref Variables_Menu_Nueva_Camara Variables)
+        
+        public void Limpiar_Campos_Actualizar()
         {
-            Thread.Sleep(1000);
+            formulario.Texto_Direccion_IP.Text = "";
+            formulario.Texto_Puerto_RTSP.Text = "";
+            formulario.Texto_Alias.Text = "";
+        }
 
-           Variables.Semaforo_Control_Uris.WaitOne();
-
+        public void Obtener_Listas_Url(ref Variables_Menu_Nueva_Camara Variables_Globales)
+        {
             var devHolder = new DeviceDescriptionHolder();
 
-            if (Variables.Urls.Count != 0)
+            if (Variables_Globales.Urls.Count != 0)
             {
-                devHolder.Uris = Variables.Urls.ToArray();
+                devHolder.Uris = Variables_Globales.Urls.ToArray();
 
                 foreach (var uri in devHolder.Uris)
                 {
@@ -58,15 +61,14 @@ namespace ASECS
                     devHolder.IsInvalidUris = true;
                     devHolder.Address = "Invalid Uri";
                 }
-
-                Variables.ONVIFDevices.Add(devHolder);
+                Variables_Globales.ONVIFDevices.Add(devHolder);
             }
 
-            Variables.Semaforo_Control_Uris.Release();
         }
 
         public void Obtener_Onvif_Url(ref Variables_Menu_Nueva_Camara Variables)
         {
+
             DeviceDescriptionHolder ddh = Variables.ONVIFDevices[formulario.Lista_Camaras_Disponibles.SelectedIndex];
 
             formulario.Texto_Direccion_IP.Text = ddh.Address;
@@ -144,7 +146,7 @@ namespace ASECS
 
         public bool Verificar_Campos_Boton_Seleccionar()
         {
-            if(formulario.Texto_Usuario.Text!=""&&formulario.Texto_Contraseña.Text!=""&&formulario.Protocolo_Transporte.Text!="")
+            if(formulario.Texto_Usuario.Text!=""&&formulario.Texto_Contraseña.Text!=""&&formulario.Protocolo_Transporte.Text!=""&&formulario.Lista_Camaras_Disponibles.Items.Count>0)
             {
                 return true;
             }
