@@ -19,5 +19,11 @@ namespace ASECS
             get;
             set;
         }
+
+        public bool Grabaciones_Iniciadas
+        {
+            get;
+            set;
+        }
     }
 }

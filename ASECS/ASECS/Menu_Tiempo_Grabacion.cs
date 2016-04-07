@@ -68,6 +68,14 @@ namespace ASECS
             {
                 formulario_principal.Objeto_Tiempo.Tiempo_Unidad = Seleccion_Tiempo.Text;
                 formulario_principal.Objeto_Tiempo.Tiempo_Cantidad = Convert.ToInt32(Tiempo_Numerico.Value);
+
+                MessageBox.Show("Se han guardado tus cambios",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+
+                this.Close();
             }
             else
             {

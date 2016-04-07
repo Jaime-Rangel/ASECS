@@ -17,6 +17,7 @@ using Microsoft;
 using onvif.utils;
 using utils;
 using System.Globalization;
+using System.IO;
 
 namespace ASECS
 {
@@ -28,6 +29,7 @@ namespace ASECS
         Variables_Menu_Nueva_Camara Variables_Globales;
         Menu_Nueva_Camara_Metodos Metodos;
         AxoPlayerLib.AxoPlayer Nuevo_Reproductor_Camara;
+        Vlc.DotNet.Forms.VlcControl Nuevo_Grabador_VLC;
         Menu_Principal formulario_Menu_Principal;
         Camara Nueva_Camara;
 
@@ -148,7 +150,7 @@ namespace ASECS
             {
                 if (Texto_Alias.Text != "")
                 {
-                    resultado_busqueda = formulario_Menu_Principal.Buscar_Camaras_Alias_Nodos(Texto_Alias.Text);
+                    resultado_busqueda = formulario_Menu_Principal.Buscar_Camaras_Alias_Nodos_Existentes(Texto_Alias.Text);
 
                     if (resultado_busqueda == false)
                     {
@@ -164,6 +166,13 @@ namespace ASECS
                             formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
                             //agrega el reproductor al menu principal
                             formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
+
+                            Nuevo_Grabador_VLC = new Vlc.DotNet.Forms.VlcControl();
+                            Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
+                            formulario_Menu_Principal.Menu_Lista_VLC.Controls.Add(Nuevo_Grabador_VLC);
+
+                            Nuevo_Grabador_VLC.Width = 50;
+                            Nuevo_Grabador_VLC.Height = 50;
 
                             //Propiedades del reproductor
                             Nuevo_Reproductor_Camara.Width = 400;

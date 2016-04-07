@@ -60,7 +60,7 @@ namespace ASECS
                 int fila = Tabla_Lista_Camaras.CurrentCell.RowIndex;
                 string Alias = Convert.ToString(Tabla_Lista_Camaras.Rows[fila].Cells[0].Value);
 
-                if (Alias != "")
+                if ((string.IsNullOrEmpty(Alias) == false))
                 {
                     Camara Resultado_Camara = new Camara();
                     Camara Busqueda_Objeto_Camara = new Camara();
@@ -83,11 +83,7 @@ namespace ASECS
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Selecciona una camara",
-                "Aviso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                MessageBox.Show(Convert.ToString(ex));
             }
 
         }

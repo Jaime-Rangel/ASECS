@@ -38,6 +38,7 @@
             this.Boton_Desconectar_Camara = new System.Windows.Forms.Button();
             this.Boton_Conectar_Camara = new System.Windows.Forms.Button();
             this.Grupo_Opciones_Grabacion = new System.Windows.Forms.GroupBox();
+            this.Ventana_Grabacion_Video = new Vlc.DotNet.Forms.VlcControl();
             this.Titulo_Grabando = new System.Windows.Forms.Label();
             this.Boton_Detener_Grabacion = new System.Windows.Forms.Button();
             this.Boton_Iniciar_Grabacion = new System.Windows.Forms.Button();
@@ -54,14 +55,13 @@
             this.Boton_Guardar_Posicion = new System.Windows.Forms.Button();
             this.Lista_Guardar_Posiciones_Camara = new System.Windows.Forms.ComboBox();
             this.Titulo_Camara = new System.Windows.Forms.Label();
-            this.Ventana_Grabacion_Video = new Vlc.DotNet.Forms.VlcControl();
             ((System.ComponentModel.ISupportInitialize)(this.Ventana_Camara_IP)).BeginInit();
             this.Grupo_Opciones_Camara.SuspendLayout();
             this.Grupo_Opciones_Grabacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Ventana_Grabacion_Video)).BeginInit();
             this.Grupo_Camara_Posicion.SuspendLayout();
             this.Grupo_Mover_Posicion.SuspendLayout();
             this.Grupo_Guardar_Posicion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Ventana_Grabacion_Video)).BeginInit();
             this.SuspendLayout();
             // 
             // Ventana_Camara_IP
@@ -166,6 +166,18 @@
             this.Grupo_Opciones_Grabacion.TabIndex = 2;
             this.Grupo_Opciones_Grabacion.TabStop = false;
             this.Grupo_Opciones_Grabacion.Text = "Opciones de Grabacion";
+            // 
+            // Ventana_Grabacion_Video
+            // 
+            this.Ventana_Grabacion_Video.BackColor = System.Drawing.Color.Black;
+            this.Ventana_Grabacion_Video.Location = new System.Drawing.Point(6, 273);
+            this.Ventana_Grabacion_Video.Name = "Ventana_Grabacion_Video";
+            this.Ventana_Grabacion_Video.Size = new System.Drawing.Size(182, 132);
+            this.Ventana_Grabacion_Video.Spu = -1;
+            this.Ventana_Grabacion_Video.TabIndex = 4;
+            this.Ventana_Grabacion_Video.Text = "vlcControl1";
+            this.Ventana_Grabacion_Video.VlcLibDirectory = null;
+            this.Ventana_Grabacion_Video.VlcMediaplayerOptions = null;
             // 
             // Titulo_Grabando
             // 
@@ -337,18 +349,6 @@
             this.Titulo_Camara.TabIndex = 6;
             this.Titulo_Camara.Text = "Camara: ";
             // 
-            // Ventana_Grabacion_Video
-            // 
-            this.Ventana_Grabacion_Video.BackColor = System.Drawing.Color.Black;
-            this.Ventana_Grabacion_Video.Location = new System.Drawing.Point(6, 273);
-            this.Ventana_Grabacion_Video.Name = "Ventana_Grabacion_Video";
-            this.Ventana_Grabacion_Video.Size = new System.Drawing.Size(182, 132);
-            this.Ventana_Grabacion_Video.Spu = -1;
-            this.Ventana_Grabacion_Video.TabIndex = 4;
-            this.Ventana_Grabacion_Video.Text = "vlcControl1";
-            this.Ventana_Grabacion_Video.VlcLibDirectory = null;
-            this.Ventana_Grabacion_Video.VlcMediaplayerOptions = null;
-            // 
             // Camara_Individual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +362,7 @@
             this.Controls.Add(this.Grupo_Opciones_Camara);
             this.Controls.Add(this.Ventana_Camara_IP);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Camara_Individual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -372,10 +373,10 @@
             this.Grupo_Opciones_Camara.PerformLayout();
             this.Grupo_Opciones_Grabacion.ResumeLayout(false);
             this.Grupo_Opciones_Grabacion.PerformLayout();
+            //((System.ComponentModel.ISupportInitialize)(this.Ventana_Grabacion_Video)).EndInit();
             this.Grupo_Camara_Posicion.ResumeLayout(false);
             this.Grupo_Mover_Posicion.ResumeLayout(false);
             this.Grupo_Guardar_Posicion.ResumeLayout(false);
-            //((System.ComponentModel.ISupportInitialize)(this.Ventana_Grabacion_Video)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

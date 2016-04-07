@@ -54,14 +54,27 @@ namespace ASECS
                 int fila = Tabla_Lista_Camaras.CurrentCell.RowIndex;
                 string Alias = Convert.ToString(Tabla_Lista_Camaras.Rows[fila].Cells[0].Value);
 
-                if (Alias != "")
+                if ((string.IsNullOrEmpty(Alias) == false))
                 {
-                    int index_alias;
+                    int index_alias,cont=0;
                     Camara Objeto_Eliminar_Camara = new Camara();
                     
                     Objeto_Eliminar_Camara.Alias = Alias;
                     index_alias = formulario_principal.Eliminar_Nodos_Camaras(Objeto_Eliminar_Camara);
+
+                    //detener video para redundancia de red
+                    foreach (AxoPlayerLib.AxoPlayer control in formulario_principal.Menu_Lista_Camaras.Controls)
+                    {
+                        if (cont == index_alias)
+                        {
+                            control.StopVideo();
+                        }
+
+                        cont++;
+                    }
+
                     formulario_principal.Menu_Lista_Camaras.Controls.RemoveAt(index_alias);
+                    formulario_principal.Menu_Lista_VLC.Controls.RemoveAt(index_alias);
 
                     this.Close();
                 }
@@ -76,11 +89,12 @@ namespace ASECS
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Selecciona una camara",
-                "Aviso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Exclamation,
-                MessageBoxDefaultButton.Button1);
+                //MessageBox.Show("Selecciona una camara",
+                //"Aviso",
+                //MessageBoxButtons.OK,
+                //MessageBoxIcon.Exclamation,
+                //MessageBoxDefaultButton.Button1);
+                MessageBox.Show(Convert.ToString(ex));
             }
 
         }

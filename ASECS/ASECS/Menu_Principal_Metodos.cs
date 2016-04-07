@@ -22,5 +22,7 @@ namespace ASECS
             formulario_principal.Icono_Notificacion.BalloonTipTitle = "ASECS";
             formulario_principal.Icono_Notificacion.BalloonTipText = "Se ha minimizado ASECS pero sigue en funcionamiento";
         }
+
+
     }
 }

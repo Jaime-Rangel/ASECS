@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Nueva_Camara));
             this.Lista_Camaras_Disponibles = new System.Windows.Forms.ListBox();
             this.Boton_Actualizar_Camaras = new System.Windows.Forms.Button();
             this.Boton_Agregar_Camara = new System.Windows.Forms.Button();
@@ -322,6 +323,7 @@
             this.Controls.Add(this.Grupo_Lista_Camaras);
             this.Controls.Add(this.Grupo_Urls_Camara);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Menu_Nueva_Camara";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

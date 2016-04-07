@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data;
 
 namespace ASECS
 {
@@ -34,7 +35,6 @@ namespace ASECS
             Aspectos.Acomodar_Elementos();
             Aspectos.Asignar_Mensaje_Bienvenida();
 
-            Icono_Notificacion.ShowBalloonTip(5000, "Welcome", "Hello ", ToolTipIcon.Info);
         }
 
         public void Inicializar_Objetos()
@@ -83,17 +83,18 @@ namespace ASECS
             Lista_Camaras.Insertar(Nueva_Camara);
         }
 
-        public bool Buscar_Camaras_Alias_Nodos(string Alias)
+        public bool Buscar_Camaras_Alias_Nodos_Existentes(string Alias)
         {
             //Busca una camara en el arbol de camaras
             Busqueda_Objeto_Camara = new Camara();
+
             Camara Resultado_Busqueda_Objeto_Camara_Alias = new Camara();
 
             Busqueda_Objeto_Camara.Alias = Alias;
 
             Resultado_Busqueda_Objeto_Camara_Alias = Lista_Camaras.Buscar(Busqueda_Objeto_Camara);
 
-            if (Resultado_Busqueda_Objeto_Camara_Alias == null)
+            if (Resultado_Busqueda_Objeto_Camara_Alias==null)
             {
                 return false;
             }
@@ -164,6 +165,87 @@ namespace ASECS
         {
             Menu_Tiempo_Grabacion Tiempos = new Menu_Tiempo_Grabacion(this);
             Tiempos.Show();
+        }
+
+        public void Iniciar_Grabacion_Camaras()
+        {
+            string fecha;
+            int cont = 0;
+
+            if (string.IsNullOrEmpty(Variables_Globales.Ruta_Grabacion) == false)
+            {
+                foreach (Vlc.DotNet.Forms.VlcControl control in Menu_Lista_VLC.Controls)
+                {
+                    var Alias = Lista_Camaras_Alias[cont];
+
+                    Camara Resultado = new Camara();
+
+                    Busqueda_Objeto_Camara.Alias = Alias;
+
+                    Resultado = Lista_Camaras.Buscar(Busqueda_Objeto_Camara);
+
+                    ((System.ComponentModel.ISupportInitialize)(control)).EndInit();
+
+                    DateTime now = DateTime.Now;
+                    string año = Convert.ToString(now.Year);
+                    string mes = Convert.ToString(now.Month);
+                    string dia = Convert.ToString(now.Day);
+                    string hora = Convert.ToString(now.Hour);
+                    hora = hora + "-" + Convert.ToString(now.Minute);
+                    hora = hora + "-" + Convert.ToString(now.Second);
+                    fecha = dia + "-" + mes + "-" + año + "-" + hora;
+                    MessageBox.Show(Convert.ToString(fecha));
+                    //control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}");
+                    control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='" + Variables_Globales.Ruta_Grabacion + "\\" + Resultado.Alias + "-" + fecha + ".mp4'}");
+                    MessageBox.Show(Resultado.Puerto_RSTP);
+
+                    cont++;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una carpeta para almacenar los videos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        public void Detener_Grabacion_Camaras()
+        {
+
+            foreach (Vlc.DotNet.Forms.VlcControl control in Menu_Lista_VLC.Controls)
+            {
+                control.Stop();
+            }
+        }
+
+        private void Boton_Iniciar_Grabaciones_Click(object sender, EventArgs e)
+        {
+            if (Menu_Lista_Camaras.Controls.Count > 0)
+            {
+                Iniciar_Grabacion_Camaras();
+                Variables_Globales.Grabaciones_Iniciadas = true;
+            }
+            else
+            {
+                MessageBox.Show("No hay camaras disponibles");
+
+            }
+        }
+
+        private void Boton_Detener_Grabaciones_Click(object sender, EventArgs e)
+        {
+            if (Variables_Globales.Grabaciones_Iniciadas == true)
+            {
+                Detener_Grabacion_Camaras();
+                Variables_Globales.Grabaciones_Iniciadas = false;
+            }
+            else
+            {
+                MessageBox.Show("No hay grabaciones en curso");
+            }
         }
     }
 }

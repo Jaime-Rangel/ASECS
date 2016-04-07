@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Tiempo_Grabacion));
             this.Tiempo_Numerico = new System.Windows.Forms.NumericUpDown();
             this.Titulo_Mensaje = new System.Windows.Forms.Label();
             this.Grupo_Opciones = new System.Windows.Forms.GroupBox();
@@ -118,6 +119,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(527, 269);
             this.Controls.Add(this.Grupo_Opciones);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Menu_Tiempo_Grabacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

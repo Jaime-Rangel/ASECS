@@ -73,6 +73,5 @@ namespace ASECS
             get;
             set;
         }
-
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Eliminar_Camara));
             this.Titulo_Mensaje = new System.Windows.Forms.Label();
             this.Tabla_Lista_Camaras = new System.Windows.Forms.DataGridView();
             this.Boton_Cancelar = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@
             this.Controls.Add(this.Boton_Eliminar);
             this.Controls.Add(this.Tabla_Lista_Camaras);
             this.Controls.Add(this.Titulo_Mensaje);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Menu_Eliminar_Camara";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

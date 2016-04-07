@@ -16,10 +16,12 @@ namespace ASECS
 
         private Func<T, T,bool> comparar_alias;
 
+        //private Func<T, T, bool> comparar_eliminacion;
+
         private const int LEFT = 0;
         private const int RIGHT = 1;
 
-        public Arbol_Camara(Func<T, T, bool> comparator, Func<T,Camara> retornar_parametros,Func<T, T,bool> comparar_alias)
+        public Arbol_Camara(Func<T, T, bool> comparator, Func<T, Camara> retornar_parametros, Func<T, T, bool> comparar_alias)
         {
             this.comparator = comparator;
             this.retornar_parametros = retornar_parametros;
@@ -32,7 +34,7 @@ namespace ASECS
 
             while (currentNode != null)
             {
-                if (comparar_alias(data,currentNode.data)==true)
+                if (comparar_alias(data, currentNode.data) == true)
                 {
                     return retornar_parametros(currentNode.data);
                 }
@@ -110,7 +112,7 @@ namespace ASECS
 
             while (node != null)
             {
-                if (data.Equals(node.data))
+                if (comparar_alias(data,node.data))
                 {
                     break;
                 }
