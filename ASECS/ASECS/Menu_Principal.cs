@@ -19,7 +19,9 @@ namespace ASECS
         public Arbol_Camara<Camara> Lista_Camaras;
         public List<string> Lista_Camaras_Alias;
         Camara Busqueda_Objeto_Camara;
-      
+        Menu_Principal_Metodos Metodos;
+        public Tiempo Objeto_Tiempo;
+
         public Menu_Principal()
         {
             InitializeComponent();
@@ -31,6 +33,8 @@ namespace ASECS
             Inicializar_Variables_Camara();
             Aspectos.Acomodar_Elementos();
             Aspectos.Asignar_Mensaje_Bienvenida();
+
+            Icono_Notificacion.ShowBalloonTip(5000, "Welcome", "Hello ", ToolTipIcon.Info);
         }
 
         public void Inicializar_Objetos()
@@ -38,6 +42,10 @@ namespace ASECS
             Variables_Globales = new Variables_Menu_Principal();
             Aspectos = new Menu_Principal_Aspectos(this, Variables_Globales);
             Lista_Camaras_Alias = new List<string>();
+            Metodos = new Menu_Principal_Metodos(this);
+            Objeto_Tiempo = new Tiempo();
+
+            Metodos.Asignar_Parametros_Icono_Notificacion();
 
             Lista_Camaras = new Arbol_Camara<Camara>((Camara a, Camara b) =>
             {
@@ -130,5 +138,32 @@ namespace ASECS
             Eliminar_Camara.Show();
         }
 
+        private void Menu_Principal_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                Icono_Notificacion.Visible = true;
+                Icono_Notificacion.ShowBalloonTip(2500);
+            }
+        }
+
+        private void Icono_Notificacion_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            Icono_Notificacion.Visible = false;  
+        }
+
+        private void Icono_Notificacion_BalloonTipShown(object sender, EventArgs e)
+        {
+            Icono_Notificacion.BalloonTipTitle = "ASECS";
+        }
+
+        private void Menu_Opciones_Grabacion_Tiempo_Click(object sender, EventArgs e)
+        {
+            Menu_Tiempo_Grabacion Tiempos = new Menu_Tiempo_Grabacion(this);
+            Tiempos.Show();
+        }
     }
 }

@@ -113,6 +113,16 @@ namespace ASECS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Filmacion {
+            get {
+                object obj = ResourceManager.GetObject("Filmacion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Nueva_Camara {
             get {
                 object obj = ResourceManager.GetObject("Nueva_Camara", resourceCulture);
@@ -136,6 +146,16 @@ namespace ASECS.Properties {
         internal static System.Drawing.Bitmap Ruta_Grabacion {
             get {
                 object obj = ResourceManager.GetObject("Ruta_Grabacion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tiempo {
+            get {
+                object obj = ResourceManager.GetObject("Tiempo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

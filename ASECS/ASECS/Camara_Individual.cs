@@ -61,14 +61,6 @@ namespace ASECS
 
         public void Inicializar_Variables_Camara()
         {
-            //Variables_Globales.Camara_IP = "192.168.1.105";
-            //Variables_Globales.Camara_Puerto_CGI = "81";
-            //Variables_Globales.Camara_Puerto_RTSP = "10554";
-            //Variables_Globales.Ruta_Grabacion = ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}";
-            //Variables_Globales.Usuario = "admin";
-            //Variables_Globales.Contraseña = "888888";
-            //Nombre_Camara = "Cuarto de Jaime";
-
             Variables_Globales.Camara_IP = Objeto_Camara.Direccion_IP;
             Variables_Globales.Camara_Puerto_CGI = Objeto_Camara.Puerto_CGI;
             Variables_Globales.Camara_Puerto_RTSP = Objeto_Camara.Puerto_RSTP;

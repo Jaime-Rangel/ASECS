@@ -325,7 +325,7 @@
             this.MaximizeBox = false;
             this.Name = "Menu_Nueva_Camara";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Menu Agregar Camaras";
+            this.Text = "Agregar Camara";
             this.Load += new System.EventHandler(this.Menu_Nueva_Camara_Load);
             this.Grupo_Lista_Camaras.ResumeLayout(false);
             this.Grupo_Lista_Camaras.PerformLayout();

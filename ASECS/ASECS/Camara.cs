@@ -68,5 +68,11 @@ namespace ASECS
             set;
         }
 
+        public string Ruta_Grabacion
+        {
+            get;
+            set;
+        }
+
     }
 }
