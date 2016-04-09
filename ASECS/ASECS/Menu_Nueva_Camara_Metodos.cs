@@ -190,9 +190,5 @@ namespace ASECS
                 return 1;
         }
 
-        public void Agregar_Camara_BD()
-        {
-
-        }
     }
 }

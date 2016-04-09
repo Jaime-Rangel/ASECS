@@ -20,9 +20,12 @@ namespace ASECS
 
         public void Asignar_Parametros_Icono_Notificacion()
         {
-            formulario_principal.Icono_Notificacion.Icon = new Icon(SystemIcons.Application, 40, 40);
-            formulario_principal.Icono_Notificacion.BalloonTipTitle = "ASECS";
-            formulario_principal.Icono_Notificacion.BalloonTipText = "Se ha minimizado ASECS pero sigue en funcionamiento";
+            formulario_principal.Icono_Minimizar.Icon = new Icon(SystemIcons.Application, 40, 40);
+            formulario_principal.Icono_Minimizar.Text = "Regresar a Asecs";
+            formulario_principal.Icono_Minimizar.Visible = true;
+
+            formulario_principal.Icono_Minimizar.BalloonTipText = "Asecs sigue en funcionamiento";
+            formulario_principal.Icono_Minimizar.BalloonTipTitle = "Aviso Importante";
         }
 
         public void Detener_Camaras_Streaming()
@@ -214,7 +217,7 @@ namespace ASECS
             Insertar_Reproductor_Camara.PlayVideo(Objeto_Camara.Usuario, Objeto_Camara.Contraseña, Objeto_Camara.Direccion_IP, Convert.ToInt32(Objeto_Camara.Puerto_CGI), 0, 0);
         }
 
-        public void Actualizar_Ruta_Grabaciones()
+        public void Actualizar_Ruta_Grabaciones_BD()
         {
             Conexion_BD registro = new Conexion_BD();
 
@@ -224,6 +227,21 @@ namespace ASECS
             chec.Connection = registro.Obtener_Conexion();
             chec.Parameters.AddWithValue("@C1", formulario_principal.Sesion_Usuario.Usuario_ID);
             chec.Parameters.AddWithValue("@C2", formulario_principal.Variables_Globales.Ruta_Grabacion);
+
+            chec.ExecuteNonQuery();
+            registro.Cerrar_Conexion();
+        }
+
+        public void Eliminar_Camara_Usuario_BD(int id_Camara)
+        {
+            Conexion_BD registro = new Conexion_BD();
+
+            registro.Crear_Conexion();
+            string insertar = "CALL Eliminar_Camara_Usuario(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", formulario_principal.Sesion_Usuario.Usuario_ID);
+            chec.Parameters.AddWithValue("@C2", id_Camara);
 
             chec.ExecuteNonQuery();
             registro.Cerrar_Conexion();

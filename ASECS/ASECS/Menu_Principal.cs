@@ -124,7 +124,7 @@ namespace ASECS
             {
                 folder = Dialogo_Ruta_Grabacion.SelectedPath;
                 Variables_Globales.Ruta_Grabacion = folder;
-                Metodos.Actualizar_Ruta_Grabaciones();
+                Metodos.Actualizar_Ruta_Grabaciones_BD();
                 MessageBox.Show("La ruta se ha almacenado correctamente.",
                 "Aviso",
                 MessageBoxButtons.OK,
@@ -149,22 +149,18 @@ namespace ASECS
         {
             if (WindowState == FormWindowState.Minimized)
             {
-                Hide();
-                Icono_Notificacion.Visible = true;
-                Icono_Notificacion.ShowBalloonTip(2500);
+                Icono_Minimizar.Visible = true;
+                Icono_Minimizar.ShowBalloonTip(2000);
+                this.Hide();
             }
         }
 
-        private void Icono_Notificacion_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void Icono_Minimizar_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Show();
-            this.WindowState = FormWindowState.Normal;
-            Icono_Notificacion.Visible = false;  
-        }
-
-        private void Icono_Notificacion_BalloonTipShown(object sender, EventArgs e)
-        {
-            Icono_Notificacion.BalloonTipTitle = "ASECS";
+            ShowInTaskbar = true;
+            Icono_Minimizar.Visible = false;
+            WindowState = FormWindowState.Normal;
         }
 
         private void Menu_Opciones_Grabacion_Tiempo_Click(object sender, EventArgs e)
@@ -277,5 +273,6 @@ namespace ASECS
         {
             Metodos.Iniciar_Camaras_Streaming();
         }
+
     }
 }

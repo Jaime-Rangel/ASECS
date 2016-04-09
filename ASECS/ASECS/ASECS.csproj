@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ASECS.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -253,16 +256,13 @@
     <None Include="Resources\Configuracion.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Agregar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Eliminar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Folder.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ASECS.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

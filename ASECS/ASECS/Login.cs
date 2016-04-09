@@ -164,11 +164,16 @@ namespace ASECS
 
         public void Abrir_Ventana()
         {
+            //this.Hide();
+            //Menu_Principal Menu = new Menu_Principal(Sesion_Usuario);
+            //Tiempo_Barra.Stop();
+            //Menu.ShowDialog();
+            //this.Close();
+
             this.Hide();
-            Menu_Principal Menu = new Menu_Principal(Sesion_Usuario);
-            Tiempo_Barra.Stop();
-            Menu.ShowDialog();
-            this.Close();
+            var Menu = new Menu_Principal(Sesion_Usuario);
+            Menu.Closed += (s, args) => this.Close();
+            Menu.Show();
         }
     }
 }
