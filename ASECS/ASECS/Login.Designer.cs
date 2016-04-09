@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.Titulo_Usuario = new System.Windows.Forms.Label();
             this.Texto_Usuario = new System.Windows.Forms.TextBox();
@@ -36,6 +37,8 @@
             this.Boton_Iniciar = new System.Windows.Forms.Button();
             this.Titulo_Perdido = new System.Windows.Forms.LinkLabel();
             this.Grupo_Login = new System.Windows.Forms.GroupBox();
+            this.Barra_Progreso = new System.Windows.Forms.ProgressBar();
+            this.Tiempo_Barra = new System.Windows.Forms.Timer(this.components);
             this.Grupo_Login.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,7 +96,7 @@
             // 
             this.Titulo_Perdido.AutoSize = true;
             this.Titulo_Perdido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Perdido.Location = new System.Drawing.Point(24, 405);
+            this.Titulo_Perdido.Location = new System.Drawing.Point(24, 423);
             this.Titulo_Perdido.Name = "Titulo_Perdido";
             this.Titulo_Perdido.Size = new System.Drawing.Size(255, 20);
             this.Titulo_Perdido.TabIndex = 5;
@@ -102,6 +105,7 @@
             // 
             // Grupo_Login
             // 
+            this.Grupo_Login.Controls.Add(this.Barra_Progreso);
             this.Grupo_Login.Controls.Add(this.Titulo_Perdido);
             this.Grupo_Login.Controls.Add(this.Titulo_Usuario);
             this.Grupo_Login.Controls.Add(this.Texto_Usuario);
@@ -115,6 +119,17 @@
             this.Grupo_Login.TabIndex = 6;
             this.Grupo_Login.TabStop = false;
             this.Grupo_Login.Text = "Introduce tus datos";
+            // 
+            // Barra_Progreso
+            // 
+            this.Barra_Progreso.Location = new System.Drawing.Point(6, 367);
+            this.Barra_Progreso.Name = "Barra_Progreso";
+            this.Barra_Progreso.Size = new System.Drawing.Size(291, 37);
+            this.Barra_Progreso.TabIndex = 6;
+            // 
+            // Tiempo_Barra
+            // 
+            this.Tiempo_Barra.Tick += new System.EventHandler(this.Tiempo_Barra_Tick);
             // 
             // Login
             // 
@@ -143,5 +158,7 @@
         public System.Windows.Forms.TextBox Texto_Usuario;
         public System.Windows.Forms.TextBox Texto_Contraseña;
         public System.Windows.Forms.Button Boton_Iniciar;
+        public System.Windows.Forms.ProgressBar Barra_Progreso;
+        private System.Windows.Forms.Timer Tiempo_Barra;
     }
 }

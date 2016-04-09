@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ASECS
 {
@@ -15,6 +16,8 @@ namespace ASECS
         public bool campos_verificados = false;
         public bool sesion_verificada = false;
         Login_Validacion verificacion;
+        public bool BD_Usuario;
+        public Usuario Sesion_Usuario;
 
         public Login()
         {
@@ -42,6 +45,7 @@ namespace ASECS
         public void Inicializar_Campos()
         {
             verificacion = new Login_Validacion(this);
+            Sesion_Usuario = new Usuario();
         }
 
         private void Boton_Iniciar_Click(object sender, EventArgs e)
@@ -91,7 +95,9 @@ namespace ASECS
 
                 if (sesion_verificada == true)
                 {
-                    MessageBox.Show("Iniciando sesion");
+                    verificacion.Obtener_Parametros_Usuario();
+                    Tiempo_Barra.Enabled = true;
+                    BD_Usuario = true;
                 }
             }
         }
@@ -140,6 +146,29 @@ namespace ASECS
                     }
                 }
             }
+        }
+
+        private void Tiempo_Barra_Tick(object sender, EventArgs e)
+        {
+            Barra_Progreso.Visible = true;
+
+            Barra_Progreso.Value = Barra_Progreso.Value + 5;
+
+            if (Barra_Progreso.Value == Barra_Progreso.Maximum)
+            {
+                Tiempo_Barra.Enabled = false;
+
+                Abrir_Ventana();
+            }
+        }
+
+        public void Abrir_Ventana()
+        {
+            this.Hide();
+            Menu_Principal Menu = new Menu_Principal(Sesion_Usuario);
+            Tiempo_Barra.Stop();
+            Menu.ShowDialog();
+            this.Close();
         }
     }
 }

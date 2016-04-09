@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASECS
 {
-    class Conexion_BD
+    public class Conexion_BD
     {
         public MySqlConnection conexion;
 

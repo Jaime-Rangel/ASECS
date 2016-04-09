@@ -149,7 +149,7 @@ namespace ASECS
         {
             bool resultado_busqueda;
             string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
-
+            int id_Usuario,id_Camara;
             if (text != "")
             {
                 if (Texto_Alias.Text != "")
@@ -185,6 +185,11 @@ namespace ASECS
                             //Inicia el streaming con los datos obtenidos
                             Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
 
+                            formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);
+                            id_Usuario = formulario_Menu_Principal.Metodos.Obtener_ID_Usuario_BD(this);
+                            id_Camara = formulario_Menu_Principal.Metodos.Obtener_Ultimo_ID_Camara_BD();
+
+                            formulario_Menu_Principal.Metodos.Insertar_Tabla_Usuario_Camara_BD(id_Camara,id_Usuario);
                             this.Close();
                         }
                         else
@@ -198,7 +203,7 @@ namespace ASECS
                     }
                     else
                     {
-                        MessageBox.Show("Error: El alias ya esta registrado",
+                        MessageBox.Show("Error: El Nombre ya esta registrado",
                         "Aviso",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
@@ -207,7 +212,7 @@ namespace ASECS
                 }
                 else
                 {
-                    MessageBox.Show("Introduce un Alias",
+                    MessageBox.Show("Introduce un Nombre para la camara",
                     "Aviso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,

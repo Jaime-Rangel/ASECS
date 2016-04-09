@@ -12,7 +12,6 @@ namespace ASECS
     {
         Login formulario_login;
 
-
         public Login_Validacion(Login form)
         {
             formulario_login = form;
@@ -59,14 +58,14 @@ namespace ASECS
                 Conexion_BD login = new Conexion_BD();
 
                 login.Crear_Conexion();
-                string id = "SELECT Usuario,Contraseña FROM usuarios";
+                string id = "SELECT usuario_id,Usuario,Contraseña,Email,Directorio_Grabacion FROM usuarios";
 
                 MySqlCommand id_comando = new MySqlCommand(id, login.Obtener_Conexion());
                 Lectura_Usuarios = id_comando.ExecuteReader();
 
                 while (Lectura_Usuarios.Read())
                 {
-                    lista_usuarios.Add(Lectura_Usuarios.GetString(0), Lectura_Usuarios.GetString(1));
+                    lista_usuarios.Add(Lectura_Usuarios.GetString(1), Lectura_Usuarios.GetString(2));
                 }
 
                 respuesta = Verificar_Usuario(lista_usuarios);
@@ -79,6 +78,27 @@ namespace ASECS
                 return 0;
             }
 
+        }
+
+        public void Obtener_Parametros_Usuario()
+        {
+     
+            Conexion_BD registro = new Conexion_BD();
+            registro.Crear_Conexion();
+            string buscar = "CALL Obtener_Datos_Usuario(@C1);";
+            MySqlCommand chec = new MySqlCommand(buscar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", formulario_login.Texto_Usuario.Text);
+            MySqlDataReader leer = chec.ExecuteReader();
+
+            while (leer.Read())
+            {
+                formulario_login.Sesion_Usuario.Usuario_ID = Convert.ToInt32(leer.GetString(0));
+                formulario_login.Sesion_Usuario.Nombre_Usuario = leer.GetString(1);
+                formulario_login.Sesion_Usuario.Contraseña_Usuario = leer.GetString(2);
+                formulario_login.Sesion_Usuario.Email_Usuario = leer.GetString(3);
+                formulario_login.Sesion_Usuario.Directorio_Usuario = leer.GetString(4);
+            }
         }
 
         public int Verificar_Usuario(Hashtable usuarios)
@@ -121,5 +141,6 @@ namespace ASECS
             return respuesta;
 
         }
+
     }
 }

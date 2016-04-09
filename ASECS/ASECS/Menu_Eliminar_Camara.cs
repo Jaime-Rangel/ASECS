@@ -56,27 +56,34 @@ namespace ASECS
 
                 if ((string.IsNullOrEmpty(Alias) == false))
                 {
-                    int index_alias,cont=0;
-                    Camara Objeto_Eliminar_Camara = new Camara();
-                    
-                    Objeto_Eliminar_Camara.Alias = Alias;
-                    index_alias = formulario_principal.Eliminar_Nodos_Camaras(Objeto_Eliminar_Camara);
-
-                    //detener video para redundancia de red
-                    foreach (AxoPlayerLib.AxoPlayer control in formulario_principal.Menu_Lista_Camaras.Controls)
+                    DialogResult Pregunta = MessageBox.Show("¿Realmente quieres eliminar la cámara?",
+                    "Cuidado",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation);
+                    if (Pregunta == DialogResult.Yes)
                     {
-                        if (cont == index_alias)
+                        int index_alias, cont = 0;
+                        Camara Objeto_Eliminar_Camara = new Camara();
+
+                        Objeto_Eliminar_Camara.Alias = Alias;
+                        index_alias = formulario_principal.Eliminar_Nodos_Camaras(Objeto_Eliminar_Camara);
+
+                        //detener video para redundancia de red
+                        foreach (AxoPlayerLib.AxoPlayer control in formulario_principal.Menu_Lista_Camaras.Controls)
                         {
-                            control.StopVideo();
+                            if (cont == index_alias)
+                            {
+                                control.StopVideo();
+                            }
+
+                            cont++;
                         }
 
-                        cont++;
+                        formulario_principal.Menu_Lista_Camaras.Controls.RemoveAt(index_alias);
+                        formulario_principal.Menu_Lista_VLC.Controls.RemoveAt(index_alias);
+
+                        this.Close();
                     }
-
-                    formulario_principal.Menu_Lista_Camaras.Controls.RemoveAt(index_alias);
-                    formulario_principal.Menu_Lista_VLC.Controls.RemoveAt(index_alias);
-
-                    this.Close();
                 }
                 else
                 {

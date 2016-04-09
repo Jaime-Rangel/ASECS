@@ -223,9 +223,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(16, 299);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 20);
+            this.label9.Size = new System.Drawing.Size(71, 20);
             this.label9.TabIndex = 17;
-            this.label9.Text = "Alias";
+            this.label9.Text = "Nombre";
             // 
             // label8
             // 

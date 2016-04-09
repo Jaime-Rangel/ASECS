@@ -8,6 +8,12 @@ namespace ASECS
 {
     public class Camara
     {
+        public int Camara_ID
+        {
+            get;
+            set;
+        }
+
         public string Usuario
         {
             get;
@@ -68,10 +74,11 @@ namespace ASECS
             set;
         }
 
-        public string Ruta_Grabacion
+        public int? Posicion_Predeterminada
         {
             get;
             set;
         }
+
     }
 }

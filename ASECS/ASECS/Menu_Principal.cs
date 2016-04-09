@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Data;
 
 namespace ASECS
 {
@@ -20,12 +19,14 @@ namespace ASECS
         public Arbol_Camara<Camara> Lista_Camaras;
         public List<string> Lista_Camaras_Alias;
         Camara Busqueda_Objeto_Camara;
-        Menu_Principal_Metodos Metodos;
+        public Menu_Principal_Metodos Metodos;
         public Tiempo Objeto_Tiempo;
+        public Usuario Sesion_Usuario;
 
-        public Menu_Principal()
+        public Menu_Principal(Usuario Sesion_Usuario)
         {
             InitializeComponent();
+            this.Sesion_Usuario = Sesion_Usuario;
         }
 
         private void Menu_Principal_Load(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace ASECS
             Inicializar_Variables_Camara();
             Aspectos.Acomodar_Elementos();
             Aspectos.Asignar_Mensaje_Bienvenida();
-
+            Metodos.Cargar_Camaras_Usuario_BD(Sesion_Usuario.Usuario_ID);
         }
 
         public void Inicializar_Objetos()
@@ -105,7 +106,7 @@ namespace ASECS
 
         public void Inicializar_Variables_Camara()
         {
-            Variables_Globales.Nombre_Usuario = "Jaime Rangel Ojeda";
+            Variables_Globales.Nombre_Usuario = Sesion_Usuario.Nombre_Usuario;
         }
 
         private void Menu_Principal_Nueva_Camara_Click(object sender, EventArgs e)
@@ -123,13 +124,12 @@ namespace ASECS
             {
                 folder = Dialogo_Ruta_Grabacion.SelectedPath;
                 Variables_Globales.Ruta_Grabacion = folder;
-
+                Metodos.Actualizar_Ruta_Grabaciones();
                 MessageBox.Show("La ruta se ha almacenado correctamente.",
                 "Aviso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
-
             }
         }
 
@@ -181,9 +181,12 @@ namespace ASECS
             if (string.IsNullOrEmpty(Variables_Globales.Ruta_Grabacion) == false)
             {
                 Variables_Globales.Grabaciones_Iniciadas = true;
+
                 foreach (Vlc.DotNet.Forms.VlcControl control in Menu_Lista_VLC.Controls)
                 {
                     var Alias = Lista_Camaras_Alias[cont];
+
+                    Busqueda_Objeto_Camara = new Camara();
 
                     Camara Resultado = new Camara();
 
