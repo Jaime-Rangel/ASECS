@@ -36,5 +36,11 @@ namespace ASECS
             get;
             set;
         }
+
+        public string Tiempo_Grabacion
+        {
+            get;
+            set;
+        }
     }
 }

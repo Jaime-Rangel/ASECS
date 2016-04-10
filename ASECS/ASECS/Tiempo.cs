@@ -14,7 +14,7 @@ namespace ASECS
             set;
         }
 
-        public int Tiempo_Cantidad
+        public int? Tiempo_Cantidad
         {
             get;
             set;

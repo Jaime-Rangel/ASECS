@@ -367,6 +367,7 @@
             this.Name = "Camara_Individual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Camara Individual";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Camara_Individual_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Ventana_Camara_IP)).EndInit();
             this.Grupo_Opciones_Camara.ResumeLayout(false);

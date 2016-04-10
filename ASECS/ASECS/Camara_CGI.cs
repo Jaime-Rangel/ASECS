@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using MySql.Data.MySqlClient;
 
 namespace ASECS
 {
@@ -34,6 +35,34 @@ namespace ASECS
             }
         }
 
+        public void Actualizar_Camara_Modo_Espejo_BD(int valor)
+        {
+            Conexion_BD registro = new Conexion_BD();
+            registro.Crear_Conexion();
+            string insertar = "CALL Actualizar_Camara_Modo_Espejo(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", formulario.Objeto_Camara.Camara_ID);
+            chec.Parameters.AddWithValue("@C2", valor);
+            chec.ExecuteNonQuery();
+
+            registro.Cerrar_Conexion();
+        }
+
+        public void Actualizar_Camara_Invertida_BD(int valor)
+        {
+            Conexion_BD registro = new Conexion_BD();
+            registro.Crear_Conexion();
+            string insertar = "CALL Actualizar_Camara_Invertida(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", formulario.Objeto_Camara.Camara_ID);
+            chec.Parameters.AddWithValue("@C2", valor);
+            chec.ExecuteNonQuery();
+
+            registro.Cerrar_Conexion();
+        }
+
         public void Invertir_Horizontal_Vertical_Streaming()
         {
             if (formulario.Checkeo_Intervir_Camara.Checked == true && formulario.Checkeo_Modo_Espejo.Checked == true)
@@ -51,7 +80,9 @@ namespace ASECS
                         Ejectuar_Comando_Inversion(2);
                     }
                     else
+                    {
                         Ejectuar_Comando_Inversion(0);
+                    }
         }
     }
 }

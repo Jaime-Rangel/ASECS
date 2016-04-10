@@ -43,7 +43,7 @@ namespace ASECS
         public void Crear_Tabla_Datos()
         {
             Tabla_Lista_Camaras.ColumnCount = 2;
-            Tabla_Lista_Camaras.Columns[0].Name = "Alias";
+            Tabla_Lista_Camaras.Columns[0].Name = "Nombre";
             Tabla_Lista_Camaras.Columns[1].Name = "Direccion IP";
         }
 
@@ -60,6 +60,7 @@ namespace ASECS
                     "Cuidado",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Exclamation);
+
                     if (Pregunta == DialogResult.Yes)
                     {
                         int index_alias, cont = 0;
@@ -71,6 +72,7 @@ namespace ASECS
                         Objeto_Busqueda_Camara = formulario_principal.Lista_Camaras.Buscar(Objeto_Eliminar_Camara);
                         index_alias = formulario_principal.Eliminar_Nodos_Camaras(Objeto_Eliminar_Camara);
                         formulario_principal.Metodos.Eliminar_Camara_Usuario_BD(Objeto_Busqueda_Camara.Camara_ID);
+                        formulario_principal.Metodos.Eliminar_Camara_BD(Objeto_Busqueda_Camara.Camara_ID);
 
                         //detener video para redundancia de red
                         foreach (AxoPlayerLib.AxoPlayer control in formulario_principal.Menu_Lista_Camaras.Controls)

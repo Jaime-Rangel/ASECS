@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 namespace ASECS
 {
@@ -20,24 +21,23 @@ namespace ASECS
         Video_Grabacion Grabar_Video;
         Camara_PTZ Movimiento_PTZ;
         Camara_CGI Comando_CGI;
-        Camara Objeto_Camara;
+        public Camara Objeto_Camara;
+        Menu_Principal formulario_principal;
 
-        Thread Verificar_Camara_Activa_Hilo;
+        //Thread Verificar_Camara_Activa_Hilo;
         Thread Grabar_Video_Hilo;
         Thread Streaming_Video_Hilo;
 
         //Atributos variables
         public string Nombre_Camara;
+        public string Directorio_Usuario;
 
-        public Camara_Individual(Camara Objeto_Camara)
+        public Camara_Individual(Camara Objeto_Camara, Menu_Principal formulario_principal)
         {
+            InitializeComponent();
             this.Objeto_Camara = Objeto_Camara;
-            InitializeComponent();
-        }
-
-        public Camara_Individual()
-        {
-            InitializeComponent();
+            this.formulario_principal = formulario_principal;
+            Directorio_Usuario = formulario_principal.Sesion_Usuario.Directorio_Usuario;
         }
 
         private void Inicializar_Objetos()
@@ -51,12 +51,34 @@ namespace ASECS
             Comando_CGI = new Camara_CGI(this,Variables_Globales);
         }
 
+        public void Verificar_Parametros_Camara_BD()
+        {
+
+            if (Objeto_Camara.Invertida == true && Objeto_Camara.Modo_Espejo == true)
+            {
+                Checkeo_Intervir_Camara.Checked = true;
+                Checkeo_Modo_Espejo.Checked = true;
+            }
+            else
+            if(Objeto_Camara.Invertida==true)
+            {
+                Checkeo_Intervir_Camara.Checked = true;
+            }
+            else
+            if(Objeto_Camara.Modo_Espejo==true)
+            {
+                Checkeo_Modo_Espejo.Checked = true;
+            }
+  
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Inicializar_Objetos();
             Acomodar_Elementos_Graficos();
             Inicializar_Variables_Camara();
             Aparencia.Asignar_Titulo_Camara();
+            Verificar_Parametros_Camara_BD();
         }
 
         public void Inicializar_Variables_Camara()
@@ -64,7 +86,8 @@ namespace ASECS
             Variables_Globales.Camara_IP = Objeto_Camara.Direccion_IP;
             Variables_Globales.Camara_Puerto_CGI = Objeto_Camara.Puerto_CGI;
             Variables_Globales.Camara_Puerto_RTSP = Objeto_Camara.Puerto_RSTP;
-            Variables_Globales.Ruta_Grabacion = ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}";
+            //Variables_Globales.Ruta_Grabacion = ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}";
+            Variables_Globales.Ruta_Grabacion = ":sout=#std{access=file,mux=mp4,  dst='" + Directorio_Usuario + "\\";
             Variables_Globales.Usuario = Objeto_Camara.Usuario;
             Variables_Globales.Contraseña = Objeto_Camara.Contraseña;
             Nombre_Camara = Objeto_Camara.Alias;
@@ -72,11 +95,9 @@ namespace ASECS
 
         private void Acomodar_Elementos_Graficos()
         {
-
             Aparencia.Acomodar_Elementos();
             Aparencia.Elementos_Desactivados();
             Movimiento_PTZ.Llenar_Movimientos_Posiciones();
-
         }
 
         private void Boton_Conectar_Camara_Click(object sender, EventArgs e)
@@ -94,8 +115,8 @@ namespace ASECS
                     Aparencia.Elementos_Activados();
                     Variables_Globales.Camara_Activa = true;
                     Streaming_Video_Hilo = new Thread(() => Hilo_Camara_Streaming(this));
-                    Verificar_Camara_Activa_Hilo = new Thread(() => Hilo_Camara_Activa(this));
-                    Verificar_Camara_Activa_Hilo.Start();
+                    //Verificar_Camara_Activa_Hilo = new Thread(() => Hilo_Camara_Activa(this));
+                    //Verificar_Camara_Activa_Hilo.Start();
                     Streaming_Video_Hilo.Start();
                 }
             }
@@ -206,12 +227,23 @@ namespace ASECS
         {
             if (Variables_Globales.Camara_Grabando == false)
             {
-                Variables_Globales.Camara_Grabando = true;
-                Grabar_Video_Hilo = new Thread(() => Hilo_Grabar_Video(this));
-                Grabar_Video_Hilo.Start();
-                Aparencia.Activar_Mensaje_Grabando();
-                //Mensaje_Grabando_Hilo = new Thread(() => Hilo_Mostrar_Mensaje(this));
-                //Mensaje_Grabando_Hilo.Start();
+                if (formulario_principal.Variables_Globales.Grabaciones_Iniciadas == false)
+                {
+                    Variables_Globales.Camara_Grabando = true;
+                    Grabar_Video_Hilo = new Thread(() => Hilo_Grabar_Video(this));
+                    Grabar_Video_Hilo.Start();
+                    Aparencia.Activar_Mensaje_Grabando();
+                    //Mensaje_Grabando_Hilo = new Thread(() => Hilo_Mostrar_Mensaje(this));
+                    //Mensaje_Grabando_Hilo.Start();
+                }
+                else
+                {
+                    MessageBox.Show("El menú principal ya se encuentra grabando, detén la grabación si deseas iniciar una grabación esta cámara.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
             }
             else
             {
@@ -288,11 +320,59 @@ namespace ASECS
         private void Checkeo_Intervir_Camara_CheckedChanged(object sender, EventArgs e)
         {
             Comando_CGI.Invertir_Horizontal_Vertical_Streaming();
+
+            if(Checkeo_Intervir_Camara.Checked == true)
+            {
+                Actualizar_Lista_Camaras_Invertida(true);
+                Comando_CGI.Actualizar_Camara_Invertida_BD(1);
+            }
+            else
+            {
+                Actualizar_Lista_Camaras_Invertida(false);
+                Comando_CGI.Actualizar_Camara_Invertida_BD(0);
+            }
         }
 
         private void Checkeo_Modo_Espejo_CheckedChanged(object sender, EventArgs e)
         {
             Comando_CGI.Invertir_Horizontal_Vertical_Streaming();
+
+            if(Checkeo_Modo_Espejo.Checked == true)
+            {
+                Actualizar_Lista_Camaras_Modo_Espejo(true);
+                Comando_CGI.Actualizar_Camara_Modo_Espejo_BD(1);
+            }
+            else
+            {
+                Actualizar_Lista_Camaras_Modo_Espejo(false);
+                Comando_CGI.Actualizar_Camara_Modo_Espejo_BD(0);
+            }
+        }
+
+        public void Actualizar_Lista_Camaras_Modo_Espejo(bool Espejo)
+        {
+            Camara Objeto_Camara_Aux = new Camara();
+            Objeto_Camara_Aux = Objeto_Camara;
+            Objeto_Camara_Aux.Modo_Espejo = Espejo;
+
+            formulario_principal.Lista_Camaras.remove(Objeto_Camara);
+            formulario_principal.Lista_Camaras.Insertar(Objeto_Camara_Aux);
+
+            Objeto_Camara = Objeto_Camara_Aux;
+
+        }
+
+        public void Actualizar_Lista_Camaras_Invertida(bool Invertida)
+        {
+            Camara Objeto_Camara_Aux = new Camara();
+            Objeto_Camara_Aux = Objeto_Camara;
+            Objeto_Camara_Aux.Invertida = Invertida;
+
+            formulario_principal.Lista_Camaras.remove(Objeto_Camara);
+            formulario_principal.Lista_Camaras.Insertar(Objeto_Camara_Aux);
+
+            Objeto_Camara = Objeto_Camara_Aux;
+
         }
 
         private void Checkeo_Hablar_Camara_CheckedChanged(object sender, EventArgs e)
@@ -372,6 +452,35 @@ namespace ASECS
             Movimiento_PTZ.Generar_Movimiento_Camara(7);
         }
 
+        private void Camara_Individual_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult Pregunta = MessageBox.Show("¿Realmente quieres salir? Cuidado Se detendrán las grabaciones iniciadas",
+            "Aviso",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation);
+
+            if (Pregunta == DialogResult.Yes)
+            {
+                if (Variables_Globales.Camara_Grabando == true)
+                {
+                    Grabar_Video.Detener_Grabacion_Streaming();
+                    Aparencia.Desactivar_Mensaje_Grabando();
+                    Variables_Globales.Camara_Grabando = false;
+                   
+                }
+                else
+                if(Variables_Globales.Camara_Activa == true)
+                {
+                    OCX_Camara.Detener_Streaming();
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+                this.Activate();
+            }
+
+        }
 
     }
 }

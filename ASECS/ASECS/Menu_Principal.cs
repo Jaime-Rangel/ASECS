@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Timers;
 
 namespace ASECS
 {
@@ -35,7 +36,10 @@ namespace ASECS
             Inicializar_Variables_Camara();
             Aspectos.Acomodar_Elementos();
             Aspectos.Asignar_Mensaje_Bienvenida();
+            Metodos.Asignar_Ruta_Grabaciones();
+            Metodos.Asignar_Tiempo_Grabacion();
             Metodos.Cargar_Camaras_Usuario_BD(Sesion_Usuario.Usuario_ID);
+            Aspectos.Habilitar_Elementos();
         }
 
         public void Inicializar_Objetos()
@@ -111,8 +115,19 @@ namespace ASECS
 
         private void Menu_Principal_Nueva_Camara_Click(object sender, EventArgs e)
         {
-            Menu_Nueva_Camara Agregar_Camara = new Menu_Nueva_Camara(this);
-            Agregar_Camara.Show();
+            if (Variables_Globales.Grabaciones_Iniciadas == false)
+            {
+                Menu_Nueva_Camara Agregar_Camara = new Menu_Nueva_Camara(this);
+                Agregar_Camara.Show();
+            }
+            else
+            {
+                MessageBox.Show("No puedes eliminar cámaras mientras están grabando.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
 
         }
 
@@ -125,11 +140,14 @@ namespace ASECS
                 folder = Dialogo_Ruta_Grabacion.SelectedPath;
                 Variables_Globales.Ruta_Grabacion = folder;
                 Metodos.Actualizar_Ruta_Grabaciones_BD();
+
                 MessageBox.Show("La ruta se ha almacenado correctamente.",
                 "Aviso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
+
+                Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: "+folder;
             }
         }
 
@@ -141,8 +159,19 @@ namespace ASECS
 
         private void Menu_Principal_Eliminar_Camara_Click(object sender, EventArgs e)
         {
-            Menu_Eliminar_Camara Eliminar_Camara = new Menu_Eliminar_Camara(this);
-            Eliminar_Camara.Show();
+            if (Variables_Globales.Grabaciones_Iniciadas == false)
+            {
+                Menu_Eliminar_Camara Eliminar_Camara = new Menu_Eliminar_Camara(this);
+                Eliminar_Camara.Show();
+            }
+            else
+            {
+                MessageBox.Show("No puedes eliminar cámaras mientras están grabando.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void Menu_Principal_Resize(object sender, EventArgs e)
@@ -176,6 +205,9 @@ namespace ASECS
 
             if (string.IsNullOrEmpty(Variables_Globales.Ruta_Grabacion) == false)
             {
+                Variables_Globales.Timer_Grabacion.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                Variables_Globales.Timer_Grabacion.Enabled = true; // Enable it
+
                 Variables_Globales.Grabaciones_Iniciadas = true;
 
                 foreach (Vlc.DotNet.Forms.VlcControl control in Menu_Lista_VLC.Controls)
@@ -197,17 +229,45 @@ namespace ASECS
                     string mes = Convert.ToString(now.Month);
                     string dia = Convert.ToString(now.Day);
                     string hora = Convert.ToString(now.Hour);
-                    hora = hora + "-" + Convert.ToString(now.Minute);
-                    hora = hora + "-" + Convert.ToString(now.Second);
-                    fecha = dia + "-" + mes + "-" + año + "-" + hora;
-                    MessageBox.Show(Convert.ToString(fecha));
+                    hora = hora + "_" + Convert.ToString(now.Minute);
+                    hora = hora + "_" + Convert.ToString(now.Second);
+
+                    string alias_aux = Resultado.Alias.Replace(" ", "-");
+
+                    StringBuilder alias_limpio = new StringBuilder(alias_aux);
+
+                    string myString =
+                        alias_limpio
+                          .Replace("Á","A")
+                          .Replace("É", "E")
+                          .Replace("Í", "I")
+                          .Replace("Ó", "O")
+                          .Replace("Ú", "U")
+                          .Replace("Ñ", "N")
+                          .Replace("á", "a")
+                          .Replace("é", "e")
+                          .Replace("í", "i")
+                          .Replace("ó", "o")
+                          .Replace("ú", "u")
+                          .Replace("ñ", "n")
+                          .ToString();
+
+                    fecha = dia + "_" + mes + "_" + año + "_" + hora;
+
                     //control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}");
-                    control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='" + Variables_Globales.Ruta_Grabacion + "\\" + Resultado.Alias + "-" + fecha + ".mp4'}");
-                    MessageBox.Show(Resultado.Puerto_RSTP);
+                    control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='" + Variables_Globales.Ruta_Grabacion + "\\" + alias_limpio + "_" + fecha + ".mp4'}");
 
                     cont++;
-
                 }
+
+                //MessageBox.Show("Las Grabaciones de video se iniciaron.",
+                //"Aviso",
+                //MessageBoxButtons.OK,
+                //MessageBoxIcon.Information,
+                //MessageBoxDefaultButton.Button1);
+
+                //Titulo_Grabando_Estatus.Visible = true;
+                //Imagen_Grabando.Visible = true;
             }
             else
             {
@@ -221,7 +281,6 @@ namespace ASECS
 
         public void Detener_Grabacion_Camaras()
         {
-
             foreach (Vlc.DotNet.Forms.VlcControl control in Menu_Lista_VLC.Controls)
             {
                 control.Stop();
@@ -232,11 +291,46 @@ namespace ASECS
         {
             if (Menu_Lista_Camaras.Controls.Count > 0)
             {
-                Iniciar_Grabacion_Camaras();
+                if (Variables_Globales.Streaming_Activo == true)
+                {
+                    if (Objeto_Tiempo.Tiempo_Cantidad != null)
+                    {
+                        Iniciar_Grabacion_Camaras();
+
+                        if(Variables_Globales.Grabaciones_Iniciadas==true)
+                        {
+                            MessageBox.Show("Las Grabaciones de video se iniciaron.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
+
+                            Titulo_Grabando_Estatus.Visible = true;
+                            Imagen_Grabando.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Configura los tiempos de grabación.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay cámaras activas.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+                }
+
             }
             else
             {
-                MessageBox.Show("No hay camaras disponibles.",
+                MessageBox.Show("No hay cámaras disponibles.",
                 "Aviso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information,
@@ -250,7 +344,17 @@ namespace ASECS
             if (Variables_Globales.Grabaciones_Iniciadas == true)
             {
                 Detener_Grabacion_Camaras();
+                Variables_Globales.Timer_Grabacion.Enabled = false;
                 Variables_Globales.Grabaciones_Iniciadas = false;
+
+                Titulo_Grabando_Estatus.Visible = false;
+                Imagen_Grabando.Visible = false;
+
+                MessageBox.Show("Las Grabaciones de video se han detenido",
+                 "Aviso",
+                 MessageBoxButtons.OK,
+                 MessageBoxIcon.Information,
+                 MessageBoxDefaultButton.Button1);
             }
             else
             {
@@ -266,12 +370,94 @@ namespace ASECS
 
         private void Boton_Detener_Streaming_Click(object sender, EventArgs e)
         {
-            Metodos.Detener_Camaras_Streaming();
+            if (Variables_Globales.Streaming_Activo == true)
+            {
+                Metodos.Detener_Camaras_Streaming();
+                Variables_Globales.Streaming_Activo = false;
+            }
+            else
+            {
+                MessageBox.Show("Las Cámaras No estan activas.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void Boton_Iniciar_Streaming_Click(object sender, EventArgs e)
         {
-            Metodos.Iniciar_Camaras_Streaming();
+            if (Variables_Globales.Streaming_Activo == false )
+            {
+                if(Menu_Lista_Camaras.Controls.Count > 0)
+                {
+                Metodos.Iniciar_Camaras_Streaming();
+                Variables_Globales.Streaming_Activo = true;
+                }
+                else
+                {
+                    MessageBox.Show("No hay cámaras disponibles.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Las cámaras ya estan activas.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            Detener_Grabacion_Camaras();
+            Iniciar_Grabacion_Camaras();
+        }
+
+        private void Menu_Opciones_Salir_Click(object sender, EventArgs e)
+        {
+
+            DialogResult Pregunta = MessageBox.Show("¿Realmente quieres salir?",
+            "Aviso",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation);
+
+            if (Pregunta == DialogResult.Yes)
+            {
+                this.Close();
+            }
+
+        }
+
+        private void Menu_Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult Pregunta = MessageBox.Show("¿Realmente quieres salir? Cuidado Se detendrán las grabaciones iniciadas",
+           "Aviso",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Exclamation);
+
+            if (Pregunta == DialogResult.Yes)
+            {
+                if (Variables_Globales.Grabaciones_Iniciadas == true)
+                {
+                    Detener_Grabacion_Camaras();
+                }
+                else
+                if (Variables_Globales.Streaming_Activo == true)
+                {
+                    Metodos.Detener_Camaras_Streaming();
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+                this.Activate();
+            }
         }
 
     }

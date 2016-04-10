@@ -33,6 +33,8 @@ namespace ASECS
         Menu_Principal formulario_Menu_Principal;
         Camara Nueva_Camara;
 
+        string pattern = @"^[a-zA-Z0-9\_]+$";
+
         //Hilos Programa
         Thread Buscar_Camaras_Hilo;
         Thread Obtener_Ursl_Hilo;
@@ -47,6 +49,7 @@ namespace ASECS
         {
             Inicializar_Objetos();
             Aspectos.Acomodar_Elementos();
+            Texto_Alias.MaxLength = 30;
         }
 
         public void Inicializar_Objetos()
@@ -122,7 +125,7 @@ namespace ASECS
             Boton_Seleccionar_Camara.Enabled = true;
         }
 
-        private void Asignar_Parametros_Variables()
+        private void Asignar_Parametros_Variables_Globales()
         {
             Variables_Globales.Usuario = Texto_Usuario.Text;
             Variables_Globales.Contraseña = Texto_Contraseña.Text;
@@ -132,10 +135,11 @@ namespace ASECS
             Variables_Globales.Puerto_RSTP = Texto_Puerto_RTSP.Text;
         }
 
-        public void Asignar_Parametros_Objeto_Nueva_Camara()
+        public void Asignar_Parametros_Objeto_Nueva_Camara(int id_Camara)
         {
             Nueva_Camara = new Camara();
 
+            Nueva_Camara.Camara_ID = id_Camara;
             Nueva_Camara.Alias = Texto_Alias.Text;
             Nueva_Camara.Usuario = Texto_Usuario.Text;
             Nueva_Camara.Contraseña = Texto_Contraseña.Text;
@@ -163,34 +167,52 @@ namespace ASECS
 
                         if (respuesta == 1 || respuesta == 3)
                         {
-                            Asignar_Parametros_Variables();
-                            Asignar_Parametros_Objeto_Nueva_Camara();
+                            try
+                            {
+                                Asignar_Parametros_Variables_Globales();
 
-                            //Crea el nodo de referencia para mostrar las camaras al usuario
-                            formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
-                            //agrega el reproductor al menu principal
-                            formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
+                                //agrega el reproductor al menu principal
+                                formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
 
-                            Nuevo_Grabador_VLC = new Vlc.DotNet.Forms.VlcControl();
-                            Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
-                            formulario_Menu_Principal.Menu_Lista_VLC.Controls.Add(Nuevo_Grabador_VLC);
+                                Nuevo_Grabador_VLC = new Vlc.DotNet.Forms.VlcControl();
+                                Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
+                                formulario_Menu_Principal.Menu_Lista_VLC.Controls.Add(Nuevo_Grabador_VLC);
 
-                            Nuevo_Grabador_VLC.Width = 50;
-                            Nuevo_Grabador_VLC.Height = 50;
+                                Nuevo_Grabador_VLC.Width = 50;
+                                Nuevo_Grabador_VLC.Height = 50;
 
-                            //Propiedades del reproductor
-                            Nuevo_Reproductor_Camara.Width = 400;
-                            Nuevo_Reproductor_Camara.Height = 300;
+                                //Propiedades del reproductor
+                                Nuevo_Reproductor_Camara.Width = 400;
+                                Nuevo_Reproductor_Camara.Height = 300;
 
-                            //Inicia el streaming con los datos obtenidos
-                            Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                //Inicia el streaming con los datos obtenidos si el streaming esta activo
+                                if (formulario_Menu_Principal.Variables_Globales.Streaming_Activo == true)
+                                {
+                                    Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                }
 
-                            formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);
-                            id_Usuario = formulario_Menu_Principal.Metodos.Obtener_ID_Usuario_BD(this);
-                            id_Camara = formulario_Menu_Principal.Metodos.Obtener_Ultimo_ID_Camara_BD();
+                                formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);
+                                id_Usuario = formulario_Menu_Principal.Metodos.Obtener_ID_Usuario_BD(this);
+                                id_Camara = formulario_Menu_Principal.Metodos.Obtener_Ultimo_ID_Camara_BD();
 
-                            formulario_Menu_Principal.Metodos.Insertar_Tabla_Usuario_Camara_BD(id_Camara,id_Usuario);
-                            this.Close();
+                                //Asignamos los parametros del objeto
+                                Asignar_Parametros_Objeto_Nueva_Camara(id_Camara);
+
+                                //Crea el nodo de referencia para mostrar las camaras al usuario
+                                formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
+
+                                formulario_Menu_Principal.Metodos.Insertar_Tabla_Usuario_Camara_BD(id_Camara, id_Usuario);
+
+                                this.Close();
+                            }
+                            catch(Exception ex)
+                            {
+                                MessageBox.Show("Hubo un error inesperado",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error,
+                                MessageBoxDefaultButton.Button1);
+                            }
                         }
                         else
                         {
@@ -285,6 +307,21 @@ namespace ASECS
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void Texto_Alias_TextChanged(object sender, EventArgs e)
+        {
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(Texto_Alias.Text,@"^[a-zA-Z0-9\s\báéíóúÁÉÍÓÚñÑ]*$"))
+            {
+                MessageBox.Show("No se admiten estos simbolos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+                Texto_Alias.Text = "";
+
             }
         }
 

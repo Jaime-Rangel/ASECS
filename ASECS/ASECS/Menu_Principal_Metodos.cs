@@ -12,6 +12,7 @@ namespace ASECS
     public class Menu_Principal_Metodos
     {
         Menu_Principal formulario_principal;
+        char delimitador = ':';
 
         public Menu_Principal_Metodos(Menu_Principal formulario_principal)
         {
@@ -102,9 +103,9 @@ namespace ASECS
 
             id_Usuario = Convert.ToInt32(buscando_id);
 
-            return id_Usuario;
-
             registro.Cerrar_Conexion();
+
+            return id_Usuario;
 
         }
 
@@ -126,9 +127,11 @@ namespace ASECS
 
             id_Camara = Convert.ToInt32(buscando_id);
 
+            registro.Cerrar_Conexion();
+
             return id_Camara;
 
-            registro.Cerrar_Conexion();
+
 
         }
 
@@ -161,6 +164,11 @@ namespace ASECS
             chec.Parameters.AddWithValue("@C1", id_Usuario);
             MySqlDataReader leer = chec.ExecuteReader();
 
+            if(leer.HasRows)
+            {
+                formulario_principal.Variables_Globales.Streaming_Activo = true;
+            }
+
             while (leer.Read())
             {
                 Objeto_Camara.Camara_ID = leer.GetInt32(0);
@@ -170,15 +178,43 @@ namespace ASECS
                 Objeto_Camara.Direccion_IP = leer.GetString(4);
                 Objeto_Camara.Puerto_CGI = leer.GetString(5);
                 Objeto_Camara.Puerto_RSTP = leer.GetString(6);
-                Objeto_Camara.Invertida = Convert.ToBoolean(leer.GetString(7));
-                Objeto_Camara.Modo_Espejo = Convert.ToBoolean(leer.GetString(8));
-                Objeto_Camara.Invertida_Modo_Espejo = Convert.ToBoolean(leer.GetString(9));
+
+                //Objeto_Camara.Invertida = Convert.ToBoolean(leer.GetString(7));
+                //Objeto_Camara.Modo_Espejo = Convert.ToBoolean(leer.GetString(8));
+                //Objeto_Camara.Invertida_Modo_Espejo = Convert.ToBoolean(leer.GetString(9));
+
+                //Console.WriteLine(leer.GetString(8));
+
+                if(leer.GetString(7) == Convert.ToString(true))
+                {
+                    Objeto_Camara.Invertida = true;
+                }
+                else
+                {
+                    Objeto_Camara.Invertida = false;
+                }
+
+                if (leer.GetString(8) == Convert.ToString(true))
+                {
+                    Objeto_Camara.Modo_Espejo = true;
+                }
+                else
+                {
+                    Objeto_Camara.Modo_Espejo = false;
+                }
+
+                if (leer.GetString(9) == Convert.ToString(true))
+                {
+                    Objeto_Camara.Invertida_Modo_Espejo = true;
+                }
+                else
+                {
+                    Objeto_Camara.Invertida_Modo_Espejo = false;
+                }
 
                 if (leer.IsDBNull(10) == true)
                 {
                     Agregar_Camaras_Elementos_Graficos(Objeto_Camara);
-                    //Objeto_Camara.Posicion_Predeterminada = leer.GetInt32(9);
-
                 }
                 else
                 {
@@ -240,11 +276,54 @@ namespace ASECS
             string insertar = "CALL Eliminar_Camara_Usuario(@C1,@C2);";
             MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
             chec.Connection = registro.Obtener_Conexion();
-            chec.Parameters.AddWithValue("@C1", formulario_principal.Sesion_Usuario.Usuario_ID);
-            chec.Parameters.AddWithValue("@C2", id_Camara);
+            chec.Parameters.AddWithValue("@C1",id_Camara);
+            chec.Parameters.AddWithValue("@C2",formulario_principal.Sesion_Usuario.Usuario_ID);
 
             chec.ExecuteNonQuery();
             registro.Cerrar_Conexion();
+        }
+
+        public void Eliminar_Camara_BD(int id_Camara)
+        {
+            Conexion_BD registro = new Conexion_BD();
+
+            registro.Crear_Conexion();
+            string insertar = "CALL Eliminar_Camara(@C1);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", id_Camara);
+
+            chec.ExecuteNonQuery();
+            registro.Cerrar_Conexion();
+        }
+
+        public void Asignar_Ruta_Grabaciones()
+        {
+            formulario_principal.Variables_Globales.Ruta_Grabacion = formulario_principal.Sesion_Usuario.Directorio_Usuario;
+            formulario_principal.Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: "+formulario_principal.Sesion_Usuario.Directorio_Usuario;
+        }
+
+        public void Asignar_Tiempo_Grabacion()
+        {
+            if (formulario_principal.Sesion_Usuario.Tiempo_Grabacion != "")
+            {
+                string[] elemento_tiempo = formulario_principal.Sesion_Usuario.Tiempo_Grabacion.Split(delimitador);
+                
+                formulario_principal.Objeto_Tiempo.Tiempo_Cantidad = Convert.ToInt32(elemento_tiempo[1]);
+
+                if(elemento_tiempo[0]=="M")
+                {
+                    formulario_principal.Objeto_Tiempo.Tiempo_Unidad = "Minutos";
+                    formulario_principal.Variables_Globales.Timer_Grabacion = new System.Timers.Timer(60 * Convert.ToInt32(formulario_principal.Objeto_Tiempo.Tiempo_Cantidad) * 1000);
+                }
+                else
+                {
+                    formulario_principal.Objeto_Tiempo.Tiempo_Unidad = "Horas";
+                    formulario_principal.Variables_Globales.Timer_Grabacion = new System.Timers.Timer(60 * 60 * Convert.ToInt32(formulario_principal.Objeto_Tiempo.Tiempo_Cantidad));
+                }
+
+            }
+
         }
     }
 }

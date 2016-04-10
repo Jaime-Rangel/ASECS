@@ -12,12 +12,12 @@ namespace ASECS
 {
     public partial class Menu_Administracion_Camara : Form
     {
-        Menu_Principal formulario_principal;
+        public Menu_Principal formulario_principal;
 
         public Menu_Administracion_Camara(Menu_Principal formulario_principal)
         {
-            this.formulario_principal = formulario_principal;
             InitializeComponent();
+            this.formulario_principal = formulario_principal;
 
             Crear_Tabla_Datos();
             Obtener_Lista_Camaras();
@@ -44,7 +44,7 @@ namespace ASECS
         public void Crear_Tabla_Datos()
         {
             Tabla_Lista_Camaras.ColumnCount = 2;
-            Tabla_Lista_Camaras.Columns[0].Name = "Alias";
+            Tabla_Lista_Camaras.Columns[0].Name = "Nombre";
             Tabla_Lista_Camaras.Columns[1].Name = "Direccion IP";
         }
 
@@ -64,11 +64,11 @@ namespace ASECS
                 {
                     Camara Resultado_Camara = new Camara();
                     Camara Busqueda_Objeto_Camara = new Camara();
+
                     Busqueda_Objeto_Camara.Alias = Alias;
                     Resultado_Camara = formulario_principal.Lista_Camaras.Buscar(Busqueda_Objeto_Camara);
 
-                    Camara_Individual Administrar_Camara = new Camara_Individual(Resultado_Camara);
-
+                    Camara_Individual Administrar_Camara = new Camara_Individual(Resultado_Camara, formulario_principal);
                     Administrar_Camara.Show();
                     this.Close();
                 }

@@ -69,7 +69,7 @@
             // 
             // Boton_Actualizar_Camaras
             // 
-            this.Boton_Actualizar_Camaras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Boton_Actualizar_Camaras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Boton_Actualizar_Camaras.Location = new System.Drawing.Point(151, 209);
             this.Boton_Actualizar_Camaras.Name = "Boton_Actualizar_Camaras";
             this.Boton_Actualizar_Camaras.Size = new System.Drawing.Size(150, 51);
@@ -80,7 +80,7 @@
             // 
             // Boton_Agregar_Camara
             // 
-            this.Boton_Agregar_Camara.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Boton_Agregar_Camara.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Boton_Agregar_Camara.Location = new System.Drawing.Point(162, 461);
             this.Boton_Agregar_Camara.Name = "Boton_Agregar_Camara";
             this.Boton_Agregar_Camara.Size = new System.Drawing.Size(150, 53);
@@ -121,6 +121,7 @@
             // 
             // Boton_Seleccionar_Camara
             // 
+            this.Boton_Seleccionar_Camara.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Boton_Seleccionar_Camara.Location = new System.Drawing.Point(151, 461);
             this.Boton_Seleccionar_Camara.Name = "Boton_Seleccionar_Camara";
             this.Boton_Seleccionar_Camara.Size = new System.Drawing.Size(150, 51);
@@ -211,11 +212,12 @@
             // 
             // Texto_Alias
             // 
-            this.Texto_Alias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Texto_Alias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Texto_Alias.Location = new System.Drawing.Point(128, 293);
             this.Texto_Alias.Name = "Texto_Alias";
             this.Texto_Alias.Size = new System.Drawing.Size(305, 26);
             this.Texto_Alias.TabIndex = 18;
+            this.Texto_Alias.TextChanged += new System.EventHandler(this.Texto_Alias_TextChanged);
             // 
             // label9
             // 

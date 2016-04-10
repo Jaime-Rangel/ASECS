@@ -263,6 +263,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASECS.ico" />
+    <None Include="Resources\Grabando.png" />
+    <None Include="Resources\Correos_Mexico.png" />
+    <None Include="Resources\Salir.png" />
+    <None Include="Resources\Eliminar.png" />
+    <None Include="Resources\Agregar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

@@ -43,7 +43,7 @@
             // Tiempo_Numerico
             // 
             this.Tiempo_Numerico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tiempo_Numerico.Location = new System.Drawing.Point(186, 76);
+            this.Tiempo_Numerico.Location = new System.Drawing.Point(186, 99);
             this.Tiempo_Numerico.Name = "Tiempo_Numerico";
             this.Tiempo_Numerico.Size = new System.Drawing.Size(153, 26);
             this.Tiempo_Numerico.TabIndex = 0;
@@ -52,10 +52,10 @@
             // Titulo_Mensaje
             // 
             this.Titulo_Mensaje.AutoSize = true;
-            this.Titulo_Mensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Mensaje.Location = new System.Drawing.Point(6, 32);
+            this.Titulo_Mensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Mensaje.Location = new System.Drawing.Point(6, 55);
             this.Titulo_Mensaje.Name = "Titulo_Mensaje";
-            this.Titulo_Mensaje.Size = new System.Drawing.Size(284, 20);
+            this.Titulo_Mensaje.Size = new System.Drawing.Size(251, 20);
             this.Titulo_Mensaje.TabIndex = 1;
             this.Titulo_Mensaje.Text = "Generar videos cada cierto tiempo";
             // 
@@ -67,7 +67,7 @@
             this.Grupo_Opciones.Controls.Add(this.Seleccion_Tiempo);
             this.Grupo_Opciones.Controls.Add(this.Titulo_Mensaje);
             this.Grupo_Opciones.Controls.Add(this.Tiempo_Numerico);
-            this.Grupo_Opciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Grupo_Opciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Grupo_Opciones.Location = new System.Drawing.Point(12, 9);
             this.Grupo_Opciones.Name = "Grupo_Opciones";
             this.Grupo_Opciones.Size = new System.Drawing.Size(501, 248);
@@ -78,14 +78,16 @@
             // Titulo_Mensaje_Tiempos
             // 
             this.Titulo_Mensaje_Tiempos.AutoSize = true;
-            this.Titulo_Mensaje_Tiempos.Location = new System.Drawing.Point(6, 136);
+            this.Titulo_Mensaje_Tiempos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Mensaje_Tiempos.Location = new System.Drawing.Point(6, 147);
             this.Titulo_Mensaje_Tiempos.Name = "Titulo_Mensaje_Tiempos";
-            this.Titulo_Mensaje_Tiempos.Size = new System.Drawing.Size(254, 20);
+            this.Titulo_Mensaje_Tiempos.Size = new System.Drawing.Size(225, 20);
             this.Titulo_Mensaje_Tiempos.TabIndex = 5;
             this.Titulo_Mensaje_Tiempos.Text = "Los videos se generaran cada:";
             // 
             // Boton_Aceptar
             // 
+            this.Boton_Aceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Boton_Aceptar.Location = new System.Drawing.Point(345, 194);
             this.Boton_Aceptar.Name = "Boton_Aceptar";
             this.Boton_Aceptar.Size = new System.Drawing.Size(146, 36);
@@ -96,6 +98,7 @@
             // 
             // Boton_Cancelar
             // 
+            this.Boton_Cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Boton_Cancelar.Location = new System.Drawing.Point(193, 194);
             this.Boton_Cancelar.Name = "Boton_Cancelar";
             this.Boton_Cancelar.Size = new System.Drawing.Size(146, 37);
@@ -107,7 +110,7 @@
             // Seleccion_Tiempo
             // 
             this.Seleccion_Tiempo.FormattingEnabled = true;
-            this.Seleccion_Tiempo.Location = new System.Drawing.Point(10, 74);
+            this.Seleccion_Tiempo.Location = new System.Drawing.Point(10, 97);
             this.Seleccion_Tiempo.Name = "Seleccion_Tiempo";
             this.Seleccion_Tiempo.Size = new System.Drawing.Size(154, 28);
             this.Seleccion_Tiempo.TabIndex = 2;
@@ -124,7 +127,6 @@
             this.Name = "Menu_Tiempo_Grabacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Control de Tiempos de Grabación";
-            this.Load += new System.EventHandler(this.Menu_Tiempo_Grabacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Tiempo_Numerico)).EndInit();
             this.Grupo_Opciones.ResumeLayout(false);
             this.Grupo_Opciones.PerformLayout();

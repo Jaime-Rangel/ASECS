@@ -82,7 +82,6 @@ namespace ASECS
 
         public void Obtener_Parametros_Usuario()
         {
-     
             Conexion_BD registro = new Conexion_BD();
             registro.Crear_Conexion();
             string buscar = "CALL Obtener_Datos_Usuario(@C1);";
@@ -98,6 +97,16 @@ namespace ASECS
                 formulario_login.Sesion_Usuario.Contraseña_Usuario = leer.GetString(2);
                 formulario_login.Sesion_Usuario.Email_Usuario = leer.GetString(3);
                 formulario_login.Sesion_Usuario.Directorio_Usuario = leer.GetString(4);
+
+                if (leer.IsDBNull(5) == true)
+                {
+                    formulario_login.Sesion_Usuario.Tiempo_Grabacion = null;
+                }
+                else
+                {
+                    formulario_login.Sesion_Usuario.Tiempo_Grabacion = leer.GetString(5);
+                }
+
             }
         }
 

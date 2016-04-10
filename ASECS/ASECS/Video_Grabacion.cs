@@ -30,8 +30,20 @@ namespace ASECS
 
         public void Grabar_Video_Streaming()
         {
-            formulario.Ventana_Grabacion_Video.Play(new Uri("rtsp://" + variables.Usuario + ":" + variables.Contraseña + "@" + variables.Camara_IP + ":" + variables.Camara_Puerto_RTSP + "/udp/av0_0"), variables.Ruta_Grabacion);
+            DateTime now = DateTime.Now;
+            string fecha;
+            string año = Convert.ToString(now.Year);
+            string mes = Convert.ToString(now.Month);
+            string dia = Convert.ToString(now.Day);
+            string hora = Convert.ToString(now.Hour);
+            hora = hora + "-" + Convert.ToString(now.Minute);
+            hora = hora + "-" + Convert.ToString(now.Second);
+            fecha = dia + "-" + mes + "-" + año + "-" + hora;
 
+            //control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}");
+            //control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='" + Variables_Globales.Ruta_Grabacion + "\\" + Resultado.Alias + "-" + fecha + ".mp4'}");
+ 
+            formulario.Ventana_Grabacion_Video.Play(new Uri("rtsp://" + variables.Usuario + ":" + variables.Contraseña + "@" + variables.Camara_IP + ":" + variables.Camara_Puerto_RTSP + "/udp/av0_0"), variables.Ruta_Grabacion + formulario.Nombre_Camara + "-" + fecha + ".mp4'}");
         }
 
         public void Detener_Grabacion_Streaming()
