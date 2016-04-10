@@ -28,3 +28,4 @@ C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\ASECS.Login.resources
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\ASECS.Menu_Tiempo_Grabacion.resources
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\bin\Debug\OzekiSDK.dll
+C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\ASECS.Menu_Editar_Usuario.resources

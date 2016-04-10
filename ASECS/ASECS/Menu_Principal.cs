@@ -422,15 +422,7 @@ namespace ASECS
         private void Menu_Opciones_Salir_Click(object sender, EventArgs e)
         {
 
-            DialogResult Pregunta = MessageBox.Show("¿Realmente quieres salir?",
-            "Aviso",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Exclamation);
-
-            if (Pregunta == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
 
         }
 
@@ -458,6 +450,12 @@ namespace ASECS
                 e.Cancel = true;
                 this.Activate();
             }
+        }
+
+        private void Menu_Opciones_Usuario_Editar_Click(object sender, EventArgs e)
+        {
+            Menu_Editar_Usuario Editar_Usuario = new Menu_Editar_Usuario(this);
+            Editar_Usuario.Show();
         }
 
     }

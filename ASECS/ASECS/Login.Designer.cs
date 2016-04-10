@@ -47,10 +47,10 @@
             // Titulo_Usuario
             // 
             this.Titulo_Usuario.AutoSize = true;
-            this.Titulo_Usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulo_Usuario.Location = new System.Drawing.Point(120, 152);
             this.Titulo_Usuario.Name = "Titulo_Usuario";
-            this.Titulo_Usuario.Size = new System.Drawing.Size(71, 20);
+            this.Titulo_Usuario.Size = new System.Drawing.Size(64, 20);
             this.Titulo_Usuario.TabIndex = 0;
             this.Titulo_Usuario.Text = "Usuario";
             // 
@@ -66,10 +66,10 @@
             // Titulo_Contraseña
             // 
             this.Titulo_Contraseña.AutoSize = true;
-            this.Titulo_Contraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Contraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulo_Contraseña.Location = new System.Drawing.Point(99, 233);
             this.Titulo_Contraseña.Name = "Titulo_Contraseña";
-            this.Titulo_Contraseña.Size = new System.Drawing.Size(102, 20);
+            this.Titulo_Contraseña.Size = new System.Drawing.Size(92, 20);
             this.Titulo_Contraseña.TabIndex = 2;
             this.Titulo_Contraseña.Text = "Contraseña";
             // 
@@ -86,7 +86,7 @@
             // Boton_Iniciar
             // 
             this.Boton_Iniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Boton_Iniciar.Location = new System.Drawing.Point(80, 301);
+            this.Boton_Iniciar.Location = new System.Drawing.Point(68, 301);
             this.Boton_Iniciar.Name = "Boton_Iniciar";
             this.Boton_Iniciar.Size = new System.Drawing.Size(152, 38);
             this.Boton_Iniciar.TabIndex = 4;
@@ -115,7 +115,7 @@
             this.Grupo_Login.Controls.Add(this.Titulo_Contraseña);
             this.Grupo_Login.Controls.Add(this.Texto_Contraseña);
             this.Grupo_Login.Controls.Add(this.Boton_Iniciar);
-            this.Grupo_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Grupo_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Grupo_Login.Location = new System.Drawing.Point(12, 7);
             this.Grupo_Login.Name = "Grupo_Login";
             this.Grupo_Login.Size = new System.Drawing.Size(303, 531);

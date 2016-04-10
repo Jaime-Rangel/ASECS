@@ -88,9 +88,9 @@
             // Boton_Aceptar
             // 
             this.Boton_Aceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Boton_Aceptar.Location = new System.Drawing.Point(345, 194);
+            this.Boton_Aceptar.Location = new System.Drawing.Point(235, 205);
             this.Boton_Aceptar.Name = "Boton_Aceptar";
-            this.Boton_Aceptar.Size = new System.Drawing.Size(146, 36);
+            this.Boton_Aceptar.Size = new System.Drawing.Size(127, 38);
             this.Boton_Aceptar.TabIndex = 4;
             this.Boton_Aceptar.Text = "Aceptar";
             this.Boton_Aceptar.UseVisualStyleBackColor = true;
@@ -99,9 +99,9 @@
             // Boton_Cancelar
             // 
             this.Boton_Cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Boton_Cancelar.Location = new System.Drawing.Point(193, 194);
+            this.Boton_Cancelar.Location = new System.Drawing.Point(368, 205);
             this.Boton_Cancelar.Name = "Boton_Cancelar";
-            this.Boton_Cancelar.Size = new System.Drawing.Size(146, 37);
+            this.Boton_Cancelar.Size = new System.Drawing.Size(127, 38);
             this.Boton_Cancelar.TabIndex = 3;
             this.Boton_Cancelar.Text = "Cancelar";
             this.Boton_Cancelar.UseVisualStyleBackColor = true;

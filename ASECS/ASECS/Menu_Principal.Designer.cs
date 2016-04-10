@@ -42,7 +42,9 @@
             this.Menu_Opciones_Grabacion = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Opciones_Grabacion_Tiempo = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Opciones_Configuracion = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Opciones_Configuracion_Editar = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Opciones_Usuario = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Menu_Opciones_Usuario_Editar = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Opciones_Salir = new System.Windows.Forms.ToolStripDropDownButton();
             this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
             this.Titulo_Vista = new System.Windows.Forms.Label();
@@ -75,10 +77,10 @@
             // Titulo_Bienvenida
             // 
             this.Titulo_Bienvenida.AutoSize = true;
-            this.Titulo_Bienvenida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Bienvenida.Location = new System.Drawing.Point(435, 99);
+            this.Titulo_Bienvenida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Bienvenida.Location = new System.Drawing.Point(439, 99);
             this.Titulo_Bienvenida.Name = "Titulo_Bienvenida";
-            this.Titulo_Bienvenida.Size = new System.Drawing.Size(127, 24);
+            this.Titulo_Bienvenida.Size = new System.Drawing.Size(115, 24);
             this.Titulo_Bienvenida.TabIndex = 2;
             this.Titulo_Bienvenida.Text = "Bienvenido: ";
             // 
@@ -91,6 +93,7 @@
             this.Menu_Principal_Rutas,
             this.Menu_Opciones_Grabacion,
             this.Menu_Opciones_Configuracion,
+            this.Menu_Opciones_Usuario,
             this.Menu_Opciones_Salir});
             this.Menu_Principal_Opciones.Location = new System.Drawing.Point(0, 0);
             this.Menu_Principal_Opciones.Name = "Menu_Principal_Opciones";
@@ -182,7 +185,7 @@
             // Menu_Opciones_Configuracion
             // 
             this.Menu_Opciones_Configuracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.Menu_Opciones_Configuracion_Editar});
             this.Menu_Opciones_Configuracion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Opciones_Configuracion.Image = global::ASECS.Properties.Resources.Configuracion;
             this.Menu_Opciones_Configuracion.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -191,12 +194,32 @@
             this.Menu_Opciones_Configuracion.Size = new System.Drawing.Size(158, 64);
             this.Menu_Opciones_Configuracion.Text = "Configuración";
             // 
-            // toolStripMenuItem1
+            // Menu_Opciones_Configuracion_Editar
             // 
-            this.toolStripMenuItem1.Image = global::ASECS.Properties.Resources.Editar;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
-            this.toolStripMenuItem1.Text = "Editar Cámaras";
+            this.Menu_Opciones_Configuracion_Editar.Image = global::ASECS.Properties.Resources.Editar;
+            this.Menu_Opciones_Configuracion_Editar.Name = "Menu_Opciones_Configuracion_Editar";
+            this.Menu_Opciones_Configuracion_Editar.Size = new System.Drawing.Size(155, 22);
+            this.Menu_Opciones_Configuracion_Editar.Text = "Editar Cámaras";
+            // 
+            // Menu_Opciones_Usuario
+            // 
+            this.Menu_Opciones_Usuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Opciones_Usuario_Editar});
+            this.Menu_Opciones_Usuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Opciones_Usuario.Image = global::ASECS.Properties.Resources.Usuario;
+            this.Menu_Opciones_Usuario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Opciones_Usuario.Name = "Menu_Opciones_Usuario";
+            this.Menu_Opciones_Usuario.ShowDropDownArrow = false;
+            this.Menu_Opciones_Usuario.Size = new System.Drawing.Size(123, 64);
+            this.Menu_Opciones_Usuario.Text = "Usuario";
+            // 
+            // Menu_Opciones_Usuario_Editar
+            // 
+            this.Menu_Opciones_Usuario_Editar.Image = global::ASECS.Properties.Resources.Usuario_Editar;
+            this.Menu_Opciones_Usuario_Editar.Name = "Menu_Opciones_Usuario_Editar";
+            this.Menu_Opciones_Usuario_Editar.Size = new System.Drawing.Size(139, 22);
+            this.Menu_Opciones_Usuario_Editar.Text = "Editar datos";
+            this.Menu_Opciones_Usuario_Editar.Click += new System.EventHandler(this.Menu_Opciones_Usuario_Editar_Click);
             // 
             // Menu_Opciones_Salir
             // 
@@ -212,10 +235,10 @@
             // Titulo_Vista
             // 
             this.Titulo_Vista.AutoSize = true;
-            this.Titulo_Vista.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Vista.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulo_Vista.Location = new System.Drawing.Point(419, 313);
             this.Titulo_Vista.Name = "Titulo_Vista";
-            this.Titulo_Vista.Size = new System.Drawing.Size(172, 24);
+            this.Titulo_Vista.Size = new System.Drawing.Size(156, 24);
             this.Titulo_Vista.TabIndex = 4;
             this.Titulo_Vista.Text = "Vista de Cámaras";
             // 
@@ -258,7 +281,7 @@
             // 
             this.Titulo_Grabaciones.AutoSize = true;
             this.Titulo_Grabaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Grabaciones.Location = new System.Drawing.Point(6, 78);
+            this.Titulo_Grabaciones.Location = new System.Drawing.Point(6, 89);
             this.Titulo_Grabaciones.Name = "Titulo_Grabaciones";
             this.Titulo_Grabaciones.Size = new System.Drawing.Size(259, 20);
             this.Titulo_Grabaciones.TabIndex = 2;
@@ -382,7 +405,7 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_Opciones_Grabacion_Tiempo;
         public System.Windows.Forms.FlowLayoutPanel Menu_Lista_VLC;
         private System.Windows.Forms.ToolStripDropDownButton Menu_Opciones_Configuracion;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Opciones_Configuracion_Editar;
         public System.Windows.Forms.NotifyIcon Icono_Minimizar;
         private System.Windows.Forms.ToolStripDropDownButton Menu_Opciones_Salir;
         public System.Windows.Forms.Label Titulo_Grabaciones;
@@ -395,5 +418,7 @@
         public System.Windows.Forms.Button Boton_Detener_Streaming;
         public System.Windows.Forms.Button Boton_Iniciar_Streaming;
         public System.Windows.Forms.GroupBox Grupo_Streaming;
+        private System.Windows.Forms.ToolStripDropDownButton Menu_Opciones_Usuario;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Opciones_Usuario_Editar;
     }
 }

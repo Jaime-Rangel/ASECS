@@ -39,10 +39,10 @@
             // Titulo_Mensaje
             // 
             this.Titulo_Mensaje.AutoSize = true;
-            this.Titulo_Mensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Mensaje.Location = new System.Drawing.Point(264, 20);
+            this.Titulo_Mensaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Mensaje.Location = new System.Drawing.Point(273, 20);
             this.Titulo_Mensaje.Name = "Titulo_Mensaje";
-            this.Titulo_Mensaje.Size = new System.Drawing.Size(169, 24);
+            this.Titulo_Mensaje.Size = new System.Drawing.Size(153, 24);
             this.Titulo_Mensaje.TabIndex = 0;
             this.Titulo_Mensaje.Text = "Lista de Camaras";
             // 
@@ -58,9 +58,9 @@
             // Boton_Cancelar
             // 
             this.Boton_Cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Boton_Cancelar.Location = new System.Drawing.Point(352, 330);
+            this.Boton_Cancelar.Location = new System.Drawing.Point(591, 330);
             this.Boton_Cancelar.Name = "Boton_Cancelar";
-            this.Boton_Cancelar.Size = new System.Drawing.Size(180, 43);
+            this.Boton_Cancelar.Size = new System.Drawing.Size(127, 38);
             this.Boton_Cancelar.TabIndex = 5;
             this.Boton_Cancelar.Text = "Cancelar";
             this.Boton_Cancelar.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // Boton_Eliminar
             // 
             this.Boton_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Boton_Eliminar.Location = new System.Drawing.Point(538, 330);
+            this.Boton_Eliminar.Location = new System.Drawing.Point(458, 330);
             this.Boton_Eliminar.Name = "Boton_Eliminar";
-            this.Boton_Eliminar.Size = new System.Drawing.Size(180, 43);
+            this.Boton_Eliminar.Size = new System.Drawing.Size(127, 38);
             this.Boton_Eliminar.TabIndex = 4;
             this.Boton_Eliminar.Text = "Eliminar";
             this.Boton_Eliminar.UseVisualStyleBackColor = true;

@@ -24,12 +24,12 @@ namespace ASECS
             formulario.Protocolo_Transporte.Items.Add("TCP");
 
             //formulario.Texto_Alias.CharacterCasing = CharacterCasing.Upper;
-            formulario.Texto_Usuario.TextAlign = HorizontalAlignment.Center;
-            formulario.Texto_Contraseña.TextAlign = HorizontalAlignment.Center;
-            formulario.Texto_Alias.TextAlign = HorizontalAlignment.Center;
-            formulario.Texto_Direccion_IP.TextAlign = HorizontalAlignment.Center;
-            formulario.Texto_Puerto_CGI.TextAlign = HorizontalAlignment.Center;
-            formulario.Texto_Puerto_RTSP.TextAlign = HorizontalAlignment.Center;
+            //formulario.Texto_Usuario.TextAlign = HorizontalAlignment.Center;
+            //formulario.Texto_Contraseña.TextAlign = HorizontalAlignment.Center;
+            //formulario.Texto_Alias.TextAlign = HorizontalAlignment.Center;
+            //formulario.Texto_Direccion_IP.TextAlign = HorizontalAlignment.Center;
+            //formulario.Texto_Puerto_CGI.TextAlign = HorizontalAlignment.Center;
+            //formulario.Texto_Puerto_RTSP.TextAlign = HorizontalAlignment.Center;
 
             formulario.Texto_Puerto_CGI.ReadOnly = true;
             formulario.Texto_Direccion_IP.ReadOnly = true;
