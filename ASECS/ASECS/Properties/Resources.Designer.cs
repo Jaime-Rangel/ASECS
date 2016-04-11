@@ -93,6 +93,16 @@ namespace ASECS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cerrar_Sesion {
+            get {
+                object obj = ResourceManager.GetObject("Cerrar_Sesion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Configuracion {
             get {
                 object obj = ResourceManager.GetObject("Configuracion", resourceCulture);
@@ -206,6 +216,16 @@ namespace ASECS.Properties {
         internal static System.Drawing.Bitmap Usuario_Editar {
             get {
                 object obj = ResourceManager.GetObject("Usuario_Editar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Videos {
+            get {
+                object obj = ResourceManager.GetObject("Videos", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

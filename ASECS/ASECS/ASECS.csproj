@@ -105,6 +105,12 @@
     <Compile Include="Camara_PTZ.cs" />
     <Compile Include="Conexion_BD.cs" />
     <Compile Include="DeviceDescriptionHolder.cs" />
+    <Compile Include="Editar_Camara.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar_Camara.Designer.cs">
+      <DependentUpon>Editar_Camara.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,12 @@
     </Compile>
     <Compile Include="Menu_Administracion_Camara.Designer.cs">
       <DependentUpon>Menu_Administracion_Camara.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_Editar_Camaras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu_Editar_Camaras.Designer.cs">
+      <DependentUpon>Menu_Editar_Camaras.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu_Editar_Usuario.cs">
       <SubType>Form</SubType>
@@ -170,11 +182,17 @@
     <EmbeddedResource Include="Camara_Individual.resx">
       <DependentUpon>Camara_Individual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editar_Camara.resx">
+      <DependentUpon>Editar_Camara.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_Administracion_Camara.resx">
       <DependentUpon>Menu_Administracion_Camara.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu_Editar_Camaras.resx">
+      <DependentUpon>Menu_Editar_Camaras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu_Editar_Usuario.resx">
       <DependentUpon>Menu_Editar_Usuario.cs</DependentUpon>
@@ -219,8 +237,25 @@
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
     <COMReference Include="oPlayerLib">
       <Guid>{2303B2D8-A932-4BD2-BBA6-593F227156BE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
@@ -272,6 +307,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASECS.ico" />
+    <None Include="Resources\Cerrar_Sesion.png" />
+    <None Include="Resources\Videos.png" />
     <None Include="Resources\Usuario_Editar.png" />
     <None Include="Resources\Usuario.png" />
     <None Include="Resources\Grabando.png" />

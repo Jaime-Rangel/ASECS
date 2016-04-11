@@ -23,6 +23,7 @@ namespace ASECS
         public Menu_Principal_Metodos Metodos;
         public Tiempo Objeto_Tiempo;
         public Usuario Sesion_Usuario;
+        bool cerrar_sesion;
 
         public Menu_Principal(Usuario Sesion_Usuario)
         {
@@ -60,7 +61,7 @@ namespace ASECS
             {
                 return Objeto;
 
-            },(Camara a,Camara b) =>
+            }, (Camara a, Camara b) =>
             {
                 if (a.Alias.Equals(b.Alias))
                 {
@@ -68,7 +69,16 @@ namespace ASECS
                 }
                 else
                     return false;
-            });
+            }, (Camara a, Camara b) =>
+            {
+                if (a.Camara_ID == b.Camara_ID)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            );
         }
 
         public int Eliminar_Nodos_Camaras(Camara Eliminar_Camara)
@@ -194,8 +204,19 @@ namespace ASECS
 
         private void Menu_Opciones_Grabacion_Tiempo_Click(object sender, EventArgs e)
         {
-            Menu_Tiempo_Grabacion Tiempos = new Menu_Tiempo_Grabacion(this);
-            Tiempos.Show();
+            if (Variables_Globales.Grabaciones_Iniciadas == false)
+            {
+                Menu_Tiempo_Grabacion Tiempos = new Menu_Tiempo_Grabacion(this);
+                Tiempos.Show();
+            }
+            else
+            {
+                MessageBox.Show("No puedes cambiar los tiempos de grabación mientras las cámaras están grabando.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
         }
 
         public void Iniciar_Grabacion_Camaras()
@@ -387,7 +408,7 @@ namespace ASECS
 
         private void Boton_Iniciar_Streaming_Click(object sender, EventArgs e)
         {
-            if (Variables_Globales.Streaming_Activo == false )
+            if (Variables_Globales.Streaming_Activo == false)
             {
                 if(Menu_Lista_Camaras.Controls.Count > 0)
                 {
@@ -421,17 +442,15 @@ namespace ASECS
 
         private void Menu_Opciones_Salir_Click(object sender, EventArgs e)
         {
-
             this.Close();
-
         }
 
         private void Menu_Principal_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult Pregunta = MessageBox.Show("¿Realmente quieres salir? Cuidado Se detendrán las grabaciones iniciadas",
-           "Aviso",
-           MessageBoxButtons.YesNo,
-           MessageBoxIcon.Exclamation);
+            "Aviso",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation);
 
             if (Pregunta == DialogResult.Yes)
             {
@@ -458,5 +477,26 @@ namespace ASECS
             Editar_Usuario.Show();
         }
 
+        private void Menu_Opciones_Configuracion_Editar_Click(object sender, EventArgs e)
+        {
+            if (Variables_Globales.Grabaciones_Iniciadas == false)
+            {
+                Menu_Editar_Camaras Editar_Camara = new Menu_Editar_Camaras(this);
+                Editar_Camara.Show();
+            }
+            else
+            {
+                MessageBox.Show("No puedes editar cámaras mientras están grabando.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void Menu_Opciones_Usuario_Cerrar_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

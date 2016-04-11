@@ -88,6 +88,20 @@ namespace ASECS
                         formulario_principal.Menu_Lista_Camaras.Controls.RemoveAt(index_alias);
                         formulario_principal.Menu_Lista_VLC.Controls.RemoveAt(index_alias);
 
+                        MessageBox.Show("Se ha eliminado la cámara",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+
+                        if (formulario_principal.Menu_Lista_Camaras.Controls.Count == 0)
+                        {
+                            if(formulario_principal.Variables_Globales.Streaming_Activo==true)
+                            {
+                                formulario_principal.Variables_Globales.Streaming_Activo = false;
+                            }
+                        }
+
                         this.Close();
                     }
                 }

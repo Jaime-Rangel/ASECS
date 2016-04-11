@@ -33,8 +33,6 @@ namespace ASECS
         Menu_Principal formulario_Menu_Principal;
         Camara Nueva_Camara;
 
-        string pattern = @"^[a-zA-Z0-9\_]+$";
-
         //Hilos Programa
         Thread Buscar_Camaras_Hilo;
         Thread Obtener_Ursl_Hilo;
@@ -57,8 +55,7 @@ namespace ASECS
             Aspectos = new Menu_Nueva_Camara_Aspectos(this);
             Variables_Globales = new Variables_Menu_Nueva_Camara();
             Metodos = new Menu_Nueva_Camara_Metodos(this);
-            //Variables_Globales.Semaforo_Control_Uris = new Semaphore(1,1);
-            //Variables_Globales.Semaforo_Control_Onvifs = new Semaphore(1,1);
+
         }
 
         public struct ListItem
@@ -190,6 +187,11 @@ namespace ASECS
                                 {
                                     Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
                                 }
+                                else
+                                if (formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Count>0)
+                                {
+                                    Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                }
 
                                 formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);
                                 id_Usuario = formulario_Menu_Principal.Metodos.Obtener_ID_Usuario_BD(this);
@@ -312,7 +314,6 @@ namespace ASECS
 
         private void Texto_Alias_TextChanged(object sender, EventArgs e)
         {
-
             if (!System.Text.RegularExpressions.Regex.IsMatch(Texto_Alias.Text,@"^[a-zA-Z0-9\s\báéíóúÁÉÍÓÚñÑ]*$"))
             {
                 MessageBox.Show("No se admiten estos simbolos.",

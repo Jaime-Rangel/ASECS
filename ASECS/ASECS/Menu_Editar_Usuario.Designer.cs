@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Editar_Usuario));
             this.Texto_Usuario = new System.Windows.Forms.TextBox();
             this.Grupo_Datos_Usuario = new System.Windows.Forms.GroupBox();
             this.Boton_Aceptar = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@
             this.Texto_Usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Texto_Usuario.Location = new System.Drawing.Point(172, 41);
             this.Texto_Usuario.Name = "Texto_Usuario";
-            this.Texto_Usuario.Size = new System.Drawing.Size(260, 26);
+            this.Texto_Usuario.Size = new System.Drawing.Size(312, 26);
             this.Texto_Usuario.TabIndex = 0;
             // 
             // Grupo_Datos_Usuario
@@ -69,14 +70,14 @@
             this.Grupo_Datos_Usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Grupo_Datos_Usuario.Location = new System.Drawing.Point(12, 12);
             this.Grupo_Datos_Usuario.Name = "Grupo_Datos_Usuario";
-            this.Grupo_Datos_Usuario.Size = new System.Drawing.Size(453, 290);
+            this.Grupo_Datos_Usuario.Size = new System.Drawing.Size(490, 273);
             this.Grupo_Datos_Usuario.TabIndex = 1;
             this.Grupo_Datos_Usuario.TabStop = false;
             this.Grupo_Datos_Usuario.Text = "Datos del Usuario";
             // 
             // Boton_Aceptar
             // 
-            this.Boton_Aceptar.Location = new System.Drawing.Point(171, 227);
+            this.Boton_Aceptar.Location = new System.Drawing.Point(224, 227);
             this.Boton_Aceptar.Name = "Boton_Aceptar";
             this.Boton_Aceptar.Size = new System.Drawing.Size(127, 38);
             this.Boton_Aceptar.TabIndex = 11;
@@ -86,7 +87,7 @@
             // 
             // Boton_Cancelar
             // 
-            this.Boton_Cancelar.Location = new System.Drawing.Point(305, 227);
+            this.Boton_Cancelar.Location = new System.Drawing.Point(357, 227);
             this.Boton_Cancelar.Name = "Boton_Cancelar";
             this.Boton_Cancelar.Size = new System.Drawing.Size(127, 38);
             this.Boton_Cancelar.TabIndex = 10;
@@ -107,14 +108,14 @@
             // 
             this.Texto_Email.Location = new System.Drawing.Point(172, 73);
             this.Texto_Email.Name = "Texto_Email";
-            this.Texto_Email.Size = new System.Drawing.Size(260, 26);
+            this.Texto_Email.Size = new System.Drawing.Size(312, 26);
             this.Texto_Email.TabIndex = 8;
             // 
             // Texto_Repetir_Contraseña
             // 
             this.Texto_Repetir_Contraseña.Location = new System.Drawing.Point(171, 169);
             this.Texto_Repetir_Contraseña.Name = "Texto_Repetir_Contraseña";
-            this.Texto_Repetir_Contraseña.Size = new System.Drawing.Size(261, 26);
+            this.Texto_Repetir_Contraseña.Size = new System.Drawing.Size(313, 26);
             this.Texto_Repetir_Contraseña.TabIndex = 7;
             this.Texto_Repetir_Contraseña.UseSystemPasswordChar = true;
             // 
@@ -131,7 +132,7 @@
             // 
             this.Texto_Nueva_Contraseña.Location = new System.Drawing.Point(171, 137);
             this.Texto_Nueva_Contraseña.Name = "Texto_Nueva_Contraseña";
-            this.Texto_Nueva_Contraseña.Size = new System.Drawing.Size(261, 26);
+            this.Texto_Nueva_Contraseña.Size = new System.Drawing.Size(313, 26);
             this.Texto_Nueva_Contraseña.TabIndex = 5;
             this.Texto_Nueva_Contraseña.UseSystemPasswordChar = true;
             // 
@@ -148,7 +149,7 @@
             // 
             this.Texto_Contraseña_Anterior.Location = new System.Drawing.Point(171, 105);
             this.Texto_Contraseña_Anterior.Name = "Texto_Contraseña_Anterior";
-            this.Texto_Contraseña_Anterior.Size = new System.Drawing.Size(261, 26);
+            this.Texto_Contraseña_Anterior.Size = new System.Drawing.Size(313, 26);
             this.Texto_Contraseña_Anterior.TabIndex = 3;
             this.Texto_Contraseña_Anterior.UseSystemPasswordChar = true;
             // 
@@ -174,8 +175,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 314);
+            this.ClientSize = new System.Drawing.Size(514, 292);
             this.Controls.Add(this.Grupo_Datos_Usuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Menu_Editar_Usuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
