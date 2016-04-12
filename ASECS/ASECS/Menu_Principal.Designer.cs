@@ -33,19 +33,6 @@
             this.Menu_Lista_Camaras = new System.Windows.Forms.FlowLayoutPanel();
             this.Titulo_Bienvenida = new System.Windows.Forms.Label();
             this.Menu_Principal_Opciones = new System.Windows.Forms.ToolStrip();
-            this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
-            this.Titulo_Vista = new System.Windows.Forms.Label();
-            this.Grupo_Grabacion = new System.Windows.Forms.GroupBox();
-            this.Titulo_Grabando_Estatus = new System.Windows.Forms.Label();
-            this.Titulo_Grabaciones = new System.Windows.Forms.Label();
-            this.Boton_Detener_Grabaciones = new System.Windows.Forms.Button();
-            this.Boton_Iniciar_Grabaciones = new System.Windows.Forms.Button();
-            this.Menu_Lista_VLC = new System.Windows.Forms.FlowLayoutPanel();
-            this.Grupo_Streaming = new System.Windows.Forms.GroupBox();
-            this.Boton_Detener_Streaming = new System.Windows.Forms.Button();
-            this.Boton_Iniciar_Streaming = new System.Windows.Forms.Button();
-            this.Icono_Minimizar = new System.Windows.Forms.NotifyIcon(this.components);
-            this.Imagen_Grabando = new System.Windows.Forms.PictureBox();
             this.Menu_Principal_Agregar = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Principal_Nueva_Camara = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Principal_Eliminar_Camara = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,10 +47,23 @@
             this.Menu_Opciones_Usuario_Editar = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Opciones_Videos = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Opciones_Salir = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Dialogo_Ruta_Grabacion = new System.Windows.Forms.FolderBrowserDialog();
+            this.Titulo_Vista = new System.Windows.Forms.Label();
+            this.Grupo_Grabacion = new System.Windows.Forms.GroupBox();
+            this.Titulo_Grabando_Estatus = new System.Windows.Forms.Label();
+            this.Imagen_Grabando = new System.Windows.Forms.PictureBox();
+            this.Titulo_Grabaciones = new System.Windows.Forms.Label();
+            this.Boton_Detener_Grabaciones = new System.Windows.Forms.Button();
+            this.Boton_Iniciar_Grabaciones = new System.Windows.Forms.Button();
+            this.Menu_Lista_VLC = new System.Windows.Forms.FlowLayoutPanel();
+            this.Grupo_Streaming = new System.Windows.Forms.GroupBox();
+            this.Boton_Detener_Streaming = new System.Windows.Forms.Button();
+            this.Boton_Iniciar_Streaming = new System.Windows.Forms.Button();
+            this.Icono_Minimizar = new System.Windows.Forms.NotifyIcon(this.components);
             this.Menu_Principal_Opciones.SuspendLayout();
             this.Grupo_Grabacion.SuspendLayout();
-            this.Grupo_Streaming.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Grabando)).BeginInit();
+            this.Grupo_Streaming.SuspendLayout();
             this.SuspendLayout();
             // 
             // Menu_Lista_Camaras
@@ -103,6 +103,148 @@
             this.Menu_Principal_Opciones.TabIndex = 3;
             this.Menu_Principal_Opciones.Text = "toolStrip1";
             // 
+            // Menu_Principal_Agregar
+            // 
+            this.Menu_Principal_Agregar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Principal_Nueva_Camara,
+            this.Menu_Principal_Eliminar_Camara,
+            this.Menu_Principal_Administrar_Camara});
+            this.Menu_Principal_Agregar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Principal_Agregar.Image = global::ASECS.Properties.Resources.Camara_IP;
+            this.Menu_Principal_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Principal_Agregar.Name = "Menu_Principal_Agregar";
+            this.Menu_Principal_Agregar.ShowDropDownArrow = false;
+            this.Menu_Principal_Agregar.Size = new System.Drawing.Size(127, 64);
+            this.Menu_Principal_Agregar.Text = "Cámaras";
+            this.Menu_Principal_Agregar.ToolTipText = "Permite realizar diferentes operaciones de la cámara";
+            // 
+            // Menu_Principal_Nueva_Camara
+            // 
+            this.Menu_Principal_Nueva_Camara.Image = global::ASECS.Properties.Resources.Agregar;
+            this.Menu_Principal_Nueva_Camara.Name = "Menu_Principal_Nueva_Camara";
+            this.Menu_Principal_Nueva_Camara.Size = new System.Drawing.Size(183, 22);
+            this.Menu_Principal_Nueva_Camara.Text = "Agregar Cámara";
+            this.Menu_Principal_Nueva_Camara.Click += new System.EventHandler(this.Menu_Principal_Nueva_Camara_Click);
+            // 
+            // Menu_Principal_Eliminar_Camara
+            // 
+            this.Menu_Principal_Eliminar_Camara.Image = global::ASECS.Properties.Resources.Eliminar;
+            this.Menu_Principal_Eliminar_Camara.Name = "Menu_Principal_Eliminar_Camara";
+            this.Menu_Principal_Eliminar_Camara.Size = new System.Drawing.Size(183, 22);
+            this.Menu_Principal_Eliminar_Camara.Text = "Eliminar Cámara";
+            this.Menu_Principal_Eliminar_Camara.Click += new System.EventHandler(this.Menu_Principal_Eliminar_Camara_Click);
+            // 
+            // Menu_Principal_Administrar_Camara
+            // 
+            this.Menu_Principal_Administrar_Camara.Image = global::ASECS.Properties.Resources.Administrar;
+            this.Menu_Principal_Administrar_Camara.Name = "Menu_Principal_Administrar_Camara";
+            this.Menu_Principal_Administrar_Camara.Size = new System.Drawing.Size(183, 22);
+            this.Menu_Principal_Administrar_Camara.Text = "Administrar Cámara";
+            this.Menu_Principal_Administrar_Camara.Click += new System.EventHandler(this.Menu_Principal_Administrar_Camara_Click);
+            // 
+            // Menu_Principal_Rutas
+            // 
+            this.Menu_Principal_Rutas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Principal_Cambiar_Rutas});
+            this.Menu_Principal_Rutas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Principal_Rutas.Image = global::ASECS.Properties.Resources.Guardar;
+            this.Menu_Principal_Rutas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Principal_Rutas.Name = "Menu_Principal_Rutas";
+            this.Menu_Principal_Rutas.ShowDropDownArrow = false;
+            this.Menu_Principal_Rutas.Size = new System.Drawing.Size(175, 64);
+            this.Menu_Principal_Rutas.Text = "Almacenamiento";
+            this.Menu_Principal_Rutas.ToolTipText = "Cambiar lugar donde se almancenan las grabaciones";
+            // 
+            // Menu_Principal_Cambiar_Rutas
+            // 
+            this.Menu_Principal_Cambiar_Rutas.Image = global::ASECS.Properties.Resources.Folder;
+            this.Menu_Principal_Cambiar_Rutas.Name = "Menu_Principal_Cambiar_Rutas";
+            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(322, 66);
+            this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
+            this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
+            // 
+            // Menu_Opciones_Grabacion
+            // 
+            this.Menu_Opciones_Grabacion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Opciones_Grabacion_Tiempo});
+            this.Menu_Opciones_Grabacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Opciones_Grabacion.Image = global::ASECS.Properties.Resources.Opciones;
+            this.Menu_Opciones_Grabacion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Opciones_Grabacion.Name = "Menu_Opciones_Grabacion";
+            this.Menu_Opciones_Grabacion.ShowDropDownArrow = false;
+            this.Menu_Opciones_Grabacion.Size = new System.Drawing.Size(208, 64);
+            this.Menu_Opciones_Grabacion.Text = "Opciones de Grabación";
+            this.Menu_Opciones_Grabacion.ToolTipText = "Permite editar el tiempo de grabacion";
+            // 
+            // Menu_Opciones_Grabacion_Tiempo
+            // 
+            this.Menu_Opciones_Grabacion_Tiempo.Image = global::ASECS.Properties.Resources.Tiempo;
+            this.Menu_Opciones_Grabacion_Tiempo.Name = "Menu_Opciones_Grabacion_Tiempo";
+            this.Menu_Opciones_Grabacion_Tiempo.Size = new System.Drawing.Size(192, 22);
+            this.Menu_Opciones_Grabacion_Tiempo.Text = "Tiempo de Grabación";
+            this.Menu_Opciones_Grabacion_Tiempo.Click += new System.EventHandler(this.Menu_Opciones_Grabacion_Tiempo_Click);
+            // 
+            // Menu_Opciones_Configuracion
+            // 
+            this.Menu_Opciones_Configuracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Opciones_Configuracion_Editar});
+            this.Menu_Opciones_Configuracion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Opciones_Configuracion.Image = global::ASECS.Properties.Resources.Configuracion;
+            this.Menu_Opciones_Configuracion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Opciones_Configuracion.Name = "Menu_Opciones_Configuracion";
+            this.Menu_Opciones_Configuracion.ShowDropDownArrow = false;
+            this.Menu_Opciones_Configuracion.Size = new System.Drawing.Size(158, 64);
+            this.Menu_Opciones_Configuracion.Text = "Configuración";
+            // 
+            // Menu_Opciones_Configuracion_Editar
+            // 
+            this.Menu_Opciones_Configuracion_Editar.Image = global::ASECS.Properties.Resources.Editar;
+            this.Menu_Opciones_Configuracion_Editar.Name = "Menu_Opciones_Configuracion_Editar";
+            this.Menu_Opciones_Configuracion_Editar.Size = new System.Drawing.Size(155, 22);
+            this.Menu_Opciones_Configuracion_Editar.Text = "Editar Cámaras";
+            this.Menu_Opciones_Configuracion_Editar.Click += new System.EventHandler(this.Menu_Opciones_Configuracion_Editar_Click);
+            // 
+            // Menu_Opciones_Usuario
+            // 
+            this.Menu_Opciones_Usuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Opciones_Usuario_Editar});
+            this.Menu_Opciones_Usuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Opciones_Usuario.Image = global::ASECS.Properties.Resources.Usuario;
+            this.Menu_Opciones_Usuario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Opciones_Usuario.Name = "Menu_Opciones_Usuario";
+            this.Menu_Opciones_Usuario.ShowDropDownArrow = false;
+            this.Menu_Opciones_Usuario.Size = new System.Drawing.Size(123, 64);
+            this.Menu_Opciones_Usuario.Text = "Usuario";
+            // 
+            // Menu_Opciones_Usuario_Editar
+            // 
+            this.Menu_Opciones_Usuario_Editar.Image = global::ASECS.Properties.Resources.Usuario_Editar;
+            this.Menu_Opciones_Usuario_Editar.Name = "Menu_Opciones_Usuario_Editar";
+            this.Menu_Opciones_Usuario_Editar.Size = new System.Drawing.Size(139, 22);
+            this.Menu_Opciones_Usuario_Editar.Text = "Editar datos";
+            this.Menu_Opciones_Usuario_Editar.Click += new System.EventHandler(this.Menu_Opciones_Usuario_Editar_Click);
+            // 
+            // Menu_Opciones_Videos
+            // 
+            this.Menu_Opciones_Videos.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Opciones_Videos.Image")));
+            this.Menu_Opciones_Videos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Opciones_Videos.Name = "Menu_Opciones_Videos";
+            this.Menu_Opciones_Videos.ShowDropDownArrow = false;
+            this.Menu_Opciones_Videos.Size = new System.Drawing.Size(116, 64);
+            this.Menu_Opciones_Videos.Text = "Videos";
+            this.Menu_Opciones_Videos.Click += new System.EventHandler(this.Menu_Opciones_Videos_Click);
+            // 
+            // Menu_Opciones_Salir
+            // 
+            this.Menu_Opciones_Salir.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Opciones_Salir.Image = global::ASECS.Properties.Resources.Salir;
+            this.Menu_Opciones_Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Menu_Opciones_Salir.Name = "Menu_Opciones_Salir";
+            this.Menu_Opciones_Salir.ShowDropDownArrow = false;
+            this.Menu_Opciones_Salir.Size = new System.Drawing.Size(105, 64);
+            this.Menu_Opciones_Salir.Text = "Salir";
+            this.Menu_Opciones_Salir.Click += new System.EventHandler(this.Menu_Opciones_Salir_Click);
+            // 
             // Titulo_Vista
             // 
             this.Titulo_Vista.AutoSize = true;
@@ -138,6 +280,16 @@
             this.Titulo_Grabando_Estatus.Size = new System.Drawing.Size(117, 20);
             this.Titulo_Grabando_Estatus.TabIndex = 9;
             this.Titulo_Grabando_Estatus.Text = "**Grabando**";
+            // 
+            // Imagen_Grabando
+            // 
+            this.Imagen_Grabando.Image = global::ASECS.Properties.Resources.Grabando;
+            this.Imagen_Grabando.Location = new System.Drawing.Point(10, 25);
+            this.Imagen_Grabando.Name = "Imagen_Grabando";
+            this.Imagen_Grabando.Size = new System.Drawing.Size(54, 50);
+            this.Imagen_Grabando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Imagen_Grabando.TabIndex = 8;
+            this.Imagen_Grabando.TabStop = false;
             // 
             // Titulo_Grabaciones
             // 
@@ -219,157 +371,6 @@
             this.Icono_Minimizar.Visible = true;
             this.Icono_Minimizar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Icono_Minimizar_MouseDoubleClick);
             // 
-            // Imagen_Grabando
-            // 
-            this.Imagen_Grabando.Image = global::ASECS.Properties.Resources.Grabando;
-            this.Imagen_Grabando.Location = new System.Drawing.Point(10, 25);
-            this.Imagen_Grabando.Name = "Imagen_Grabando";
-            this.Imagen_Grabando.Size = new System.Drawing.Size(54, 50);
-            this.Imagen_Grabando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Imagen_Grabando.TabIndex = 8;
-            this.Imagen_Grabando.TabStop = false;
-            // 
-            // Menu_Principal_Agregar
-            // 
-            this.Menu_Principal_Agregar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Principal_Nueva_Camara,
-            this.Menu_Principal_Eliminar_Camara,
-            this.Menu_Principal_Administrar_Camara});
-            this.Menu_Principal_Agregar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Principal_Agregar.Image = global::ASECS.Properties.Resources.Camara_IP;
-            this.Menu_Principal_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Principal_Agregar.Name = "Menu_Principal_Agregar";
-            this.Menu_Principal_Agregar.ShowDropDownArrow = false;
-            this.Menu_Principal_Agregar.Size = new System.Drawing.Size(127, 64);
-            this.Menu_Principal_Agregar.Text = "Cámaras";
-            this.Menu_Principal_Agregar.ToolTipText = "Permite realizar diferentes operaciones de la cámara";
-            // 
-            // Menu_Principal_Nueva_Camara
-            // 
-            this.Menu_Principal_Nueva_Camara.Image = global::ASECS.Properties.Resources.Agregar;
-            this.Menu_Principal_Nueva_Camara.Name = "Menu_Principal_Nueva_Camara";
-            this.Menu_Principal_Nueva_Camara.Size = new System.Drawing.Size(183, 22);
-            this.Menu_Principal_Nueva_Camara.Text = "Agregar Cámara";
-            this.Menu_Principal_Nueva_Camara.Click += new System.EventHandler(this.Menu_Principal_Nueva_Camara_Click);
-            // 
-            // Menu_Principal_Eliminar_Camara
-            // 
-            this.Menu_Principal_Eliminar_Camara.Image = global::ASECS.Properties.Resources.Eliminar;
-            this.Menu_Principal_Eliminar_Camara.Name = "Menu_Principal_Eliminar_Camara";
-            this.Menu_Principal_Eliminar_Camara.Size = new System.Drawing.Size(183, 22);
-            this.Menu_Principal_Eliminar_Camara.Text = "Eliminar Cámara";
-            this.Menu_Principal_Eliminar_Camara.Click += new System.EventHandler(this.Menu_Principal_Eliminar_Camara_Click);
-            // 
-            // Menu_Principal_Administrar_Camara
-            // 
-            this.Menu_Principal_Administrar_Camara.Image = global::ASECS.Properties.Resources.Administrar;
-            this.Menu_Principal_Administrar_Camara.Name = "Menu_Principal_Administrar_Camara";
-            this.Menu_Principal_Administrar_Camara.Size = new System.Drawing.Size(183, 22);
-            this.Menu_Principal_Administrar_Camara.Text = "Administrar Cámara";
-            this.Menu_Principal_Administrar_Camara.Click += new System.EventHandler(this.Menu_Principal_Administrar_Camara_Click);
-            // 
-            // Menu_Principal_Rutas
-            // 
-            this.Menu_Principal_Rutas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Principal_Cambiar_Rutas});
-            this.Menu_Principal_Rutas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Principal_Rutas.Image = global::ASECS.Properties.Resources.Guardar;
-            this.Menu_Principal_Rutas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Principal_Rutas.Name = "Menu_Principal_Rutas";
-            this.Menu_Principal_Rutas.ShowDropDownArrow = false;
-            this.Menu_Principal_Rutas.Size = new System.Drawing.Size(175, 64);
-            this.Menu_Principal_Rutas.Text = "Almacenamiento";
-            this.Menu_Principal_Rutas.ToolTipText = "Cambiar lugar donde se almancenan las grabaciones";
-            // 
-            // Menu_Principal_Cambiar_Rutas
-            // 
-            this.Menu_Principal_Cambiar_Rutas.Image = global::ASECS.Properties.Resources.Folder;
-            this.Menu_Principal_Cambiar_Rutas.Name = "Menu_Principal_Cambiar_Rutas";
-            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(268, 22);
-            this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
-            this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
-            // 
-            // Menu_Opciones_Grabacion
-            // 
-            this.Menu_Opciones_Grabacion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Opciones_Grabacion_Tiempo});
-            this.Menu_Opciones_Grabacion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Opciones_Grabacion.Image = global::ASECS.Properties.Resources.Opciones;
-            this.Menu_Opciones_Grabacion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Opciones_Grabacion.Name = "Menu_Opciones_Grabacion";
-            this.Menu_Opciones_Grabacion.ShowDropDownArrow = false;
-            this.Menu_Opciones_Grabacion.Size = new System.Drawing.Size(208, 64);
-            this.Menu_Opciones_Grabacion.Text = "Opciones de Grabación";
-            this.Menu_Opciones_Grabacion.ToolTipText = "Permite editar el tiempo de grabacion";
-            // 
-            // Menu_Opciones_Grabacion_Tiempo
-            // 
-            this.Menu_Opciones_Grabacion_Tiempo.Image = global::ASECS.Properties.Resources.Tiempo;
-            this.Menu_Opciones_Grabacion_Tiempo.Name = "Menu_Opciones_Grabacion_Tiempo";
-            this.Menu_Opciones_Grabacion_Tiempo.Size = new System.Drawing.Size(192, 22);
-            this.Menu_Opciones_Grabacion_Tiempo.Text = "Tiempo de Grabación";
-            this.Menu_Opciones_Grabacion_Tiempo.Click += new System.EventHandler(this.Menu_Opciones_Grabacion_Tiempo_Click);
-            // 
-            // Menu_Opciones_Configuracion
-            // 
-            this.Menu_Opciones_Configuracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Opciones_Configuracion_Editar});
-            this.Menu_Opciones_Configuracion.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Opciones_Configuracion.Image = global::ASECS.Properties.Resources.Configuracion;
-            this.Menu_Opciones_Configuracion.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Opciones_Configuracion.Name = "Menu_Opciones_Configuracion";
-            this.Menu_Opciones_Configuracion.ShowDropDownArrow = false;
-            this.Menu_Opciones_Configuracion.Size = new System.Drawing.Size(158, 64);
-            this.Menu_Opciones_Configuracion.Text = "Configuración";
-            // 
-            // Menu_Opciones_Configuracion_Editar
-            // 
-            this.Menu_Opciones_Configuracion_Editar.Image = global::ASECS.Properties.Resources.Editar;
-            this.Menu_Opciones_Configuracion_Editar.Name = "Menu_Opciones_Configuracion_Editar";
-            this.Menu_Opciones_Configuracion_Editar.Size = new System.Drawing.Size(155, 22);
-            this.Menu_Opciones_Configuracion_Editar.Text = "Editar Cámaras";
-            this.Menu_Opciones_Configuracion_Editar.Click += new System.EventHandler(this.Menu_Opciones_Configuracion_Editar_Click);
-            // 
-            // Menu_Opciones_Usuario
-            // 
-            this.Menu_Opciones_Usuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Opciones_Usuario_Editar});
-            this.Menu_Opciones_Usuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Opciones_Usuario.Image = global::ASECS.Properties.Resources.Usuario;
-            this.Menu_Opciones_Usuario.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Opciones_Usuario.Name = "Menu_Opciones_Usuario";
-            this.Menu_Opciones_Usuario.ShowDropDownArrow = false;
-            this.Menu_Opciones_Usuario.Size = new System.Drawing.Size(123, 64);
-            this.Menu_Opciones_Usuario.Text = "Usuario";
-            // 
-            // Menu_Opciones_Usuario_Editar
-            // 
-            this.Menu_Opciones_Usuario_Editar.Image = global::ASECS.Properties.Resources.Usuario_Editar;
-            this.Menu_Opciones_Usuario_Editar.Name = "Menu_Opciones_Usuario_Editar";
-            this.Menu_Opciones_Usuario_Editar.Size = new System.Drawing.Size(206, 66);
-            this.Menu_Opciones_Usuario_Editar.Text = "Editar datos";
-            this.Menu_Opciones_Usuario_Editar.Click += new System.EventHandler(this.Menu_Opciones_Usuario_Editar_Click);
-            // 
-            // Menu_Opciones_Videos
-            // 
-            this.Menu_Opciones_Videos.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Opciones_Videos.Image")));
-            this.Menu_Opciones_Videos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Opciones_Videos.Name = "Menu_Opciones_Videos";
-            this.Menu_Opciones_Videos.ShowDropDownArrow = false;
-            this.Menu_Opciones_Videos.Size = new System.Drawing.Size(116, 64);
-            this.Menu_Opciones_Videos.Text = "Videos";
-            // 
-            // Menu_Opciones_Salir
-            // 
-            this.Menu_Opciones_Salir.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_Opciones_Salir.Image = global::ASECS.Properties.Resources.Salir;
-            this.Menu_Opciones_Salir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Menu_Opciones_Salir.Name = "Menu_Opciones_Salir";
-            this.Menu_Opciones_Salir.ShowDropDownArrow = false;
-            this.Menu_Opciones_Salir.Size = new System.Drawing.Size(105, 64);
-            this.Menu_Opciones_Salir.Text = "Salir";
-            this.Menu_Opciones_Salir.Click += new System.EventHandler(this.Menu_Opciones_Salir_Click);
-            // 
             // Menu_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -395,8 +396,8 @@
             this.Menu_Principal_Opciones.PerformLayout();
             this.Grupo_Grabacion.ResumeLayout(false);
             this.Grupo_Grabacion.PerformLayout();
-            this.Grupo_Streaming.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Grabando)).EndInit();
+            this.Grupo_Streaming.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

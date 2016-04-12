@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.IO;
 
 namespace ASECS
 {
@@ -28,6 +29,12 @@ namespace ASECS
         }
 
         public bool Streaming_Activo
+        {
+            get;
+            set;
+        }
+
+        public DirectoryInfo Directorio_Grabacion
         {
             get;
             set;

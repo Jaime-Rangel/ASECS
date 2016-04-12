@@ -148,6 +148,7 @@ namespace ASECS
             if( result == DialogResult.OK )
             {
                 folder = Dialogo_Ruta_Grabacion.SelectedPath;
+                Variables_Globales.Directorio_Grabacion = new DirectoryInfo(Dialogo_Ruta_Grabacion.SelectedPath);
                 Variables_Globales.Ruta_Grabacion = folder;
                 Metodos.Actualizar_Ruta_Grabaciones_BD();
 
@@ -494,9 +495,10 @@ namespace ASECS
             }
         }
 
-        private void Menu_Opciones_Usuario_Cerrar_Click(object sender, EventArgs e)
+        private void Menu_Opciones_Videos_Click(object sender, EventArgs e)
         {
-            
+            Menu_Videos Ver_Video = new Menu_Videos(this);
+            Ver_Video.Show();
         }
     }
 }

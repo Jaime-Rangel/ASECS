@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASECS
 {
-    class Video_Grabacion
+    public class Video_Grabacion
     {
         //atributos
         Camara_Individual formulario;

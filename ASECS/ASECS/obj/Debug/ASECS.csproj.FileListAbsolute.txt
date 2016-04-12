@@ -35,3 +35,4 @@ C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\bin\Debug\AxInterop.WMPLib.dll
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\Interop.WMPLib.dll
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\ASECS.Menu_Videos.resources
