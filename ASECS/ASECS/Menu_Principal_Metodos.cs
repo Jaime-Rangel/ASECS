@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -218,7 +219,8 @@ namespace ASECS
                 }
                 else
                 {
-                    Objeto_Camara.Posicion_Predeterminada = leer.GetInt32(9);
+                    Objeto_Camara.Posicion_Predeterminada = leer.GetInt32(10);
+                    Verificar_Posicion_Movimiento_Llamada(Objeto_Camara.Posicion_Predeterminada,Objeto_Camara);
                     Agregar_Camaras_Elementos_Graficos(Objeto_Camara);
                 }
 
@@ -226,6 +228,91 @@ namespace ASECS
 
             registro.Cerrar_Conexion();
 
+        }
+
+        public async void Llamar_Posicion_Camara(int comando,Camara Objeto_Camara)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                HttpResponseMessage response = await client.GetAsync("http://" + Objeto_Camara.Direccion_IP + ":" + Objeto_Camara.Puerto_CGI + "/decoder_control.cgi?command=" + comando + "&onestep=0&sit=" + comando + "&user=" + Objeto_Camara.Usuario + "&pwd=" + Objeto_Camara.Contraseña + "&next_url=");
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+            }
+            catch (HttpRequestException Exception)
+            {
+                Console.WriteLine("\nException Message :{0} ", Exception.Message);
+            }
+        }
+
+        public void Verificar_Posicion_Movimiento_Llamada(int? posicion,Camara Objeto_Camara)
+        {
+            switch (posicion)
+            {
+                case 1:
+                    Llamar_Posicion_Camara(31,Objeto_Camara);
+                    break;
+                case 2:
+                    Llamar_Posicion_Camara(33, Objeto_Camara);
+                    break;
+
+                case 3:
+                    Llamar_Posicion_Camara(35,Objeto_Camara);
+                    break;
+
+                case 4:
+                    Llamar_Posicion_Camara(37,Objeto_Camara);
+                    break;
+
+                case 5:
+                    Llamar_Posicion_Camara(39,Objeto_Camara);
+                    break;
+
+                case 6:
+                    Llamar_Posicion_Camara(41,Objeto_Camara);
+                    break;
+
+                case 7:
+                    Llamar_Posicion_Camara(43,Objeto_Camara);
+                    break;
+
+                case 8:
+                    Llamar_Posicion_Camara(45,Objeto_Camara);
+                    break;
+
+                case 9:
+                    Llamar_Posicion_Camara(47,Objeto_Camara);
+                    break;
+
+                case 10:
+                    Llamar_Posicion_Camara(49,Objeto_Camara);
+                    break;
+
+                case 11:
+                    Llamar_Posicion_Camara(51,Objeto_Camara);
+                    break;
+
+                case 12:
+                    Llamar_Posicion_Camara(53,Objeto_Camara);
+                    break;
+
+                case 13:
+                    Llamar_Posicion_Camara(55,Objeto_Camara);
+                    break;
+
+                case 14:
+                    Llamar_Posicion_Camara(57,Objeto_Camara);
+                    break;
+
+                case 15:
+                    Llamar_Posicion_Camara(59,Objeto_Camara);
+                    break;
+
+                case 16:
+                    Llamar_Posicion_Camara(61,Objeto_Camara);
+                    break;
+            }
         }
 
         public void Agregar_Camaras_Elementos_Graficos(Camara Objeto_Camara)

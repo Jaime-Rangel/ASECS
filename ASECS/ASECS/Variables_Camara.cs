@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASECS
 {
-    class Variables_Camara
+    public class Variables_Camara
     {
         public string Camara_IP
         {

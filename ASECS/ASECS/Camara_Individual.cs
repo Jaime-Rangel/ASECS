@@ -16,7 +16,7 @@ namespace ASECS
     {
         //Objetos Atributos
         Camara_Individual_Aspectos Aparencia;
-        Variables_Camara Variables_Globales;
+        public Variables_Camara Variables_Globales;
         OCX_Operaciones_Camara OCX_Camara;
         Video_Grabacion Grabar_Video;
         Camara_PTZ Movimiento_PTZ;
@@ -53,7 +53,6 @@ namespace ASECS
 
         public void Verificar_Parametros_Camara_BD()
         {
-
             if (Objeto_Camara.Invertida == true && Objeto_Camara.Modo_Espejo == true)
             {
                 Checkeo_Intervir_Camara.Checked = true;
@@ -68,6 +67,13 @@ namespace ASECS
             if(Objeto_Camara.Modo_Espejo==true)
             {
                 Checkeo_Modo_Espejo.Checked = true;
+            }
+            
+            if(Objeto_Camara.Posicion_Predeterminada!=null)
+            {
+     
+                Lista_Guardar_Posiciones_Camara.Text = Convert.ToString(Objeto_Camara.Posicion_Predeterminada);
+                Checkeo_Camara_Posicion.Checked = true;
             }
   
         }
@@ -87,7 +93,7 @@ namespace ASECS
             Variables_Globales.Camara_Puerto_CGI = Objeto_Camara.Puerto_CGI;
             Variables_Globales.Camara_Puerto_RTSP = Objeto_Camara.Puerto_RSTP;
             //Variables_Globales.Ruta_Grabacion = ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}";
-            Variables_Globales.Ruta_Grabacion = ":sout=#std{access=file,mux=mp4,  dst='" + Directorio_Usuario + "\\";
+            Variables_Globales.Ruta_Grabacion = Directorio_Usuario;
             Variables_Globales.Usuario = Objeto_Camara.Usuario;
             Variables_Globales.Contraseña = Objeto_Camara.Contraseña;
             Nombre_Camara = Objeto_Camara.Alias;
@@ -285,12 +291,12 @@ namespace ASECS
             {
                 formulario.BeginInvoke((MethodInvoker)delegate()
                 {
-                    Grabar_Video.Grabar_Video_Streaming(); ;
+                    Grabar_Video.Grabar_Video_Streaming();
                 });
             }
             else
             {
-                Grabar_Video.Grabar_Video_Streaming(); ;
+                Grabar_Video.Grabar_Video_Streaming();
             }
         }
 
@@ -401,6 +407,13 @@ namespace ASECS
             if (Lista_Guardar_Posiciones_Camara.Text != "")
             {
                 Movimiento_PTZ.Verificar_Posicion_Movimiento_Establecer();
+                Checkeo_Camara_Posicion.Checked = false;
+
+                MessageBox.Show("Se ha guardado la posición de la cámara.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
             else
             {
@@ -478,6 +491,71 @@ namespace ASECS
             {
                 e.Cancel = true;
                 this.Activate();
+            }
+
+        }
+
+        public void Actualizar_Posicion_Camara_BD()
+        {
+
+            Conexion_BD registro = new Conexion_BD();
+
+            registro.Crear_Conexion();
+            string insertar = "CALL Actualizar_Posicion_Camara(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", Objeto_Camara.Camara_ID);
+            chec.Parameters.AddWithValue("@C2", Lista_Guardar_Posiciones_Camara.Text);
+
+            chec.ExecuteNonQuery();
+            registro.Cerrar_Conexion();
+        }
+
+        public void Actualizar_Posicion_Camara_Null_BD()
+        {
+
+            Conexion_BD registro = new Conexion_BD();
+
+            registro.Crear_Conexion();
+            string insertar = "CALL Actualizar_Posicion_Camara(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", Objeto_Camara.Camara_ID);
+            chec.Parameters.AddWithValue("@C2", null);
+
+            chec.ExecuteNonQuery();
+            registro.Cerrar_Conexion();
+        }
+
+        private void Checkeo_Camara_Posicion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Checkeo_Camara_Posicion.Checked == true)
+            {
+
+                if (Lista_Guardar_Posiciones_Camara.Text != "")
+                {
+
+                    Movimiento_PTZ.Verificar_Posicion_Movimiento_Establecer();
+                    Actualizar_Posicion_Camara_BD();
+                    Objeto_Camara.Posicion_Predeterminada = Convert.ToInt32(Lista_Guardar_Posiciones_Camara.Text);
+                    formulario_principal.Lista_Camaras.Actualizar(Objeto_Camara);
+
+                }
+                else
+                {
+                    MessageBox.Show("Selecciona una posicion.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                Actualizar_Posicion_Camara_Null_BD();
+                Objeto_Camara.Posicion_Predeterminada = null;
+                formulario_principal.Lista_Camaras.Actualizar(Objeto_Camara);
+
             }
 
         }

@@ -52,6 +52,7 @@
             this.Boton_Aceptar_Mover_Posicion = new System.Windows.Forms.Button();
             this.Lista_Mover_Posiciones_Camara = new System.Windows.Forms.ComboBox();
             this.Grupo_Guardar_Posicion = new System.Windows.Forms.GroupBox();
+            this.Checkeo_Camara_Posicion = new System.Windows.Forms.CheckBox();
             this.Boton_Guardar_Posicion = new System.Windows.Forms.Button();
             this.Lista_Guardar_Posiciones_Camara = new System.Windows.Forms.ComboBox();
             this.Titulo_Camara = new System.Windows.Forms.Label();
@@ -87,7 +88,7 @@
             this.Grupo_Opciones_Camara.Size = new System.Drawing.Size(194, 411);
             this.Grupo_Opciones_Camara.TabIndex = 1;
             this.Grupo_Opciones_Camara.TabStop = false;
-            this.Grupo_Opciones_Camara.Text = "Opciones de la Camara";
+            this.Grupo_Opciones_Camara.Text = "Opciones de la Cámara";
             // 
             // Checkeo_Hablar_Camara
             // 
@@ -118,7 +119,7 @@
             this.Checkeo_Escuchar_Camara.Name = "Checkeo_Escuchar_Camara";
             this.Checkeo_Escuchar_Camara.Size = new System.Drawing.Size(170, 24);
             this.Checkeo_Escuchar_Camara.TabIndex = 3;
-            this.Checkeo_Escuchar_Camara.Text = "Escuchar Camara";
+            this.Checkeo_Escuchar_Camara.Text = "Escuchar Cámara";
             this.Checkeo_Escuchar_Camara.UseVisualStyleBackColor = true;
             this.Checkeo_Escuchar_Camara.CheckedChanged += new System.EventHandler(this.Checkeo_Escuchar_Camara_CheckedChanged);
             // 
@@ -129,7 +130,7 @@
             this.Checkeo_Intervir_Camara.Name = "Checkeo_Intervir_Camara";
             this.Checkeo_Intervir_Camara.Size = new System.Drawing.Size(151, 24);
             this.Checkeo_Intervir_Camara.TabIndex = 2;
-            this.Checkeo_Intervir_Camara.Text = "Invertir Camara";
+            this.Checkeo_Intervir_Camara.Text = "Invertir Cámara";
             this.Checkeo_Intervir_Camara.UseVisualStyleBackColor = true;
             this.Checkeo_Intervir_Camara.CheckedChanged += new System.EventHandler(this.Checkeo_Intervir_Camara_CheckedChanged);
             // 
@@ -139,7 +140,7 @@
             this.Boton_Desconectar_Camara.Name = "Boton_Desconectar_Camara";
             this.Boton_Desconectar_Camara.Size = new System.Drawing.Size(182, 51);
             this.Boton_Desconectar_Camara.TabIndex = 1;
-            this.Boton_Desconectar_Camara.Text = "Desconectar Camara";
+            this.Boton_Desconectar_Camara.Text = "Desconectar Cámara";
             this.Boton_Desconectar_Camara.UseVisualStyleBackColor = true;
             this.Boton_Desconectar_Camara.Click += new System.EventHandler(this.Boton_Desconectar_Camara_Click);
             // 
@@ -149,7 +150,7 @@
             this.Boton_Conectar_Camara.Name = "Boton_Conectar_Camara";
             this.Boton_Conectar_Camara.Size = new System.Drawing.Size(182, 51);
             this.Boton_Conectar_Camara.TabIndex = 0;
-            this.Boton_Conectar_Camara.Text = "Conectar Camara";
+            this.Boton_Conectar_Camara.Text = "Conectar Cámara";
             this.Boton_Conectar_Camara.UseVisualStyleBackColor = true;
             this.Boton_Conectar_Camara.Click += new System.EventHandler(this.Boton_Conectar_Camara_Click);
             // 
@@ -165,7 +166,7 @@
             this.Grupo_Opciones_Grabacion.Size = new System.Drawing.Size(194, 411);
             this.Grupo_Opciones_Grabacion.TabIndex = 2;
             this.Grupo_Opciones_Grabacion.TabStop = false;
-            this.Grupo_Opciones_Grabacion.Text = "Opciones de Grabacion";
+            this.Grupo_Opciones_Grabacion.Text = "Opciones de Grabación";
             // 
             // Ventana_Grabacion_Video
             // 
@@ -196,7 +197,7 @@
             this.Boton_Detener_Grabacion.Name = "Boton_Detener_Grabacion";
             this.Boton_Detener_Grabacion.Size = new System.Drawing.Size(182, 51);
             this.Boton_Detener_Grabacion.TabIndex = 1;
-            this.Boton_Detener_Grabacion.Text = "Detener Grabacion";
+            this.Boton_Detener_Grabacion.Text = "Detener Grabación";
             this.Boton_Detener_Grabacion.UseVisualStyleBackColor = true;
             this.Boton_Detener_Grabacion.Click += new System.EventHandler(this.Boton_Detener_Grabacion_Click);
             // 
@@ -206,7 +207,7 @@
             this.Boton_Iniciar_Grabacion.Name = "Boton_Iniciar_Grabacion";
             this.Boton_Iniciar_Grabacion.Size = new System.Drawing.Size(182, 51);
             this.Boton_Iniciar_Grabacion.TabIndex = 0;
-            this.Boton_Iniciar_Grabacion.Text = "Iniciar Grabacion";
+            this.Boton_Iniciar_Grabacion.Text = "Iniciar Grabación";
             this.Boton_Iniciar_Grabacion.UseVisualStyleBackColor = true;
             this.Boton_Iniciar_Grabacion.Click += new System.EventHandler(this.Boton_Iniciar_Grabacion_Click);
             // 
@@ -223,7 +224,7 @@
             this.Grupo_Camara_Posicion.Size = new System.Drawing.Size(512, 239);
             this.Grupo_Camara_Posicion.TabIndex = 3;
             this.Grupo_Camara_Posicion.TabStop = false;
-            this.Grupo_Camara_Posicion.Text = "Posicion de la Camara";
+            this.Grupo_Camara_Posicion.Text = "Posición de la Cámara";
             // 
             // Boton_Mover_Derecha
             // 
@@ -289,7 +290,7 @@
             this.Grupo_Mover_Posicion.Size = new System.Drawing.Size(194, 239);
             this.Grupo_Mover_Posicion.TabIndex = 4;
             this.Grupo_Mover_Posicion.TabStop = false;
-            this.Grupo_Mover_Posicion.Text = "Mover a Posicion";
+            this.Grupo_Mover_Posicion.Text = "Mover a Posición";
             // 
             // Boton_Aceptar_Mover_Posicion
             // 
@@ -311,6 +312,7 @@
             // 
             // Grupo_Guardar_Posicion
             // 
+            this.Grupo_Guardar_Posicion.Controls.Add(this.Checkeo_Camara_Posicion);
             this.Grupo_Guardar_Posicion.Controls.Add(this.Boton_Guardar_Posicion);
             this.Grupo_Guardar_Posicion.Controls.Add(this.Lista_Guardar_Posiciones_Camara);
             this.Grupo_Guardar_Posicion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -319,7 +321,18 @@
             this.Grupo_Guardar_Posicion.Size = new System.Drawing.Size(194, 239);
             this.Grupo_Guardar_Posicion.TabIndex = 5;
             this.Grupo_Guardar_Posicion.TabStop = false;
-            this.Grupo_Guardar_Posicion.Text = "Guardar Posicion";
+            this.Grupo_Guardar_Posicion.Text = "Guardar Posición";
+            // 
+            // Checkeo_Camara_Posicion
+            // 
+            this.Checkeo_Camara_Posicion.AutoSize = true;
+            this.Checkeo_Camara_Posicion.Location = new System.Drawing.Point(7, 154);
+            this.Checkeo_Camara_Posicion.Name = "Checkeo_Camara_Posicion";
+            this.Checkeo_Camara_Posicion.Size = new System.Drawing.Size(164, 44);
+            this.Checkeo_Camara_Posicion.TabIndex = 2;
+            this.Checkeo_Camara_Posicion.Text = "Iniciar cámara \r\nen esta posición ";
+            this.Checkeo_Camara_Posicion.UseVisualStyleBackColor = true;
+            this.Checkeo_Camara_Posicion.CheckedChanged += new System.EventHandler(this.Checkeo_Camara_Posicion_CheckedChanged);
             // 
             // Boton_Guardar_Posicion
             // 
@@ -378,6 +391,7 @@
             this.Grupo_Camara_Posicion.ResumeLayout(false);
             this.Grupo_Mover_Posicion.ResumeLayout(false);
             this.Grupo_Guardar_Posicion.ResumeLayout(false);
+            this.Grupo_Guardar_Posicion.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,6 +425,7 @@
         public System.Windows.Forms.Label Titulo_Camara;
         public System.Windows.Forms.Label Titulo_Grabando;
         public Vlc.DotNet.Forms.VlcControl Ventana_Grabacion_Video;
+        private System.Windows.Forms.CheckBox Checkeo_Camara_Posicion;
 
     }
 }

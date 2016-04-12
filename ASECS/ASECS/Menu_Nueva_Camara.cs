@@ -188,9 +188,10 @@ namespace ASECS
                                     Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
                                 }
                                 else
-                                if (formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Count>0)
+                                if (formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Count==1)
                                 {
                                     Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                    formulario_Menu_Principal.Variables_Globales.Streaming_Activo = true;
                                 }
 
                                 formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);

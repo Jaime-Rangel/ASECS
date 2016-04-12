@@ -18,6 +18,8 @@ namespace ASECS
 
         private Func<T, T, bool> comparar_id;
 
+        private Func<T, T, bool> comparar_posicon;
+
         private const int LEFT = 0;
         private const int RIGHT = 1;
 
@@ -80,6 +82,31 @@ namespace ASECS
             }
 
         }
+
+        //public void Actualizar_Posicion_Predeterminada(T data)
+        //{
+        //    Nodo_Camara<T> currentNode = root;
+
+        //    while (currentNode != null)
+        //    {
+        //        if (comparar_posicon(data, currentNode.data) == true)
+        //        {
+        //            currentNode.data = data;
+        //            break;
+        //        }
+        //        else
+        //        {
+        //            if (comparator(data, currentNode.data))
+        //            {
+        //                currentNode = currentNode.left;
+        //            }
+        //            else
+        //            {
+        //                currentNode = currentNode.right;
+        //            }
+        //        }
+        //    }
+        //}
 
         public void Insertar(T data)
         {
