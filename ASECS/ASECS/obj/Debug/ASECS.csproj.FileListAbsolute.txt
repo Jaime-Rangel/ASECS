@@ -36,3 +36,41 @@ C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\Interop.WMPLib.dll
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\ASECS.Menu_Videos.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\ASECS.exe.config
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.csproj.App.config
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\Interop.oPlayerLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\Interop.WMPLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\AxInterop.oPlayerLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.csproj.ResolveComReference.cache
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.exe
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.pdb
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.csprojResolveAssemblyReference.cache
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Camara_Individual.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Editar_Camara.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Login.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Administracion_Camara.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Editar_Camaras.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Editar_Usuario.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Eliminar_Camara.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Nueva_Camara.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Principal.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Tiempo_Grabacion.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Menu_Videos.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.Properties.Resources.resources
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\obj\Debug\ASECS.csproj.GenerateResource.Cache
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\ASECS.exe
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\ASECS.pdb
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\MySql.Data.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\System.Net.Http.Extensions.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\System.Net.Http.Primitives.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Vlc.DotNet.Core.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Vlc.DotNet.Core.Interops.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Vlc.DotNet.Forms.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Vlc.DotNet.Wpf.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\System.Net.Http.Extensions.xml
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\System.Net.Http.Primitives.xml
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Interop.oPlayerLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Interop.WMPLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\AxInterop.oPlayerLib.dll
+C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\AxInterop.WMPLib.dll

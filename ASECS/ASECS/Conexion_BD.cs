@@ -13,7 +13,7 @@ namespace ASECS
 
         public void Crear_Conexion()
         {
-            string connec = "Server=localhost;database=asecs;uid=root;pwd=cisco";
+            string connec = "Server=localhost;database=asecs;uid=root;pwd=intel";
             conexion = new MySqlConnection(connec);
             conexion.Open();
         }

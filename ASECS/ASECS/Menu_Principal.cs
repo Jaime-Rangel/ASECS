@@ -148,6 +148,7 @@ namespace ASECS
             if( result == DialogResult.OK )
             {
                 folder = Dialogo_Ruta_Grabacion.SelectedPath;
+                //MessageBox.Show(Convert.ToString(Dialogo_Ruta_Grabacion.SelectedPath));
                 Variables_Globales.Directorio_Grabacion = new DirectoryInfo(Dialogo_Ruta_Grabacion.SelectedPath);
                 Variables_Globales.Ruta_Grabacion = folder;
                 Metodos.Actualizar_Ruta_Grabaciones_BD();

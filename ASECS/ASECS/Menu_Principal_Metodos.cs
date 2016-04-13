@@ -388,6 +388,7 @@ namespace ASECS
         {
             formulario_principal.Variables_Globales.Ruta_Grabacion = formulario_principal.Sesion_Usuario.Directorio_Usuario;
             formulario_principal.Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: "+formulario_principal.Sesion_Usuario.Directorio_Usuario;
+            formulario_principal.Variables_Globales.Directorio_Grabacion = new DirectoryInfo(formulario_principal.Sesion_Usuario.Directorio_Usuario);        
         }
 
         public void Asignar_Tiempo_Grabacion()

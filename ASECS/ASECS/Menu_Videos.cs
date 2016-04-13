@@ -20,6 +20,7 @@ namespace ASECS
         public Menu_Videos(Menu_Principal formulario_principal)
         {
             InitializeComponent();
+            //MessageBox.Show(Convert.ToString(formulario_principal.Variables_Globales.Directorio_Grabacion));
             di = formulario_principal.Variables_Globales.Directorio_Grabacion;
         }
 
@@ -37,9 +38,9 @@ namespace ASECS
             string usuario, url;
             usuario = Environment.UserName;
             //Obtener el folder de videos del equipo*******************************
-            url = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
-            DirectoryInfo din = new DirectoryInfo(url);
-            foreach (var fi in din.GetFiles("*.mp4"))
+            //url = Environment.GetFolderPath(Environment.);
+            //DirectoryInfo din = new DirectoryInfo(url);
+            foreach (var fi in di.GetFiles("*.mp4"))
             {
                 lista_videos.Items.Add(fi.FullName);
             }
