@@ -18,6 +18,7 @@ namespace ASECS
         Login_Validacion verificacion;
         public bool BD_Usuario;
         public Usuario Sesion_Usuario;
+        public bool recordando_usuario = false;
 
         public Login()
         {
@@ -95,6 +96,7 @@ namespace ASECS
 
                 if (sesion_verificada == true)
                 {
+                    Boton_Iniciar.Enabled = false;
                     verificacion.Obtener_Parametros_Usuario();
                     Tiempo_Barra.Enabled = true;
                     BD_Usuario = true;
@@ -174,6 +176,17 @@ namespace ASECS
             var Menu = new Menu_Principal(Sesion_Usuario);
             Menu.Closed += (s, args) => this.Close();
             Menu.Show();
+        }
+
+        private void Titulo_Perdido_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (recordando_usuario == false)
+            {
+                recordando_usuario = true;
+
+                Usuario_Olvidado recordar = new Usuario_Olvidado(this);
+                recordar.Show();
+            }
         }
     }
 }

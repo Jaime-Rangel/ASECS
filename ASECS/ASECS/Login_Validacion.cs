@@ -107,6 +107,15 @@ namespace ASECS
                     formulario_login.Sesion_Usuario.Tiempo_Grabacion = leer.GetString(5);
                 }
 
+                if(leer.IsDBNull(6)==true)
+                {
+                    formulario_login.Sesion_Usuario.Directorio_VLC = null;
+                }
+                else
+                {
+                    formulario_login.Sesion_Usuario.Directorio_VLC = leer.GetString(6);
+                }
+
             }
         }
 

@@ -116,12 +116,13 @@ namespace ASECS
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Selecciona una camara",
-                //"Aviso",
-                //MessageBoxButtons.OK,
-                //MessageBoxIcon.Exclamation,
-                //MessageBoxDefaultButton.Button1);
-                MessageBox.Show(Convert.ToString(ex));
+                Console.WriteLine(ex);
+
+                MessageBox.Show("Hubo un error inesperado.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
 
         }

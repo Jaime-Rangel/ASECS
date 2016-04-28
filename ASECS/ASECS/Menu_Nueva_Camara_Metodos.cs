@@ -92,6 +92,8 @@ namespace ASECS
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex);
+
                     urls.Add("Verifica que tu Informacion sea correcta.");
                     continue;
                 }

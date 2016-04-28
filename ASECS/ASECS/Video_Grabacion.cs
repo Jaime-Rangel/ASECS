@@ -21,7 +21,8 @@ namespace ASECS
 
         public void Asignar_Directorio_VLC()
         {
-            variables.Directorio_VLC = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
+            variables.Directorio_VLC = new DirectoryInfo(formulario.formulario_principal.Sesion_Usuario.Directorio_VLC);
+            //variables.Directorio_VLC = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
             formulario.Ventana_Grabacion_Video.VlcLibDirectory = variables.Directorio_VLC;
             //Permite asignar el directorio externamente
             ((System.ComponentModel.ISupportInitialize)(formulario.Ventana_Grabacion_Video)).EndInit();

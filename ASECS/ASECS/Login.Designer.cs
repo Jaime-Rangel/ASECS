@@ -104,6 +104,7 @@
             this.Titulo_Perdido.TabIndex = 5;
             this.Titulo_Perdido.TabStop = true;
             this.Titulo_Perdido.Text = "Olvide mi usuario o contraseña";
+            this.Titulo_Perdido.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Titulo_Perdido_LinkClicked);
             // 
             // Grupo_Login
             // 

@@ -18,8 +18,6 @@ namespace ASECS
 
         private Func<T, T, bool> comparar_id;
 
-        private Func<T, T, bool> comparar_posicon;
-
         private const int LEFT = 0;
         private const int RIGHT = 1;
 

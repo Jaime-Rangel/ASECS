@@ -212,7 +212,7 @@
             this.MaximizeBox = false;
             this.Name = "Editar_Camara";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Editar_Camara";
+            this.Text = "Editar datos de la cámara ";
             this.Load += new System.EventHandler(this.Editar_Camara_Load_1);
             this.Grupo_Datos_Camara.ResumeLayout(false);
             this.Grupo_Datos_Camara.PerformLayout();

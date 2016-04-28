@@ -355,10 +355,10 @@
             // Titulo_Camara
             // 
             this.Titulo_Camara.AutoSize = true;
-            this.Titulo_Camara.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo_Camara.Location = new System.Drawing.Point(482, 23);
+            this.Titulo_Camara.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Camara.Location = new System.Drawing.Point(476, 19);
             this.Titulo_Camara.Name = "Titulo_Camara";
-            this.Titulo_Camara.Size = new System.Drawing.Size(81, 20);
+            this.Titulo_Camara.Size = new System.Drawing.Size(93, 24);
             this.Titulo_Camara.TabIndex = 6;
             this.Titulo_Camara.Text = "Camara: ";
             // 

@@ -17,11 +17,6 @@ namespace ASECS
             this.variables = variables;
         }
 
-        public OCX_Operaciones_Camara()
-        {
-
-        }
-
         public void Iniciar_Streaming()
         {
             formulario.Ventana_Camara_IP.PlayVideo(variables.Usuario,variables.Contraseña,variables.Camara_IP,Convert.ToInt32(variables.Camara_Puerto_CGI),0,0);

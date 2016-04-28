@@ -39,6 +39,7 @@
             this.Menu_Principal_Administrar_Camara = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Principal_Rutas = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Principal_Cambiar_Rutas = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Principal_Ir_Ruta = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Opciones_Grabacion = new System.Windows.Forms.ToolStripDropDownButton();
             this.Menu_Opciones_Grabacion_Tiempo = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Opciones_Configuracion = new System.Windows.Forms.ToolStripDropDownButton();
@@ -60,6 +61,7 @@
             this.Boton_Detener_Streaming = new System.Windows.Forms.Button();
             this.Boton_Iniciar_Streaming = new System.Windows.Forms.Button();
             this.Icono_Minimizar = new System.Windows.Forms.NotifyIcon(this.components);
+            this.Dialogo_Ruta_VLC = new System.Windows.Forms.FolderBrowserDialog();
             this.Menu_Principal_Opciones.SuspendLayout();
             this.Grupo_Grabacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Grabando)).BeginInit();
@@ -145,7 +147,8 @@
             // Menu_Principal_Rutas
             // 
             this.Menu_Principal_Rutas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu_Principal_Cambiar_Rutas});
+            this.Menu_Principal_Cambiar_Rutas,
+            this.Menu_Principal_Ir_Ruta});
             this.Menu_Principal_Rutas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Principal_Rutas.Image = global::ASECS.Properties.Resources.Guardar;
             this.Menu_Principal_Rutas.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -159,9 +162,17 @@
             // 
             this.Menu_Principal_Cambiar_Rutas.Image = global::ASECS.Properties.Resources.Folder;
             this.Menu_Principal_Cambiar_Rutas.Name = "Menu_Principal_Cambiar_Rutas";
-            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(322, 66);
+            this.Menu_Principal_Cambiar_Rutas.Size = new System.Drawing.Size(268, 22);
             this.Menu_Principal_Cambiar_Rutas.Text = "Cambiar Carpeta de Alacenamiento";
             this.Menu_Principal_Cambiar_Rutas.Click += new System.EventHandler(this.Menu_Principal_Cambiar_Rutas_Click);
+            // 
+            // Menu_Principal_Ir_Ruta
+            // 
+            this.Menu_Principal_Ir_Ruta.Image = global::ASECS.Properties.Resources.Carpeta_Ir;
+            this.Menu_Principal_Ir_Ruta.Name = "Menu_Principal_Ir_Ruta";
+            this.Menu_Principal_Ir_Ruta.Size = new System.Drawing.Size(268, 22);
+            this.Menu_Principal_Ir_Ruta.Text = "Ir a la Carpeta de almacenamiento";
+            this.Menu_Principal_Ir_Ruta.Click += new System.EventHandler(this.Menu_Principal_Ir_Ruta_Click);
             // 
             // Menu_Opciones_Grabacion
             // 
@@ -435,5 +446,7 @@
         private System.Windows.Forms.ToolStripDropDownButton Menu_Opciones_Usuario;
         private System.Windows.Forms.ToolStripMenuItem Menu_Opciones_Usuario_Editar;
         private System.Windows.Forms.ToolStripDropDownButton Menu_Opciones_Videos;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Principal_Ir_Ruta;
+        private System.Windows.Forms.FolderBrowserDialog Dialogo_Ruta_VLC;
     }
 }

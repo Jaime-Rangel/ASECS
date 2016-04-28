@@ -74,3 +74,4 @@ C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Segu
 C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\Interop.WMPLib.dll
 C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\AxInterop.oPlayerLib.dll
 C:\Users\jaime\Proyecto-Sistema-de-Seguridad-master (2)\Proyecto-Sistema-de-Seguridad-master\ASECS\ASECS\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\jaime\Dropbox\UPQROO\5 cuatrimestre\Proyecto Sistema de Seguridad\ASECS\ASECS\obj\Debug\ASECS.Usuario_Olvidado.resources

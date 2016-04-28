@@ -132,8 +132,6 @@ namespace ASECS
 
             return id_Camara;
 
-
-
         }
 
         public void Insertar_Tabla_Usuario_Camara_BD(int id_Camara,int id_Usuario)
@@ -179,12 +177,6 @@ namespace ASECS
                 Objeto_Camara.Direccion_IP = leer.GetString(4);
                 Objeto_Camara.Puerto_CGI = leer.GetString(5);
                 Objeto_Camara.Puerto_RSTP = leer.GetString(6);
-
-                //Objeto_Camara.Invertida = Convert.ToBoolean(leer.GetString(7));
-                //Objeto_Camara.Modo_Espejo = Convert.ToBoolean(leer.GetString(8));
-                //Objeto_Camara.Invertida_Modo_Espejo = Convert.ToBoolean(leer.GetString(9));
-
-                //Console.WriteLine(leer.GetString(8));
 
                 if(leer.GetString(7) == Convert.ToString(true))
                 {
@@ -326,7 +318,8 @@ namespace ASECS
             formulario_principal.Menu_Lista_Camaras.Controls.Add(Insertar_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
 
             Nuevo_Grabador_VLC = new Vlc.DotNet.Forms.VlcControl();
-            Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
+            Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(formulario_principal.Sesion_Usuario.Directorio_VLC);
+            //Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
             formulario_principal.Menu_Lista_VLC.Controls.Add(Nuevo_Grabador_VLC);
 
             Nuevo_Grabador_VLC.Width = 50;
@@ -350,6 +343,21 @@ namespace ASECS
             chec.Connection = registro.Obtener_Conexion();
             chec.Parameters.AddWithValue("@C1", formulario_principal.Sesion_Usuario.Usuario_ID);
             chec.Parameters.AddWithValue("@C2", formulario_principal.Variables_Globales.Ruta_Grabacion);
+
+            chec.ExecuteNonQuery();
+            registro.Cerrar_Conexion();
+        }
+
+        public void Actualizar_Directorio_VLC_BD()
+        {
+            Conexion_BD registro = new Conexion_BD();
+
+            registro.Crear_Conexion();
+            string insertar = "CALL Actualizar_Directorio_VLC(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", formulario_principal.Sesion_Usuario.Directorio_VLC);
+            chec.Parameters.AddWithValue("@C2", formulario_principal.Sesion_Usuario.Usuario_ID);
 
             chec.ExecuteNonQuery();
             registro.Cerrar_Conexion();
@@ -388,7 +396,11 @@ namespace ASECS
         {
             formulario_principal.Variables_Globales.Ruta_Grabacion = formulario_principal.Sesion_Usuario.Directorio_Usuario;
             formulario_principal.Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: "+formulario_principal.Sesion_Usuario.Directorio_Usuario;
-            formulario_principal.Variables_Globales.Directorio_Grabacion = new DirectoryInfo(formulario_principal.Sesion_Usuario.Directorio_Usuario);        
+
+            if (formulario_principal.Sesion_Usuario.Directorio_Usuario != "")
+            {
+                formulario_principal.Variables_Globales.Directorio_Grabacion = new DirectoryInfo(formulario_principal.Sesion_Usuario.Directorio_Usuario);
+            }
         }
 
         public void Asignar_Tiempo_Grabacion()

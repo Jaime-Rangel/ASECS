@@ -182,6 +182,12 @@
     </Compile>
     <Compile Include="Tiempo.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="Usuario_Olvidado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario_Olvidado.Designer.cs">
+      <DependentUpon>Usuario_Olvidado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variables_Camara.cs" />
     <Compile Include="Variables_Menu_Nueva_Camara.cs" />
     <Compile Include="Variables_Menu_Principal.cs" />
@@ -225,6 +231,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario_Olvidado.resx">
+      <DependentUpon>Usuario_Olvidado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -319,6 +328,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASECS.ico" />
+    <None Include="Resources\Carpeta_Ir.png" />
     <None Include="Resources\Cerrar_Sesion.png" />
     <None Include="Resources\Videos.png" />
     <None Include="Resources\Usuario_Editar.png" />

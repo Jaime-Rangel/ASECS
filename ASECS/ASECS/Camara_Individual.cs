@@ -22,7 +22,7 @@ namespace ASECS
         Camara_PTZ Movimiento_PTZ;
         Camara_CGI Comando_CGI;
         public Camara Objeto_Camara;
-        Menu_Principal formulario_principal;
+        public Menu_Principal formulario_principal;
 
         //Thread Verificar_Camara_Activa_Hilo;
         Thread Grabar_Video_Hilo;
@@ -235,12 +235,23 @@ namespace ASECS
             {
                 if (formulario_principal.Variables_Globales.Grabaciones_Iniciadas == false)
                 {
-                    Variables_Globales.Camara_Grabando = true;
-                    Grabar_Video_Hilo = new Thread(() => Hilo_Grabar_Video(this));
-                    Grabar_Video_Hilo.Start();
-                    Aparencia.Activar_Mensaje_Grabando();
-                    //Mensaje_Grabando_Hilo = new Thread(() => Hilo_Mostrar_Mensaje(this));
-                    //Mensaje_Grabando_Hilo.Start();
+                    if (string.IsNullOrEmpty(formulario_principal.Sesion_Usuario.Directorio_Usuario) == false)
+                    {
+                        Variables_Globales.Camara_Grabando = true;
+                        Grabar_Video_Hilo = new Thread(() => Hilo_Grabar_Video(this));
+                        Grabar_Video_Hilo.Start();
+                        Aparencia.Activar_Mensaje_Grabando();
+                        //Mensaje_Grabando_Hilo = new Thread(() => Hilo_Mostrar_Mensaje(this));
+                        //Mensaje_Grabando_Hilo.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No has asignado una ruta para las grabaciones en el menú principal.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+                    }
                 }
                 else
                 {
@@ -325,33 +336,59 @@ namespace ASECS
 
         private void Checkeo_Intervir_Camara_CheckedChanged(object sender, EventArgs e)
         {
-            Comando_CGI.Invertir_Horizontal_Vertical_Streaming();
+            try
+            {
+                Comando_CGI.Invertir_Horizontal_Vertical_Streaming();
 
-            if(Checkeo_Intervir_Camara.Checked == true)
-            {
-                Actualizar_Lista_Camaras_Invertida(true);
-                Comando_CGI.Actualizar_Camara_Invertida_BD(1);
+                if (Checkeo_Intervir_Camara.Checked == true)
+                {
+                    Actualizar_Lista_Camaras_Invertida(true);
+                    Comando_CGI.Actualizar_Camara_Invertida_BD(1);
+                }
+                else
+                {
+                    Actualizar_Lista_Camaras_Invertida(false);
+                    Comando_CGI.Actualizar_Camara_Invertida_BD(0);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Actualizar_Lista_Camaras_Invertida(false);
-                Comando_CGI.Actualizar_Camara_Invertida_BD(0);
+                Console.WriteLine(ex);
+
+                MessageBox.Show("Hubo un error de conexión en la base de datos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
         }
 
         private void Checkeo_Modo_Espejo_CheckedChanged(object sender, EventArgs e)
         {
-            Comando_CGI.Invertir_Horizontal_Vertical_Streaming();
+            try
+            {
+                Comando_CGI.Invertir_Horizontal_Vertical_Streaming();
 
-            if(Checkeo_Modo_Espejo.Checked == true)
-            {
-                Actualizar_Lista_Camaras_Modo_Espejo(true);
-                Comando_CGI.Actualizar_Camara_Modo_Espejo_BD(1);
+                if (Checkeo_Modo_Espejo.Checked == true)
+                {
+                    Actualizar_Lista_Camaras_Modo_Espejo(true);
+                    Comando_CGI.Actualizar_Camara_Modo_Espejo_BD(1);
+                }
+                else
+                {
+                    Actualizar_Lista_Camaras_Modo_Espejo(false);
+                    Comando_CGI.Actualizar_Camara_Modo_Espejo_BD(0);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Actualizar_Lista_Camaras_Modo_Espejo(false);
-                Comando_CGI.Actualizar_Camara_Modo_Espejo_BD(0);
+                Console.WriteLine(ex);
+
+                MessageBox.Show("Hubo un error de conexión en la base de datos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -529,33 +566,45 @@ namespace ASECS
 
         private void Checkeo_Camara_Posicion_CheckedChanged(object sender, EventArgs e)
         {
-            if (Checkeo_Camara_Posicion.Checked == true)
+            try
             {
-
-                if (Lista_Guardar_Posiciones_Camara.Text != "")
+                if (Checkeo_Camara_Posicion.Checked == true)
                 {
 
-                    Movimiento_PTZ.Verificar_Posicion_Movimiento_Establecer();
-                    Actualizar_Posicion_Camara_BD();
-                    Objeto_Camara.Posicion_Predeterminada = Convert.ToInt32(Lista_Guardar_Posiciones_Camara.Text);
-                    formulario_principal.Lista_Camaras.Actualizar(Objeto_Camara);
+                    if (Lista_Guardar_Posiciones_Camara.Text != "")
+                    {
 
+                        Movimiento_PTZ.Verificar_Posicion_Movimiento_Establecer();
+                        Actualizar_Posicion_Camara_BD();
+                        Objeto_Camara.Posicion_Predeterminada = Convert.ToInt32(Lista_Guardar_Posiciones_Camara.Text);
+                        formulario_principal.Lista_Camaras.Actualizar(Objeto_Camara);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Selecciona una posicion.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Selecciona una posicion.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
+                    Actualizar_Posicion_Camara_Null_BD();
+                    Objeto_Camara.Posicion_Predeterminada = null;
+                    formulario_principal.Lista_Camaras.Actualizar(Objeto_Camara);
+
                 }
             }
-            else
+            catch(Exception ex)
             {
-                Actualizar_Posicion_Camara_Null_BD();
-                Objeto_Camara.Posicion_Predeterminada = null;
-                formulario_principal.Lista_Camaras.Actualizar(Objeto_Camara);
+                Console.WriteLine(ex);
 
+                MessageBox.Show("Hubo un error de conexión en la base de datos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
 
         }

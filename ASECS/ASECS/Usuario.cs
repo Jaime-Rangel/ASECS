@@ -42,5 +42,11 @@ namespace ASECS
             get;
             set;
         }
+
+        public string Directorio_VLC
+        {
+            get;
+            set;
+        }
     }
 }

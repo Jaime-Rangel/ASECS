@@ -149,77 +149,93 @@ namespace ASECS
         private void Boton_Agregar_Camara_Click(object sender, System.EventArgs e)
         {
             bool resultado_busqueda;
-            string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
-            int id_Usuario,id_Camara;
-            if (text != "")
+
+            try
             {
-                if (Texto_Alias.Text != "")
+                string text = Lista_Url_Camara_Seleccionada.GetItemText(Lista_Url_Camara_Seleccionada.SelectedItem);
+                int id_Usuario, id_Camara;
+                if (text != "")
                 {
-                    resultado_busqueda = formulario_Menu_Principal.Buscar_Camaras_Alias_Nodos_Existentes(Texto_Alias.Text);
-
-                    if (resultado_busqueda == false)
+                    if (Texto_Alias.Text != "")
                     {
+                        resultado_busqueda = formulario_Menu_Principal.Buscar_Camaras_Alias_Nodos_Existentes(Texto_Alias.Text);
 
-                        int respuesta = Metodos.Verificar_Puerto_CGI();
-
-                        if (respuesta == 1 || respuesta == 3)
+                        if (resultado_busqueda == false)
                         {
-                            try
+
+                            int respuesta = Metodos.Verificar_Puerto_CGI();
+
+                            if (respuesta == 1 || respuesta == 3)
                             {
-                                Asignar_Parametros_Variables_Globales();
-
-                                //agrega el reproductor al menu principal
-                                formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
-
-                                Nuevo_Grabador_VLC = new Vlc.DotNet.Forms.VlcControl();
-                                Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
-                                formulario_Menu_Principal.Menu_Lista_VLC.Controls.Add(Nuevo_Grabador_VLC);
-
-                                Nuevo_Grabador_VLC.Width = 50;
-                                Nuevo_Grabador_VLC.Height = 50;
-
-                                //Propiedades del reproductor
-                                Nuevo_Reproductor_Camara.Width = 400;
-                                Nuevo_Reproductor_Camara.Height = 300;
-
-                                //Inicia el streaming con los datos obtenidos si el streaming esta activo
-                                if (formulario_Menu_Principal.Variables_Globales.Streaming_Activo == true)
+                                try
                                 {
-                                    Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                    Asignar_Parametros_Variables_Globales();
+
+                                    //agrega el reproductor al menu principal
+                                    formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Add(Nuevo_Reproductor_Camara = new AxoPlayerLib.AxoPlayer());
+
+                                    Nuevo_Grabador_VLC = new Vlc.DotNet.Forms.VlcControl();
+                                    Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(formulario_Menu_Principal.Sesion_Usuario.Directorio_VLC);
+
+                                    //Nuevo_Grabador_VLC.VlcLibDirectory = new DirectoryInfo(@"C:\\Program Files (x86)\\VideoLAN\\VLC");
+                                    formulario_Menu_Principal.Menu_Lista_VLC.Controls.Add(Nuevo_Grabador_VLC);
+
+                                    Nuevo_Grabador_VLC.Width = 50;
+                                    Nuevo_Grabador_VLC.Height = 50;
+
+                                    //Propiedades del reproductor
+                                    Nuevo_Reproductor_Camara.Width = 400;
+                                    Nuevo_Reproductor_Camara.Height = 300;
+
+                                    //Inicia el streaming con los datos obtenidos si el streaming esta activo
+                                    if (formulario_Menu_Principal.Variables_Globales.Streaming_Activo == true)
+                                    {
+                                        Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                    }
+                                    else
+                                        if (formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Count == 1)
+                                        {
+                                            Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
+                                            formulario_Menu_Principal.Variables_Globales.Streaming_Activo = true;
+                                        }
+
+                                    formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);
+                                    id_Usuario = formulario_Menu_Principal.Metodos.Obtener_ID_Usuario_BD(this);
+                                    id_Camara = formulario_Menu_Principal.Metodos.Obtener_Ultimo_ID_Camara_BD();
+
+                                    //Asignamos los parametros del objeto
+                                    Asignar_Parametros_Objeto_Nueva_Camara(id_Camara);
+
+                                    //Crea el nodo de referencia para mostrar las camaras al usuario
+                                    formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
+
+                                    formulario_Menu_Principal.Metodos.Insertar_Tabla_Usuario_Camara_BD(id_Camara, id_Usuario);
+
+                                    this.Close();
                                 }
-                                else
-                                if (formulario_Menu_Principal.Menu_Lista_Camaras.Controls.Count==1)
+                                catch (Exception ex)
                                 {
-                                    Nuevo_Reproductor_Camara.PlayVideo(Variables_Globales.Usuario, Variables_Globales.Contraseña, Variables_Globales.Direccion_IP, Convert.ToInt32(Variables_Globales.Puerto_CGI), 0, 0);
-                                    formulario_Menu_Principal.Variables_Globales.Streaming_Activo = true;
+                                    Console.WriteLine(ex);
+
+                                    MessageBox.Show("Hubo un error inesperado",
+                                    "Error",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error,
+                                    MessageBoxDefaultButton.Button1);
                                 }
-
-                                formulario_Menu_Principal.Metodos.Insertar_Camara_BD(this);
-                                id_Usuario = formulario_Menu_Principal.Metodos.Obtener_ID_Usuario_BD(this);
-                                id_Camara = formulario_Menu_Principal.Metodos.Obtener_Ultimo_ID_Camara_BD();
-
-                                //Asignamos los parametros del objeto
-                                Asignar_Parametros_Objeto_Nueva_Camara(id_Camara);
-
-                                //Crea el nodo de referencia para mostrar las camaras al usuario
-                                formulario_Menu_Principal.Crear_Nodos_Camaras(Nueva_Camara);
-
-                                formulario_Menu_Principal.Metodos.Insertar_Tabla_Usuario_Camara_BD(id_Camara, id_Usuario);
-
-                                this.Close();
                             }
-                            catch(Exception ex)
+                            else
                             {
-                                MessageBox.Show("Hubo un error inesperado",
-                                "Error",
+                                MessageBox.Show("Porfavor introduce el puerto CGI",
+                                "Aviso",
                                 MessageBoxButtons.OK,
-                                MessageBoxIcon.Error,
+                                MessageBoxIcon.Exclamation,
                                 MessageBoxDefaultButton.Button1);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Porfavor introduce el puerto CGI",
+                            MessageBox.Show("Error: El Nombre ya esta registrado",
                             "Aviso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation,
@@ -228,7 +244,7 @@ namespace ASECS
                     }
                     else
                     {
-                        MessageBox.Show("Error: El Nombre ya esta registrado",
+                        MessageBox.Show("Introduce un Nombre para la camara",
                         "Aviso",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation,
@@ -237,16 +253,18 @@ namespace ASECS
                 }
                 else
                 {
-                    MessageBox.Show("Introduce un Nombre para la camara",
+                    MessageBox.Show("Selecciona una camara",
                     "Aviso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation,
                     MessageBoxDefaultButton.Button1);
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Selecciona una camara",
+                Console.WriteLine(ex);
+
+                MessageBox.Show("Hubo un error inesperado",
                 "Aviso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,

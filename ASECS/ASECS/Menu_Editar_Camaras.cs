@@ -87,6 +87,8 @@ namespace ASECS
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
+
                 MessageBox.Show("Selecciona una camara",
                 "Aviso",
                 MessageBoxButtons.OK,

@@ -93,6 +93,16 @@ namespace ASECS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Carpeta_Ir {
+            get {
+                object obj = ResourceManager.GetObject("Carpeta_Ir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cerrar_Sesion {
             get {
                 object obj = ResourceManager.GetObject("Cerrar_Sesion", resourceCulture);

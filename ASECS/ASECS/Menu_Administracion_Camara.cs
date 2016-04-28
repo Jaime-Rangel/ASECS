@@ -81,7 +81,7 @@ namespace ASECS
                     MessageBoxDefaultButton.Button1);
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 MessageBox.Show("Selecciona una camara",
                 "Aviso",

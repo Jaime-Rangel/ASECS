@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Timers;
+using System.Diagnostics;
 
 namespace ASECS
 {
@@ -23,7 +24,6 @@ namespace ASECS
         public Menu_Principal_Metodos Metodos;
         public Tiempo Objeto_Tiempo;
         public Usuario Sesion_Usuario;
-        bool cerrar_sesion;
 
         public Menu_Principal(Usuario Sesion_Usuario)
         {
@@ -33,14 +33,71 @@ namespace ASECS
 
         private void Menu_Principal_Load(object sender, EventArgs e)
         {
-            Inicializar_Objetos();
-            Inicializar_Variables_Camara();
-            Aspectos.Acomodar_Elementos();
-            Aspectos.Asignar_Mensaje_Bienvenida();
-            Metodos.Asignar_Ruta_Grabaciones();
-            Metodos.Asignar_Tiempo_Grabacion();
-            Metodos.Cargar_Camaras_Usuario_BD(Sesion_Usuario.Usuario_ID);
-            Aspectos.Habilitar_Elementos();
+            try
+            {
+                Inicializar_Objetos();
+                Inicializar_Variables_Camara();
+                Aspectos.Acomodar_Elementos();
+                Aspectos.Asignar_Mensaje_Bienvenida();
+                Metodos.Asignar_Ruta_Grabaciones();
+                Metodos.Asignar_Tiempo_Grabacion();
+                Metodos.Cargar_Camaras_Usuario_BD(Sesion_Usuario.Usuario_ID);
+                Aspectos.Habilitar_Elementos();
+
+                if (Sesion_Usuario.Directorio_VLC == null)
+                {
+                    MessageBox.Show("No se ha asignado un directorio del plugin de VLC es necesario para que funcione el programa, si no está seguro de como configurar este plugin contacte a su administrador .",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+
+                    Asignar_Directorio_VLC();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                MessageBox.Show("Hubo un error de conexión con la base de datos.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+
+            }
+        }
+
+        public void Asignar_Directorio_VLC()
+        {
+            string folder;
+            DialogResult result = Dialogo_Ruta_VLC.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    folder = Dialogo_Ruta_VLC.SelectedPath;
+                    Sesion_Usuario.Directorio_VLC = folder;
+                    Metodos.Actualizar_Directorio_VLC_BD();
+
+                    MessageBox.Show("La ruta se ha almacenado correctamente.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+
+                    MessageBox.Show("Hubo un error de conexión con la base de datos.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
+            }
         }
 
         public void Inicializar_Objetos()
@@ -147,19 +204,33 @@ namespace ASECS
             DialogResult result = Dialogo_Ruta_Grabacion.ShowDialog();
             if( result == DialogResult.OK )
             {
-                folder = Dialogo_Ruta_Grabacion.SelectedPath;
-                //MessageBox.Show(Convert.ToString(Dialogo_Ruta_Grabacion.SelectedPath));
-                Variables_Globales.Directorio_Grabacion = new DirectoryInfo(Dialogo_Ruta_Grabacion.SelectedPath);
-                Variables_Globales.Ruta_Grabacion = folder;
-                Metodos.Actualizar_Ruta_Grabaciones_BD();
+                try
+                {
+                    folder = Dialogo_Ruta_Grabacion.SelectedPath;
+                    //MessageBox.Show(Convert.ToString(Dialogo_Ruta_Grabacion.SelectedPath));
+                    Variables_Globales.Directorio_Grabacion = new DirectoryInfo(Dialogo_Ruta_Grabacion.SelectedPath);
+                    Variables_Globales.Ruta_Grabacion = folder;
+                    Metodos.Actualizar_Ruta_Grabaciones_BD();
 
-                MessageBox.Show("La ruta se ha almacenado correctamente.",
-                "Aviso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("La ruta se ha almacenado correctamente.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
 
-                Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: "+folder;
+                    Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: " + folder;
+                    Sesion_Usuario.Directorio_Usuario = folder;
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex);
+
+                    MessageBox.Show("Hubo un error de conexión con la base de datos.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
             }
         }
 
@@ -498,8 +569,36 @@ namespace ASECS
 
         private void Menu_Opciones_Videos_Click(object sender, EventArgs e)
         {
-            Menu_Videos Ver_Video = new Menu_Videos(this);
-            Ver_Video.Show();
+            if(Variables_Globales.Ruta_Grabacion != "")
+            {
+                Menu_Videos Ver_Video = new Menu_Videos(this);
+                Ver_Video.Show();
+            }
+            else
+            {
+                MessageBox.Show("Aun no hay una ruta asignada.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
+
+        }
+
+        private void Menu_Principal_Ir_Ruta_Click(object sender, EventArgs e)
+        {
+            if (Variables_Globales.Ruta_Grabacion != "")
+            {
+                Process.Start(Variables_Globales.Ruta_Grabacion);
+            }
+            else
+            {
+                MessageBox.Show("Aun no hay una ruta asignada.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            }
         }
     }
 }
