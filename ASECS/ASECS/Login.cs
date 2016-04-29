@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 namespace ASECS
 {
@@ -172,10 +173,70 @@ namespace ASECS
             //Menu.ShowDialog();
             //this.Close();
 
-            this.Hide();
-            var Menu = new Menu_Principal(Sesion_Usuario);
-            Menu.Closed += (s, args) => this.Close();
-            Menu.Show();
+            if (Sesion_Usuario.Directorio_VLC == null)
+            {
+                MessageBox.Show("No se ha asignado un directorio del plugin de VLC es necesario para que funcione el programa, si no está seguro de como configurar este plugin contacte a su administrador .",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+
+                Asignar_Directorio_VLC();
+            }
+            else
+            {
+                this.Hide();
+                var Menu = new Menu_Principal(Sesion_Usuario);
+                Menu.Closed += (s, args) => this.Close();
+                Menu.Show();
+            }
+        }
+
+        public void Asignar_Directorio_VLC()
+        {
+            string folder;
+            DialogResult result = Dialogo_Ruta_VLC.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    folder = Dialogo_Ruta_VLC.SelectedPath;
+                    Sesion_Usuario.Directorio_VLC = folder;
+                    verificacion.Actualizar_Directorio_VLC_BD();
+
+                    MessageBox.Show("La ruta se ha almacenado correctamente.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+
+                    this.Hide();
+                    var Menu = new Menu_Principal(Sesion_Usuario);
+                    Menu.Closed += (s, args) => this.Close();
+                    Menu.Show();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+
+                    MessageBox.Show("Hubo un error de conexión con la base de datos.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation,
+                    MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("El programa no puede iniciar sin este elemento.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+
+                this.Close();
+            }
         }
 
         private void Titulo_Perdido_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

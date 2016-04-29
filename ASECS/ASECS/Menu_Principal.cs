@@ -44,16 +44,16 @@ namespace ASECS
                 Metodos.Cargar_Camaras_Usuario_BD(Sesion_Usuario.Usuario_ID);
                 Aspectos.Habilitar_Elementos();
 
-                if (Sesion_Usuario.Directorio_VLC == null)
-                {
-                    MessageBox.Show("No se ha asignado un directorio del plugin de VLC es necesario para que funcione el programa, si no está seguro de como configurar este plugin contacte a su administrador .",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
+                //if (Sesion_Usuario.Directorio_VLC == null)
+                //{
+                //    MessageBox.Show("No se ha asignado un directorio del plugin de VLC es necesario para que funcione el programa, si no está seguro de como configurar este plugin contacte a su administrador .",
+                //    "Aviso",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Exclamation,
+                //    MessageBoxDefaultButton.Button1);
 
-                    Asignar_Directorio_VLC();
-                }
+                //    Asignar_Directorio_VLC();
+                //}
             }
             catch(Exception ex)
             {

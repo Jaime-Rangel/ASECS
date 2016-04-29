@@ -160,5 +160,20 @@ namespace ASECS
 
         }
 
+        public void Actualizar_Directorio_VLC_BD()
+        {
+            Conexion_BD registro = new Conexion_BD();
+
+            registro.Crear_Conexion();
+            string insertar = "CALL Actualizar_Directorio_VLC(@C1,@C2);";
+            MySqlCommand chec = new MySqlCommand(insertar, registro.Obtener_Conexion());
+            chec.Connection = registro.Obtener_Conexion();
+            chec.Parameters.AddWithValue("@C1", formulario_login.Sesion_Usuario.Directorio_VLC);
+            chec.Parameters.AddWithValue("@C2", formulario_login.Sesion_Usuario.Usuario_ID);
+
+            chec.ExecuteNonQuery();
+            registro.Cerrar_Conexion();
+        }
+
     }
 }

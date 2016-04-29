@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ASECS
 {
@@ -22,11 +23,13 @@ namespace ASECS
 
         public void Asignar_Parametros_Icono_Notificacion()
         {
-            formulario_principal.Icono_Minimizar.Icon = new Icon(SystemIcons.Application, 40, 40);
+            //formulario_principal.Icono_Minimizar.Icon = new Icon(SystemIcons.Application, 40, 40);
+            formulario_principal.Icono_Minimizar.Icon = new Icon(Icon.ExtractAssociatedIcon(Application.ExecutablePath), 40, 40);
+
             formulario_principal.Icono_Minimizar.Text = "Regresar a Asecs";
             formulario_principal.Icono_Minimizar.Visible = true;
 
-            formulario_principal.Icono_Minimizar.BalloonTipText = "Asecs sigue en funcionamiento";
+            formulario_principal.Icono_Minimizar.BalloonTipText = "ASECS sigue en funcionamiento pero se ha minimizado";
             formulario_principal.Icono_Minimizar.BalloonTipTitle = "Aviso Importante";
         }
 

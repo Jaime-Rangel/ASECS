@@ -40,6 +40,7 @@
             this.Imagen_Logo = new System.Windows.Forms.PictureBox();
             this.Barra_Progreso = new System.Windows.Forms.ProgressBar();
             this.Tiempo_Barra = new System.Windows.Forms.Timer(this.components);
+            this.Dialogo_Ruta_VLC = new System.Windows.Forms.FolderBrowserDialog();
             this.Grupo_Login.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.SuspendLayout();
@@ -176,5 +177,6 @@
         public System.Windows.Forms.ProgressBar Barra_Progreso;
         private System.Windows.Forms.Timer Tiempo_Barra;
         private System.Windows.Forms.PictureBox Imagen_Logo;
+        private System.Windows.Forms.FolderBrowserDialog Dialogo_Ruta_VLC;
     }
 }

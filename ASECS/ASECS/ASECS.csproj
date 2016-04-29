@@ -328,6 +328,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASECS.ico" />
+    <None Include="Resources\Icono_Oficial.ico" />
+    <None Include="Resources\Icono_Oficial.bmp" />
     <None Include="Resources\Carpeta_Ir.png" />
     <None Include="Resources\Cerrar_Sesion.png" />
     <None Include="Resources\Videos.png" />

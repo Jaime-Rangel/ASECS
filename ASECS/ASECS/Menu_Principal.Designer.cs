@@ -305,10 +305,10 @@
             // Titulo_Grabaciones
             // 
             this.Titulo_Grabaciones.AutoSize = true;
-            this.Titulo_Grabaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo_Grabaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulo_Grabaciones.Location = new System.Drawing.Point(6, 89);
             this.Titulo_Grabaciones.Name = "Titulo_Grabaciones";
-            this.Titulo_Grabaciones.Size = new System.Drawing.Size(259, 20);
+            this.Titulo_Grabaciones.Size = new System.Drawing.Size(291, 20);
             this.Titulo_Grabaciones.TabIndex = 2;
             this.Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en:";
             // 
@@ -378,6 +378,8 @@
             // 
             // Icono_Minimizar
             // 
+            this.Icono_Minimizar.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.Icono_Minimizar.Icon = ((System.Drawing.Icon)(resources.GetObject("Icono_Minimizar.Icon")));
             this.Icono_Minimizar.Text = "notifyIcon1";
             this.Icono_Minimizar.Visible = true;
             this.Icono_Minimizar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Icono_Minimizar_MouseDoubleClick);
