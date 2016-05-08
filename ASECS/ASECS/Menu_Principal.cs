@@ -189,48 +189,59 @@ namespace ASECS
             }
             else
             {
-                MessageBox.Show("No puedes eliminar cámaras mientras están grabando.",
+                MessageBox.Show("No puedes agregar cámaras mientras hay grabaciones activas.",
                 "Aviso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
             }
-
         }
 
         private void Menu_Principal_Cambiar_Rutas_Click(object sender, EventArgs e)
         {
             string folder;
-            DialogResult result = Dialogo_Ruta_Grabacion.ShowDialog();
-            if( result == DialogResult.OK )
+
+            if (Variables_Globales.Grabaciones_Iniciadas == false)
             {
-                try
+                DialogResult result = Dialogo_Ruta_Grabacion.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    folder = Dialogo_Ruta_Grabacion.SelectedPath;
-                    //MessageBox.Show(Convert.ToString(Dialogo_Ruta_Grabacion.SelectedPath));
-                    Variables_Globales.Directorio_Grabacion = new DirectoryInfo(Dialogo_Ruta_Grabacion.SelectedPath);
-                    Variables_Globales.Ruta_Grabacion = folder;
-                    Metodos.Actualizar_Ruta_Grabaciones_BD();
+                    try
+                    {
+                        folder = Dialogo_Ruta_Grabacion.SelectedPath;
+                        //MessageBox.Show(Convert.ToString(Dialogo_Ruta_Grabacion.SelectedPath));
+                        Variables_Globales.Directorio_Grabacion = new DirectoryInfo(Dialogo_Ruta_Grabacion.SelectedPath);
+                        Variables_Globales.Ruta_Grabacion = folder;
+                        Metodos.Actualizar_Ruta_Grabaciones_BD();
 
-                    MessageBox.Show("La ruta se ha almacenado correctamente.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button1);
+                        MessageBox.Show("La ruta se ha almacenado correctamente.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
 
-                    Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: " + folder;
-                    Sesion_Usuario.Directorio_Usuario = folder;
+                        Titulo_Grabaciones.Text = "Las Grabaciones se almacenan en: " + folder;
+                        Sesion_Usuario.Directorio_Usuario = folder;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+
+                        MessageBox.Show("Hubo un error de conexión con la base de datos.",
+                        "Aviso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation,
+                        MessageBoxDefaultButton.Button1);
+                    }
                 }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex);
-
-                    MessageBox.Show("Hubo un error de conexión con la base de datos.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation,
-                    MessageBoxDefaultButton.Button1);
-                }
+            }
+            else
+            {
+                MessageBox.Show("No puedes cambiar la ruta de almacenamiento mientras las cámaras están grabando.",
+                "Aviso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -249,7 +260,7 @@ namespace ASECS
             }
             else
             {
-                MessageBox.Show("No puedes eliminar cámaras mientras están grabando.",
+                MessageBox.Show("No puedes eliminar cámaras mientras hay grabaciones activas.",
                 "Aviso",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation,
@@ -349,8 +360,7 @@ namespace ASECS
                     fecha = dia + "_" + mes + "_" + año + "_" + hora;
 
                     //control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='C:\\Users\\jaime\\test.mp4'}");
-                    control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), ":sout=#std{access=file,mux=mp4, dst='" + Variables_Globales.Ruta_Grabacion + "\\" + alias_limpio + "_" + fecha + ".mp4'}");
-
+                    control.Play(new Uri("rtsp://" + Resultado.Usuario + ":" + Resultado.Contraseña + "@" + Resultado.Direccion_IP + ":" + Resultado.Puerto_RSTP + "/udp/av0_0"), "sout=#std{access=file,mux=mp4, dst=" + Variables_Globales.Ruta_Grabacion + "\\" + alias_limpio + "_" + fecha + ".mp4}");
                     cont++;
                 }
 

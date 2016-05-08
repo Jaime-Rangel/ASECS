@@ -85,6 +85,7 @@ namespace ASECS
             Inicializar_Variables_Camara();
             Aparencia.Asignar_Titulo_Camara();
             Verificar_Parametros_Camara_BD();
+            Encender_Camara();
         }
 
         public void Inicializar_Variables_Camara()
@@ -118,12 +119,7 @@ namespace ASECS
                 }
                 else
                 {
-                    Aparencia.Elementos_Activados();
-                    Variables_Globales.Camara_Activa = true;
-                    Streaming_Video_Hilo = new Thread(() => Hilo_Camara_Streaming(this));
-                    //Verificar_Camara_Activa_Hilo = new Thread(() => Hilo_Camara_Activa(this));
-                    //Verificar_Camara_Activa_Hilo.Start();
-                    Streaming_Video_Hilo.Start();
+                    Encender_Camara();
                 }
             }
             else
@@ -134,6 +130,16 @@ namespace ASECS
                 MessageBoxIcon.Exclamation,
                 MessageBoxDefaultButton.Button1);
             }
+        }
+
+        private void Encender_Camara()
+        {
+            Aparencia.Elementos_Activados();
+            Variables_Globales.Camara_Activa = true;
+            Streaming_Video_Hilo = new Thread(() => Hilo_Camara_Streaming(this));
+            //Verificar_Camara_Activa_Hilo = new Thread(() => Hilo_Camara_Activa(this));
+            //Verificar_Camara_Activa_Hilo.Start();
+            Streaming_Video_Hilo.Start();
         }
 
         //Metodo/Hilo para Mostrar la camara en streaming
